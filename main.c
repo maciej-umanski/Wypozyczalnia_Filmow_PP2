@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <conio.h>
 
 
 //BAZY DANYCH//
@@ -39,6 +40,7 @@ struct wypozyczenie{
 int input(int a, int b);
 unsigned long long input_ull(unsigned long long a, unsigned long long b);
 void clear();
+void czekaj_na_input(int numer);
 
 // FUNKCJE ZARZĄDZANIA LISTAMI//
 int klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]);     // zwraca -1 jeżeli pesel już istnieje w bazie
@@ -87,23 +89,27 @@ int main() {
         puts(">> 4. DEBUG_MENU");
         puts(">> 5. Wyjdź z programu");
 
-        switch(input(1,5)) {
-            case 5: {
+        switch(getch()) {
+            default:{
+                break;
+            }
+            case 27:
+            case 53: {
                 return 0;
             }
-            case 1: {
+            case 49: {
                 zarzadznie_klient(&head_klient);
                 break;
             }
-            case 2: {
+            case 50: {
                 zarzadzanie_film(&head_film);
                 break;
             }
-            case 3:{
+            case 51:{
                 zarzadzanie_wypozyczenie(&head_wypozyczenie, &head_klient, &head_film);
                 break;
             }
-            case 4:{
+            case 52:{
                 DEBUG_MENU(&head_wypozyczenie,&head_klient,&head_film);
                 break;
             }
@@ -165,6 +171,7 @@ void clear(){
     system("clear");
 #endif
 }
+
 
 ///////////////////
 
@@ -984,23 +991,27 @@ void zarzadznie_klient(struct klient **head_klient){
         puts(">> 3. Edytuj klienta");
         puts(">> 4. Wyświetl całą bazę");
         puts(">> 5. Wróć do menu głównego");
-        switch (input(1, 5)) {
-            case 5: {
+        switch (getch()) {
+            default:{
+                break;
+            }
+            case 27:
+            case 53: {
                 return;
             }
-            case 1: {
+            case 49: {
                 dodawanie_klient(head_klient);
                 break;
             }
-            case 2: {
+            case 50: {
                 usuwanie_klient(head_klient);
                 break;
             }
-            case 3: {
+            case 51: {
                 edytowanie_klient(head_klient);
                 break;
             }
-            case 4: {
+            case 52: {
                 wypisz_klient(head_klient);
                 break;
             }
@@ -1017,23 +1028,27 @@ void zarzadzanie_film(struct film **head_film){
         puts(">> 3. Edytuj film");
         puts(">> 4. Wyświetl całą bazę");
         puts(">> 5. Wróć do menu głównego");
-        switch (input(1, 5)) {
-            case 5: {
+        switch (getch()) {
+            default:{
+                break;
+            }
+            case 27:
+            case 53: {
                 return;
             }
-            case 1: {
+            case 49: {
                 dodawanie_film(head_film);
                 break;
             }
-            case 2: {
+            case 50: {
                 usuwanie_film(head_film);
                 break;
             }
-            case 3: {
+            case 51: {
                 edytowanie_film(head_film);
                 break;
             }
-            case 4: {
+            case 52: {
                 wypisz_film(head_film);
                 break;
             }
@@ -1050,23 +1065,27 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
         puts(">> 3. Edytuj wypożyczenie");
         puts(">> 4. Wyświetl wypożyczenia");
         puts(">> 5. Wróć do menu głównego");
-        switch (input(1, 5)) {
-            case 5: {
+        switch (getch()) {
+            default:{
+                break;
+            }
+            case 27:
+            case 53: {
                 return;
             }
-            case 1: {
+            case 49: {
                 dodawanie_wypozyczenie(head_wypozyczenie, head_klient, head_film);
                 break;
             }
-            case 2: {
+            case 50: {
                 usuwanie_wypozyczenie(head_wypozyczenie);
                 break;
             }
-            case 3: {
+            case 51: {
                 edytowanie_wypozyczenie(head_wypozyczenie);
                 break;
             }
-            case 4: {
+            case 52: {
                 wypisz_wypozyczenie(head_wypozyczenie);
                 break;
             }
@@ -1083,25 +1102,29 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
         puts(">> 3. Dodaj przykładowe wypożyczenia (+powyższe)");
         puts(">> 4. Wyczyść wszystkie bazy");
         puts(">> 5. Wróć do menu głównego");
-        switch (input(1, 5)) {
-            case 5: {
+        switch (getch()) {
+            default:{
+                break;
+            }
+            case 27:
+            case 53: {
                 return;
             }
-            case 1: {
+            case 49: {
                 klient_dodaj(head_klient, 98932401321, 123542864, "Maciej", "Kowalski", "m.kowalski123@gmail.com");
                 klient_dodaj(head_klient, 32455123458, 115512467, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
                 klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz", "Nowak", "t.Nowaczek@op.pl");
                 klient_dodaj(head_klient, 12562341233, 634126234, "Jakub", "Milek", "JakubMilek@gmail.com");
                 break;
             }
-            case 2: {
+            case 50: {
                 film_dodaj(head_film,3,1998,"Harry Potter - Komnata Tajemnic", "J.k. Rowiling", "Horror");
                 film_dodaj(head_film,1,2010,"Kobbit - Ostatnia costam", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
                 film_dodaj(head_film,2,2020,"8 Mila", "Sylverster Stallone", "Przygodowe");
                 break;
             }
-            case 3: {
+            case 51: {
                 klient_dodaj(head_klient, 98932401321, 123542864, "Maciej", "Kowalski", "m.kowalski123@gmail.com");
                 klient_dodaj(head_klient, 32455123458, 115512467, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
                 klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz", "Nowak", "t.Nowaczek@op.pl");
@@ -1116,7 +1139,7 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny->nastepny, (*head_klient)->nastepny->nastepny->nastepny, 50);
                 break;
             }
-            case 4: {
+            case 52: {
                 while((*head_wypozyczenie) != NULL){
                     wypozyczenie_usun(head_wypozyczenie, (*head_wypozyczenie)->numer_wypozyczenia);
                 }
