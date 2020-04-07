@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <locale.h>
 
 
 //BAZY DANYCH//
@@ -74,8 +73,7 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
 
 // FUNKCJA GłÓWNA//
 int main() {
-    setlocale(LC_ALL, "Polish");
-
+    
     struct klient *head_klient = NULL;
     struct film *head_film = NULL;
     struct wypozyczenie *head_wypozyczenie = NULL;

@@ -3,7 +3,7 @@ Projekt z Podstaw Programowania 2 - Wypożyczalnia filmów - Politechnika Świę
 # UNIX exec download
 https://www.icloud.com/iclouddrive/01dEaMuEiFf6j9r1faz8UOYLQ#MAC_Wypozyczalnia_Filmow_PP2
 # WINDOWS exe download
-
+https://www.icloud.com/iclouddrive/0CXrwIs05yPPdFoNsHGkJilfg#WINDOWS%5FWypozyczalnia%5FFilmow%5FPP2
 # INFO
 Przed skompilowaniem na windowsa, zmień kodowanie na IBM852
 (cLion) convert a nie reload
