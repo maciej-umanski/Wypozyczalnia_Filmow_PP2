@@ -5,6 +5,8 @@
 #include <conio.h>
 #include <stdbool.h>
 
+//JE½ELI WYWALAJ¤ KRZAKI USTAW KODOWANIE NA IBM 852//
+
 //BAZY DANYCH//
 struct klient{
     unsigned long long numer_klienta;
