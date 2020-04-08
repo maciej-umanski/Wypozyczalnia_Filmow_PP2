@@ -1,6 +1,5 @@
-#kodowanie pliku IBM852!K
-# WINDOWS exe download
-https://www.icloud.com/iclouddrive/0CXrwIs05yPPdFoNsHGkJilfg#WINDOWS%5FWypozyczalnia%5FFilmow%5FPP2
+# INFO
+Kodowanie pliku - IBM852!!
 # BUGS
 Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie wywalały programu
 # 2 Kamień milowy - w trakcie
