@@ -3,14 +3,14 @@
 #include <time.h>
 #include <string.h>
 #include <conio.h>
-
+#include <stdbool.h>
 
 //BAZY DANYCH//
 struct klient{
     unsigned long long numer_klienta;
     unsigned long long numer_telefonu;
-    char imie[15];
-    char nazwisko[15];
+    char imie[10];
+    char nazwisko[10];
     char email[30];
     int ilosc_posiadanych_filmow;
     struct klient *nastepny;
@@ -30,42 +30,65 @@ struct wypozyczenie{
     unsigned long long numer_klienta;
     int numer_filmu;
     char data_wypozyczenia[11];
+    time_t data_wypozyczenia_sekundy;
     char data_zwrotu[11];
+    time_t data_zwrotu_sekundy;
     struct klient *znacznik_klienta;
     struct film *znacznik_filmu;
     struct wypozyczenie *nastepny;
 };
 
 //FUNKCJE POMOCNICZE//
-int input(int a, int b);
+int input_int(int a, int b);
 unsigned long long input_ull(unsigned long long a, unsigned long long b);
-void clear();
-void czekaj_na_input(int numer);
+void czekaj_na_input_ESCAPE();
+void wyczysc_ekran();
 
-// FUNKCJE ZARZÄ„DZANIA LISTAMI//
-int klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]);     // zwraca -1 jeÅ¼eli pesel juÅ¼ istnieje w bazie
-void klient_usun(struct klient **head_klient, unsigned long long numer_klienta);
+// FUNKCJE ZARZ¤DZANIA LIST¤ KLIENTàW//
+void klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]);
+void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwanym);
 void klient_edytuj(struct klient **klient_edytowany, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]);
-int film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);                                      // zwraca -1 jeÅ¼eli film juÅ¼ istnieje w bazie
-void film_usun(struct film **head_film, int numer_filmu);
-void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
-void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni);
-void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, int numer_wypozyczenia);
-void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, char data_zwrotu[11]);
+struct klient *klient_szukaj_po_kolejnosci(struct klient **head_klient, int kolejnosc);
+struct klient *klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **head_klient, int kolejnosc);
+int klient_licz_dostepne(struct klient *head_klient);
+int klient_licz(struct klient *head_klient);
+int klient_wypisz(struct klient **head_klient);
+int klient_wypisz_dostepni(struct klient **head_klient);
+bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta);
 
-// FUNKCJE OPERUJÄ„CE NA LISTACH//
+//FUNKCJE ZARZ¤DZANIA LIST¤ FILMàW
+int film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
+void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni);
+void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
+struct film *film_szukaj_po_kolejnosci(struct film **head_film, int kolejnosc);
+struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, int kolejnosc);
+struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, int kolejnosc);
+int film_licz(struct film *head_film);
+int film_licz_dostepne(struct film *head_film);
+int film_wypisz(struct film *head_film);
+int film_wypisz_dostepne(struct film *head_film);
+bool film_czy_istnieje(struct film *head_film, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
+bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_sprawdzany_poprzedni);
+
+//FUNKCJE ZARZ¤DZANIA LIST¤ WYPO½YCZEN
+void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni);
+void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozyczenie *wypozyczenie_przed_usuwanym);
+void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_do_zwrotu);
+struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, int kolejnosc);
+struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, int kolejnosc);
+int wypozyczenie_licz(struct wypozyczenie **head_wypozyczenie);
+int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie);
+
+// FUNKCJE OPERUJ¤CE NA LISTACH//
 void dodawanie_klient(struct klient **head_klient);
 void usuwanie_klient(struct klient **head_klient);
 void edytowanie_klient(struct klient **head_klient);
-void wypisz_klient(struct klient **head_klient);
 void dodawanie_film(struct film **head_film);
 void usuwanie_film(struct film **head_film);
 void edytowanie_film(struct film **head_film);
-void wypisz_film(struct film **head_film);
-void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
+void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film);
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
 void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
-void wypisz_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
 
 // PODPROGRAMY //
 void zarzadznie_klient(struct klient **head_klient);
@@ -73,29 +96,40 @@ void zarzadzanie_film(struct film **head_film);
 void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 
-// FUNKCJA GÅ‚Ã“WNA//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int main() {
-    
+
     struct klient *head_klient = NULL;
     struct film *head_film = NULL;
     struct wypozyczenie *head_wypozyczenie = NULL;
-
     while(1){
-        clear();
-        puts("////// Menu GÅ‚Ã³wne //////");
-        puts(">> 1. ZarzÄ…dzanie bazÄ… klientÃ³w");
-        puts(">> 2. ZarzÄ…dzanie bazÄ… filmÃ³w");
-        puts(">> 3. ZarzÄ…dzanie wypoÅ¼yczaniami");
+        wyczysc_ekran();
+        puts("////// Menu Gˆ¢wne //////\n");
+        puts(">> 1. Zarz¥dzanie baz¥ klient¢w");
+        puts(">> 2. Zarz¥dzanie baz¥ film¢w");
+        puts(">> 3. Zarz¥dzanie wypo¾yczaniami");
         puts(">> 4. DEBUG_MENU");
-        puts(">> 5. WyjdÅº z programu");
+        puts("\n>> ESCAPE -> Wyjd« z programu");
 
         switch(getch()) {
             default:{
                 break;
             }
-            case 27:
-            case 53: {
-                return 0;
+            case 27:{
+                wyczysc_ekran();
+                puts(">> Czy na pewno chcesz opu˜ci† program?\n");
+                puts(">> COKOLWIEK -> Wyjd«");
+                puts(">> ESCAPE -> Anuluj\n");
+                switch(getch()){
+                    default: {
+                        return 0;
+                    }
+                    case 27:{
+                        break;
+                    }
+                }
+                break;
             }
             case 49: {
                 zarzadznie_klient(&head_klient);
@@ -114,78 +148,52 @@ int main() {
                 break;
             }
         }
-        clear();
+        wyczysc_ekran();
     }
 }
 
-////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int input(int a, int b){
+int input_int(int a, int b){
     char bufortab[10], *koniec;
     scanf("%s", bufortab);
     int bufor = strtol(bufortab, &koniec, 10);
-    if(a == 0 && b == 0) {
-        while (*koniec == *bufortab) {
-            puts("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.");
-            scanf("%s", bufortab);
-            bufor = strtol(bufortab, &koniec, 10);
-        }
-        return bufor;
+    while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
+        printf("\nBˆ¥d, zˆa dana wej˜ciowa. Prosz© wpisz ponownie.\n<< ");
+        scanf("%s", bufortab);
+        bufor = strtol(bufortab, &koniec, 10);
     }
-    else{
-        while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
-            puts("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.");
-            scanf("%s", bufortab);
-            bufor = strtol(bufortab, &koniec, 10);
-        }
-        return bufor;
-    }
+    return bufor;
 }
 
 unsigned long long input_ull(unsigned long long a, unsigned long long b){
-    char bufortab[10], *koniec;
+    char bufortab[15], *koniec;
     scanf("%s", bufortab);
     unsigned long long bufor = strtoull(bufortab, &koniec, 10);
-    if(a == 0 && b == 0) {
-        while (*koniec == *bufortab) {
-            puts("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.");
-            scanf("%s", bufortab);
-            bufor = strtol(bufortab, &koniec, 10);
-        }
-        return bufor;
+    while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)){
+        printf("\nBˆ¥d, zˆa dana wej˜ciowa. Prosz© wpisz ponownie.\n<< ");
+        memset(bufortab, 0, 11 * sizeof(char));
+        scanf("%s", bufortab);
+        bufor = strtoull(bufortab, &koniec, 10);
     }
-    else{
-        while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
-            puts("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.");
-            scanf("%s", bufortab);
-            bufor = strtoull(bufortab, &koniec, 10);
-        }
-        return bufor;
+    return bufor;
+}
+
+void czekaj_na_input_ESCAPE(){
+    puts("\n\n>> Wci˜nij ESCAPE aby powr¢ci†.");
+    while(getch() != 27){
+
     }
 }
 
-void clear(){
-#ifdef _WIN32
-    system("cls");
-#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-    system("clear");
-#endif
+void wyczysc_ekran(){
+   system("cls");
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////
-
-int klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
-    struct klient *klient_nowy = (*head_klient);
-    if((*head_klient) != NULL) {
-        while ((klient_nowy->nastepny != NULL) && (klient_nowy->numer_klienta != numer_klienta)) {
-            klient_nowy = klient_nowy->nastepny;
-        }
-        if (klient_nowy->numer_klienta == numer_klienta) {
-            return -1;
-        }
-    }
-    klient_nowy = (struct klient *) malloc(sizeof(struct klient));
+void klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
+    struct klient *klient_nowy = (struct klient *) malloc(sizeof(struct klient));
     klient_nowy->numer_klienta = numer_klienta;
     klient_nowy->numer_telefonu = numer_telefonu;
     strcpy(klient_nowy->imie, imie);
@@ -194,28 +202,18 @@ int klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, 
     klient_nowy->ilosc_posiadanych_filmow = 0;
     klient_nowy->nastepny = (*head_klient);
     *head_klient = klient_nowy;
-    return 0;
 }
 
-void klient_usun(struct klient **head_klient, unsigned long long numer_klienta){
-    struct klient *klient_usuwany = *head_klient;
-    struct klient *klient_bufor;
-    if ((*head_klient)-> numer_klienta == numer_klienta) {
+void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwanym){
+    struct klient *klient_bufor = NULL;
+    if (klient_przed_usuwanym == NULL) {
         klient_bufor = (*head_klient)->nastepny;
         free(*head_klient);
         (*head_klient) = klient_bufor;
     } else {
-        while(klient_usuwany->nastepny->numer_klienta != numer_klienta) {
-            klient_usuwany = klient_usuwany->nastepny;
-        }
-        if(klient_usuwany->nastepny->nastepny == NULL){
-            free(klient_usuwany->nastepny);
-            klient_usuwany->nastepny = NULL;
-        }else{
-            klient_bufor = klient_usuwany->nastepny;
-            klient_usuwany->nastepny = klient_bufor->nastepny;
-            free(klient_bufor);
-        }
+        klient_bufor = klient_przed_usuwanym->nastepny;
+        klient_przed_usuwanym->nastepny = klient_bufor->nastepny;
+        free(klient_bufor);
     }
 }
 
@@ -226,27 +224,117 @@ void klient_edytuj(struct klient **klient_edytowany, unsigned long long numer_te
     strcpy((*klient_edytowany) -> email, email);
 }
 
-int film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
-    struct film *film_nowy = *head_film;
-    if((*head_film)!=NULL){
-        while ((film_nowy->nastepny != NULL) && ((rok_produkcji != film_nowy->rok_produkcji) && (strcmp(tytul, film_nowy->tytul) != 0) && (strcmp(rezyser, film_nowy->rezyser) != 0) && (strcmp(gatunek, film_nowy->gatunek) != 0))){
-            film_nowy = film_nowy->nastepny;
-        }
-        if (rok_produkcji == film_nowy->rok_produkcji && strcmp(tytul, film_nowy->tytul) == 0 && strcmp(rezyser, film_nowy->rezyser) == 0 && strcmp(gatunek, film_nowy->gatunek) == 0){
-            return -1;
-        }
+struct klient *klient_szukaj_po_kolejnosci(struct klient **head_klient, int kolejnosc){
+    struct klient *klient_bufor = *head_klient;
+    for(int i = 1; i != kolejnosc;i++){
+        klient_bufor = klient_bufor -> nastepny;
     }
-    film_nowy = (struct film *)malloc(sizeof(struct film));
+    return klient_bufor;
+}
+
+struct klient *klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **head_klient, int kolejnosc){
+    struct klient *poprzedni = NULL;
+    struct klient *klient_bufor = *head_klient;
+    for(int i=0; i != kolejnosc;){
+        if(klient_bufor->ilosc_posiadanych_filmow == 0) {
+            i++;
+        }
+        if(i == kolejnosc){
+            break;
+        }
+        poprzedni = klient_bufor;
+        klient_bufor = klient_bufor->nastepny;
+    }
+    return poprzedni;
+}
+
+int klient_licz(struct klient *head_klient){
+    int ilosc = 0;
+    while(head_klient != 0){
+        head_klient = head_klient -> nastepny;
+        ilosc++;
+    }
+    return ilosc;
+}
+
+int klient_licz_dostepne(struct klient *head_klient){
+    int ilosc = 0;
+    while(head_klient != 0){
+        if(head_klient -> ilosc_posiadanych_filmow == 0){
+            ilosc++;
+        }
+        head_klient = head_klient -> nastepny;
+    }
+    return ilosc;
+}
+
+int klient_wypisz(struct klient **head_klient){
+    struct klient *klient_bufor = *head_klient;
+    if(klient_bufor == NULL){
+        puts(">> Baza klient¢w jest pusta!");
+        return -1;
+    }
+    printf(">> Nr. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    for(int i = 1;klient_bufor != NULL;i++){
+        printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
+        klient_bufor = klient_bufor -> nastepny;
+    }
+    return 0;
+}
+
+int klient_wypisz_dostepni(struct klient **head_klient){
+    struct klient *klient_bufor = *head_klient;
+    if(klient_bufor == NULL){
+        wyczysc_ekran();
+        puts(">> Baza klient¢w jest pusta!");
+        return -1;
+    }
+    printf(">> Nr. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    int i;
+    for(i=1; klient_bufor != NULL;){
+        if(klient_bufor->ilosc_posiadanych_filmow == 0) {
+            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", i, klient_bufor->numer_klienta,
+                   klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->numer_telefonu, klient_bufor->email,
+                   klient_bufor->ilosc_posiadanych_filmow);
+            i++;
+        }
+        klient_bufor = klient_bufor -> nastepny;
+    }
+    if(i==1){
+        wyczysc_ekran();
+        puts(">> ½aden klient nie mo¾e zosta† usuni©ty!");
+        return -1;
+    }
+    return 0;
+}
+
+bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta){
+    while(head_klient != NULL){
+        if(head_klient -> numer_klienta == numer_klienta){
+            return true;
+        }
+        head_klient = head_klient -> nastepny;
+    }
+    return false;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
+
+    struct film *film_nowy = (struct film *)malloc(sizeof(struct film));
+
     if((*head_film)==NULL){
         film_nowy -> numer_filmu = 0;
     }
     else{
         film_nowy -> numer_filmu = (*head_film)->numer_filmu+1;
     }
+
     film_nowy -> sztuki_dostepne = sztuki_dostepne;
     film_nowy -> sztuki_wypozyczone = 0;
-    film_nowy -> rok_produkcji = rok_produkcji;
     film_nowy -> nastepny = (*head_film);
+    film_nowy -> rok_produkcji =  rok_produkcji;
     strcpy(film_nowy -> tytul, tytul);
     strcpy(film_nowy -> rezyser, rezyser);
     strcpy(film_nowy -> gatunek, gatunek);
@@ -254,26 +342,16 @@ int film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, 
     return 0;
 }
 
-void film_usun(struct film **head_film, int numer_filmu){
-    struct film *film_usuwany = *head_film;
-    struct film *film_bufor;
-    if((*head_film)->numer_filmu == numer_filmu){
+void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni){
+    struct film *film_bufor = NULL;
+    if(film_usuwany_poprzedni == NULL){
         film_bufor = (*head_film) -> nastepny;
         free(*head_film);
         (*head_film) = film_bufor;
     } else {
-        while(film_usuwany -> nastepny -> numer_filmu != numer_filmu){
-            film_usuwany = film_usuwany -> nastepny;
-        }
-        if(film_usuwany -> nastepny -> nastepny == NULL){
-            free(film_usuwany->nastepny);
-            film_usuwany->nastepny = NULL;
-        } else{
-            film_bufor = film_usuwany -> nastepny;
-            film_usuwany -> nastepny = film_bufor -> nastepny;
-            free(film_bufor);
-        }
-
+        film_bufor = film_usuwany_poprzedni -> nastepny;
+        film_usuwany_poprzedni -> nastepny = film_bufor -> nastepny;
+        free(film_bufor);
     }
 }
 
@@ -285,302 +363,474 @@ void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_prod
     strcpy((*film_edytowany) -> gatunek, gatunek);
 }
 
+struct film *film_szukaj_po_kolejnosci(struct film **head_film, int kolejnosc){
+    struct film *film_bufor = *head_film;
+    for(int i = 1 ; i != kolejnosc; i++){
+        film_bufor = film_bufor->nastepny;
+    }
+    return film_bufor;
+}
+
+struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, int kolejnosc){
+    struct film *film_bufor = *head_film;
+    int i = 0;
+    while(i != kolejnosc){
+        if(film_bufor->sztuki_dostepne >0){
+            i++;
+        }
+        if(i == kolejnosc){
+            break;
+        }
+        film_bufor = film_bufor->nastepny;
+    }
+    return film_bufor;
+}
+
+struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, int kolejnosc){
+    struct film *film_bufor = *head_film;
+    struct film *poprzedni = NULL;
+    int i = 0;
+    while(i != kolejnosc){
+        if(film_bufor->sztuki_dostepne >0){
+            i++;
+        }
+        if(i == kolejnosc){
+            break;
+        }
+        poprzedni = film_bufor;
+        film_bufor = film_bufor->nastepny;
+    }
+    return poprzedni;
+}
+
+int film_licz(struct film *head_film){
+    int ilosc = 0;
+    while(head_film != NULL){
+            ilosc++;
+        head_film = head_film -> nastepny;
+    }
+    return ilosc;
+}
+
+int film_licz_dostepne(struct film *head_film){
+    int ilosc = 0;
+    while(head_film != NULL){
+        if(head_film -> sztuki_dostepne > 0){
+            ilosc++;
+        }
+        head_film = head_film -> nastepny;
+    }
+    return ilosc;
+}
+
+int film_wypisz(struct film *head_film){
+
+    if(head_film == NULL){
+        puts(">> Baza film¢w jest pusta!");
+        return -1;
+    }
+
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Dost©pne | Wypo¾yczone |\n\n", "Tytuˆ", "Re¾yser", "Gatunek");
+
+    for(int i = 1 ; head_film != NULL; i++) {
+        printf(">> %2d. |%30s |%20s |%10s | %13d |   %2d     |     %2d      |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_dostepne, head_film->sztuki_wypozyczone);
+        head_film = head_film -> nastepny;
+    }
+    return 0;
+}
+
+int film_wypisz_dostepne(struct film *head_film){
+
+    wyczysc_ekran();
+    puts(">> Dost©pne filmy");
+
+    if(head_film == NULL){
+        puts(">> Baza film¢w jest pusta!");
+        return -1;
+    }
+
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Dost©pne sztuki\n\n", "Tytuˆ", "Re¾yser", "Gatunek");
+
+    int i;
+    for(i = 1 ; head_film != NULL;) {
+        if(head_film -> sztuki_dostepne > 0) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %2d\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film -> nastepny;
+    }
+
+    if(i == 1){
+        wyczysc_ekran();
+        puts(">> ½aden film nie jest aktualnie dost©pny!");
+        return -1;
+    }
+
+    return 0;
+}
+
+bool film_czy_istnieje(struct film *head_film, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
+    while(head_film != NULL){
+        if((rok_produkcji - head_film->rok_produkcji) == 0 && strcmp(tytul, head_film->tytul) == 0 && strcmp(rezyser, head_film->rezyser) == 0 && strcmp(gatunek, head_film->gatunek) == 0){
+            return true;
+        }
+        head_film = head_film->nastepny;
+    }
+    return false;
+}
+
+bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_sprawdzany_poprzedni){
+    if(film_sprawdzany_poprzedni == NULL){
+        if((*head_film) -> sztuki_wypozyczone == 0 && (*head_film) -> sztuki_dostepne == 1) {
+            return false;
+        }
+    }
+    else if((film_sprawdzany_poprzedni -> nastepny -> sztuki_wypozyczone == 0 ) && (film_sprawdzany_poprzedni -> nastepny -> sztuki_dostepne == 1)){
+        return false;
+    }
+    return true;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni){
     char data_zwrotu[11];
-    time_t czas1;
-    char czas3[11] = {0};
+    char data_wypozyczenia[11];
+    time_t data_zwrotu_sekundy;
+    time_t data_wypozyczenia_sekundy;
+    struct tm *data;
     struct wypozyczenie *nowe_wypozyczenie = (struct wypozyczenie *) malloc(sizeof(struct wypozyczenie));
-    struct tm *czas2;
-    time(&czas1);
-    czas2 = localtime(&czas1);
-    strftime(czas3, 11, "%Y/%m/%d", czas2);
-    czas1 = czas1 + (ile_tygodni * 604800);
-    czas2 = localtime(&czas1);
-    strftime(data_zwrotu, 11, "%Y/%m/%d", czas2);
+    time(&data_wypozyczenia_sekundy);
+    data = localtime(&data_wypozyczenia_sekundy);
+    strftime(data_wypozyczenia, 11, "%Y/%m/%d", data);
+    data_zwrotu_sekundy = data_wypozyczenia_sekundy + (ile_tygodni * 604800);
+    data = localtime(&data_zwrotu_sekundy);
+    strftime(data_zwrotu, 11, "%Y/%m/%d", data);
     if((*head_wypozyczenie)==NULL){
-        nowe_wypozyczenie -> numer_filmu = 0;
+        nowe_wypozyczenie -> numer_wypozyczenia = 0;
     }
     else{
-        nowe_wypozyczenie -> numer_filmu = (*head_wypozyczenie)->numer_filmu+1;
+        nowe_wypozyczenie -> numer_wypozyczenia = (*head_wypozyczenie)->numer_wypozyczenia+1;
     }
     nowe_wypozyczenie->numer_filmu = film_wypozyczany->numer_filmu;
     nowe_wypozyczenie->znacznik_filmu = film_wypozyczany;
     nowe_wypozyczenie->numer_klienta = klient_wypozyczajacy->numer_klienta;
     nowe_wypozyczenie->znacznik_klienta = klient_wypozyczajacy;
     nowe_wypozyczenie->nastepny = (*head_wypozyczenie);
+    nowe_wypozyczenie->data_wypozyczenia_sekundy = data_wypozyczenia_sekundy;
+    nowe_wypozyczenie->data_zwrotu_sekundy = data_wypozyczenia_sekundy;
     strcpy(nowe_wypozyczenie->data_zwrotu, data_zwrotu);
-    strcpy(nowe_wypozyczenie->data_wypozyczenia, czas3);
+    strcpy(nowe_wypozyczenie->data_wypozyczenia, data_wypozyczenia);
     film_wypozyczany->sztuki_dostepne--;
     film_wypozyczany->sztuki_wypozyczone++;
     klient_wypozyczajacy->ilosc_posiadanych_filmow++;
     (*head_wypozyczenie) = nowe_wypozyczenie;
 }
 
-void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, int numer_wypozyczenia){
-    struct wypozyczenie *wypozyczenie_usuwane = *head_wypozyczenie;
-    struct wypozyczenie *wypozyczenie_bufor;
-    if((*head_wypozyczenie)->numer_wypozyczenia == numer_wypozyczenia){
+void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozyczenie *wypozyczenie_przed_usuwanym){
+    struct wypozyczenie *wypozyczenie_bufor = NULL;
+    if(wypozyczenie_przed_usuwanym == NULL){
+
         (*head_wypozyczenie)->znacznik_klienta->ilosc_posiadanych_filmow--;
         (*head_wypozyczenie)->znacznik_filmu->sztuki_wypozyczone--;
         (*head_wypozyczenie)->znacznik_filmu->sztuki_dostepne++;
+
         wypozyczenie_bufor = (*head_wypozyczenie) -> nastepny;
         free(*head_wypozyczenie);
         (*head_wypozyczenie) = wypozyczenie_bufor;
     }
     else{
-        while(wypozyczenie_usuwane->nastepny->numer_wypozyczenia != numer_wypozyczenia){
-            wypozyczenie_usuwane = wypozyczenie_usuwane -> nastepny;
-        }
-        if(wypozyczenie_usuwane->nastepny->nastepny == NULL){
-            wypozyczenie_usuwane->znacznik_klienta->ilosc_posiadanych_filmow--;
-            wypozyczenie_usuwane->znacznik_filmu->sztuki_wypozyczone--;
-            wypozyczenie_usuwane->znacznik_filmu->sztuki_dostepne++;
-            free(wypozyczenie_usuwane->nastepny);
-            wypozyczenie_usuwane->nastepny = NULL;
-        } else {
-            wypozyczenie_usuwane->znacznik_klienta->ilosc_posiadanych_filmow--;
-            wypozyczenie_usuwane->znacznik_filmu->sztuki_wypozyczone--;
-            wypozyczenie_usuwane->znacznik_filmu->sztuki_dostepne++;
-            wypozyczenie_bufor = wypozyczenie_usuwane -> nastepny;
-            wypozyczenie_usuwane -> nastepny = wypozyczenie_bufor -> nastepny;
-            free(wypozyczenie_bufor);
-        }
+
+        wypozyczenie_przed_usuwanym-> nastepny -> znacznik_klienta->ilosc_posiadanych_filmow--;
+        wypozyczenie_przed_usuwanym-> nastepny -> znacznik_filmu->sztuki_wypozyczone--;
+        wypozyczenie_przed_usuwanym-> nastepny -> znacznik_filmu->sztuki_dostepne++;
+
+        wypozyczenie_bufor = wypozyczenie_przed_usuwanym -> nastepny;
+        wypozyczenie_przed_usuwanym -> nastepny = wypozyczenie_bufor -> nastepny;
+        free(wypozyczenie_bufor);
     }
 }
 
-void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, char data_zwrotu[11]){
-    strcpy((*wypozyczenie_edytowane)->data_zwrotu, data_zwrotu);
+void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_do_zwrotu){
+    time_t czas1 = time(NULL) + (czas_do_zwrotu * 604800);
+    struct tm *czas2;
+    czas2 = localtime(&czas1);
+    strftime((*wypozyczenie_edytowane)->data_zwrotu, 11, "%Y/%m/%d", czas2);
+    (*wypozyczenie_edytowane) -> data_zwrotu_sekundy = czas1;
+}
+
+struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, int kolejnosc){
+    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
+    for(int i=1; i != kolejnosc; i++){
+        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
+    }
+    return wypozyczenie_bufor;
+}
+
+struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, int kolejnosc){
+    struct wypozyczenie *poprzedni = NULL;
+    struct wypozyczenie *bufor = *head_wypozyczenie;
+    for(int i=1; i != kolejnosc; i++){
+        poprzedni = bufor;
+        bufor = bufor -> nastepny;
+    }
+    return poprzedni;
+}
+
+int wypozyczenie_licz(struct wypozyczenie **head_wypozyczenie){
+    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
+    int ilosc = 0;
+    while(wypozyczenie_bufor != 0){
+        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
+        ilosc++;
+    }
+    return ilosc;
+}
+
+int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
+    wyczysc_ekran();
+    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
+    if(wypozyczenie_bufor == NULL){
+        puts(">> Lista wypo¾yczeä jest pusta!");
+        return -1;
+    }
+    printf(">> Aktywne wypo¾yczenia:\n");
+    printf(">> Nr. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuˆ Filmu", "Data wypo¾yczenia", "Data Zwrotu");
+    for(int i=1; wypozyczenie_bufor != NULL; i++){
+        printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
+    }
+    return 0;
 }
 
 
-/////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void dodawanie_klient(struct klient **head_klient){
+
     unsigned long long numer_klienta;
     unsigned long long numer_telefonu;
     char imie[15];
     char nazwisko[15];
     char email[30];
+
     do {
-        clear();
-        puts(">> UWAGA! Numeru pesel klienta nie moÅ¼na potem zmieniÄ‡!");
-        puts(">> Wpisz numer pesel klienta:");
+
+        wyczysc_ekran();
+        puts(">> UWAGA! Numeru pesel klienta nie mo¾na potem zmieni†!");
+        printf(">> Wpisz numer pesel klienta:\n<< ");
+
         numer_klienta = input_ull(10000000000, 99999999999);
-        puts(">> Wpisz numer telefonu klienta:");
-        numer_telefonu = input_ull(100000000, 999999999);
-        puts(">> Wpisz imiÄ™ klienta: (max 15 znakÃ³w)");
-        scanf("%s", imie);
-        puts(">> Wpisz nazwisko klienta: (max 15 znakÃ³w)");
-        scanf("%s", nazwisko);
-        puts(">> Wpisz email klienta: (max 30 znakÃ³w)");
-        scanf("%s", email);
-        int bufor_bledow = klient_dodaj(head_klient, numer_klienta, numer_telefonu, imie, nazwisko, email);
-        if(bufor_bledow == 0){
-            break;
-        }
-        else{
-            clear();
-            puts(">> Istnieje juÅ¼ klient o takim numerze pesel, nie moÅ¼na nadpisaÄ‡ danych");
-            puts(">> Czy chcesz wpisaÄ‡ nowe dane?\n>> 1. Tak\n>> 2. Nie");
-            switch(input(1,2)){
-                case 1: {
+
+        if(klient_czy_pesel_istnieje(*head_klient, numer_klienta) == true){
+
+            wyczysc_ekran();
+            puts(">> Istnieje ju¾ klient o takim numerze pesel, nie mo¾na nadpisa† danych");
+            puts(">> Czy chcesz wpisa† nowy numer?\n>> 1. Tak\n>> 2. Nie, wyjd« do menu");
+
+            while(1) {
+                int wybor = getch();
+                if(wybor == 49){
                     break;
                 }
-                case 2: {
+                else if(wybor == 50){
                     return;
                 }
             }
+        }else {
+
+            printf("\n>> Wpisz numer telefonu klienta:\n<< ");
+            numer_telefonu = input_ull(111111111,999999999);
+            printf("\n>> Wpisz imi© klienta: (max 15 znak¢w)\n<< ");
+            scanf("%s", imie);
+            printf("\n>> Wpisz nazwisko klienta: (max 15 znak¢w)\n<< ");
+            scanf("%s", nazwisko);
+            printf("\n>> Wpisz email klienta: (max 30 znak¢w)\n<< ");
+            scanf("%s", email);
+
+            klient_dodaj(head_klient, numer_klienta, numer_telefonu, imie, nazwisko, email);
+
+            wyczysc_ekran();
+            printf(">> Klient zostaˆ poprawnie dodany!");
+            czekaj_na_input_ESCAPE();
+            break;
         }
     }while(1);
-    clear();
+    wyczysc_ekran();
 }
 
 void usuwanie_klient(struct klient **head_klient) {
-    struct klient *klient_bufor = *head_klient;
-    clear();
-    puts(">> JeÅ¼eli jakiegoÅ› uÅ¼ytkownika nie ma na poniÅ¼szej liÅ›cie, posiada on aktualnie wypoÅ¼yczony film");
-    puts(">> klienci moÅ¼liwi do usuniÄ™cia:\n");
-    int i = 1;
-    while (klient_bufor != NULL) {
-        if (klient_bufor->ilosc_posiadanych_filmow == 0) {
-            printf(">> %d. %llu / %s / %s\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko);
-            i++;
-        }
-        klient_bufor = klient_bufor -> nastepny;
-    }
-    if(i == 1){
-        puts(">> Wszyscy uÅ¼ytkownicy aktualnie wypoÅ¼yczajÄ… filmy!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+    wyczysc_ekran();
+    puts(">> Je¾eli jakiego˜ u¾ytkownika nie ma na poni¾szej li˜cie, posiada on aktualnie wypo¾yczony film");
+    puts(">> klienci mo¾liwi do usuni©cia:\n");
+
+    if(klient_wypisz_dostepni(head_klient) != 0){
+        czekaj_na_input_ESCAPE();
         return;
     }
-    klient_bufor = *head_klient;
-    puts("\n>> Wpisz numer uÅ¼ytkownika ktÃ³rego chcesz usunÄ…Ä‡:");
-    int numer = input(1, i-1);
-    i = 1;
-    while (i != numer){
-        if(klient_bufor->ilosc_posiadanych_filmow == 0) {
-            i++;
-        }
-        klient_bufor = klient_bufor->nastepny;
-    }
-    klient_usun(head_klient, klient_bufor -> numer_klienta);
-    clear();
+
+    puts("\n>> Wpisz numer u¾ytkownika kt¢rego chcesz usun¥†:");
+
+    int ilosc_dostepnych_filmow = klient_licz_dostepne(*head_klient);
+    int numer_klienta = input_int(1,ilosc_dostepnych_filmow);
+    struct klient *klient_bufor = klient_szukaj_po_kolejnosci_dostepne_poprzedni(head_klient,numer_klienta);
+
+    klient_usun(head_klient, klient_bufor);
+
+    wyczysc_ekran();
+    puts(">> Usuni©cie klienta przebieˆo pomy˜lnie!");
+    czekaj_na_input_ESCAPE();
 }
 
 void edytowanie_klient(struct klient **head_klient){
-    clear();
-    struct klient *klient_bufor = *head_klient;
-    puts(">> klienci moÅ¼liwi do edycji:\n");
-    int i = 1;
-    while (klient_bufor != NULL) {
-        printf(">> %d. %llu/ %llu / %s / %s / %s\n", i, klient_bufor->numer_klienta, klient_bufor-> numer_telefonu, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->email);
-        i++;
-        klient_bufor = klient_bufor -> nastepny;
-    }
-    klient_bufor = *head_klient;
-    puts("\n>> Wpisz numer uÅ¼ytkownika ktÃ³rego chcesz edytowaÄ‡:");
-    int numer = input(1, i);
-    i = 1;
-    while (i != numer){
-        i++;
-        klient_bufor = klient_bufor->nastepny;
+
+    wyczysc_ekran();
+    puts(">> klienci mo¾liwi do edycji:\n");
+
+    if(klient_wypisz(head_klient) != 0){
+        czekaj_na_input_ESCAPE();
+        return;
     }
 
-    unsigned long long numer_telefonu = klient_bufor->numer_telefonu;
+    printf("\n>> Wpisz numer u¾ytkownika kt¢rego chcesz edytowa†:\n<< ");
+
+    struct klient *klient_bufor;
+    unsigned long long numer_telefonu;
     char imie[15];
     char nazwisko[15];
     char email[30];
+
+    klient_bufor = klient_szukaj_po_kolejnosci(head_klient, input_int(1,klient_licz(*head_klient)));
+    numer_telefonu = klient_bufor->numer_telefonu;
     strcpy(imie, klient_bufor->imie);
     strcpy(nazwisko, klient_bufor->nazwisko);
     strcpy(email, klient_bufor->email);
+
     while(1){
-        clear();
-        puts(">> Wybierz pole ktÃ³re chcesz edytowaÄ‡:");
+
+        wyczysc_ekran();
+        puts(">> Wybierz pole kt¢re chcesz edytowa†:");
         puts(">> 1. Numer telefonu");
-        puts(">> 2. ImiÄ™");
+        puts(">> 2. Imi©");
         puts(">> 3. Nazwisko");
         puts(">> 4. E-Mail");
         puts(">> 5. Wszystkie");
-        switch (input(1, 5)) {
-            case 1: {
-                clear();
-                puts("Wpisz nowy numer telefonu:");
+
+        switch (getch()) {
+            case 49: {
+                wyczysc_ekran();
+                printf(">> Wpisz nowy numer telefonu:\n<< ");
                 numer_telefonu = input_ull(99999999, 1000000000);
                 break;
             }
-            case 2: {
-                clear();
-                puts("Wpisz nowe imiÄ™ klienta:");
+            case 50: {
+                wyczysc_ekran();
+                printf(">> Wpisz nowe imi© klienta:\n<< ");
                 scanf("%s", imie);
                 break;
             }
-            case 3: {
-                clear();
-                puts("Wpisz nowe nazwisko klienta:");
+            case 51: {
+                wyczysc_ekran();
+                printf(">> Wpisz nowe nazwisko klienta:\n<< ");
                 scanf("%s", nazwisko);
                 break;
             }
-            case 4: {
-                clear();
-                puts("Wpisz nowy E-mail klienta:");
+            case 52: {
+                wyczysc_ekran();
+                printf(">> Wpisz nowy E-mail klienta:\n<< ");
                 scanf("%s", email);
                 break;
             }
-            case 5: {
-                clear();
-                puts("Wpisz nowy numer telefonu:");
+            case 53: {
+                wyczysc_ekran();
+                printf(">> Wpisz nowy numer telefonu:\n<< ");
                 numer_telefonu = input_ull(99999999, 1000000000);
-                puts("Wpisz nowe imiÄ™ klienta:");
+                printf("\n>> Wpisz nowe imi© klienta:\n<< ");
                 scanf("%s", imie);
-                puts("Wpisz nowe nazwisko klienta:");
+                printf("\n>> Wpisz nowe nazwisko klienta:\n<< ");
                 scanf("%s", nazwisko);
-                puts("Wpisz nowy E-mail klienta:");
+                printf("\n>> Wpisz nowy E-mail klienta:\n<< ");
                 scanf("%s", email);
                 break;
             }
         }
-        clear();
+
+        wyczysc_ekran();
         printf(">> Stare dane klienta: %llu / %llu / %s / %s / %s\n", klient_bufor->numer_klienta,
                klient_bufor->numer_telefonu, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->email);
-        printf(">> Nowe dane klienta:  %llu / %llu / %s / %s / %s\n", klient_bufor->numer_klienta, numer_telefonu, imie,
+        printf("\n>> Nowe dane klienta:  %llu / %llu / %s / %s / %s\n", klient_bufor->numer_klienta, numer_telefonu, imie,
                nazwisko, email);
-        puts(">> Czy chcesz zaakceptowaÄ‡ zmiany?\n>> 1. Tak\n>> 2. Nie");
-        switch (input(1, 2)) {
-            case 1: {
-                klient_edytuj(&klient_bufor, numer_telefonu, imie, nazwisko, email);
-                clear();
-                return;
-            }
-            case 2: {
-                break;
-            }
-        }
-        clear();
-        puts(">> Czy chcesz wpisaÄ‡ nowe dane?\n>> 1. Tak\n>> 2. Nie, wyjdÅº z edycji danych");
-        switch (input(1, 2)) {
-            case 1: {
-                break;
-            }
-            case 2: {
-                clear();
-                return;
-            }
-        }
-    }
-}
+        puts("\n>> Czy chcesz zaakceptowa† zmiany?\n>> 1. Tak\n>> 2. Nie");
 
-void wypisz_klient(struct klient **head_klient){
-    struct klient *klient_bufor = *head_klient;
-    clear();
-    if(klient_bufor == NULL){
-        puts(">> Baza klientÃ³w jest pusta!");
-        puts(">> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
-        return;
+        while(1){
+            int wybor = getch();
+            if(wybor == 49){
+                klient_edytuj(&klient_bufor, numer_telefonu, imie, nazwisko, email);
+                wyczysc_ekran();
+                return;
+            }else if(wybor == 50){
+                break;
+            }
+        }
+
+        wyczysc_ekran();
+        puts(">> Czy chcesz wpisa† nowe dane?\n>> 1. Tak\n>> 2. Nie, wyjd« z edycji danych");
+
+        while(1){
+            int wybor = getch();
+            if(wybor == 49){
+                break;
+            }else if(wybor == 50){
+                wyczysc_ekran();
+                return;
+            }
+        }
     }
-    printf(">> Nr. / Pesel / Imie i Nazwisko / Telefon / E-Mail / IloÅ›Ä‡ posiadanych ksiaÅ¼ek\n\n");
-    for(int i=1; klient_bufor != NULL; i++){
-        printf(">> %d. %llu / %s / %s / %llu / %s / %d\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
-        klient_bufor = klient_bufor -> nastepny;
-    }
-    puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-    input(1,1);
 }
 
 void dodawanie_film(struct film **head_film){
 
+    int sztuki_dostepne;
+    int rok_produkcji;
     char tytul[30];
     char rezyser[20];
     char gatunek[10];
 
     do {
-        clear();
-        puts(">> Wpisz ile sztuk filmu chcesz dodaÄ‡ do bazy:");
-        int sztuki_dostepne = input(0, 0);
-        puts(">> Wpisz rok produkcji filmu:");
-        int rok_produkcji = input(0, 0);
-        puts(">> Wpisz tytuÅ‚ filmi: (max. 30 liter)");
+        wyczysc_ekran();
+        printf(">> Wpisz ile sztuk filmu chcesz doda† do bazy (1-99):\n<< ");
+        sztuki_dostepne = input_int(1, 99);
+        printf("\n>> Wpisz rok produkcji filmu:\n<< ");
+        rok_produkcji = input_int(1800,2020);
+        printf("\n>> Wpisz tytuˆ filmi: (max. 30 liter)\n<< ");
         scanf("%s", tytul);
-        puts(">> Wpisz rezysera filmu: (max. 20 liter)");
+        printf("\n>> Wpisz rezysera filmu: (max. 20 liter)\n<< ");
         scanf("%s", rezyser);
-        puts(">> Wpisz gatunek filmu: (max. 10 liter)");
+        printf("\n>> Wpisz gatunek filmu: (max. 10 liter)\n<< ");
         scanf("%s", gatunek);
-        int bufor_bledow = film_dodaj(head_film, sztuki_dostepne, rok_produkcji, tytul, rezyser, gatunek);
-        if (bufor_bledow == 0) {
-            clear();
+
+        if(film_czy_istnieje(*head_film, rok_produkcji,tytul,rezyser,gatunek) == true){
+
+            film_dodaj(head_film,sztuki_dostepne,rok_produkcji,tytul,rezyser,gatunek);
+            wyczysc_ekran();
             break;
+
         } else {
-            clear();
-            puts(">> Istnieje juÅ¼ film o takich samych danych");
-            puts(">> Wybierz interesujÄ…cÄ… CiÄ™ opcje:");
+
+            wyczysc_ekran();
+            puts(">> Istnieje ju¾ film o takich samych danych");
+            puts(">> Wybierz interesuj¥c¥ Ci© opcje:");
             puts(">> 1. Wpisz dane na nowo");
             puts(">> 2. Anuluj wprowadzanie nowego filmu");
-            switch (input(1, 2)) {
-                case 1:
+
+            while(1){
+                int wybor = getch();
+                if(wybor == 1){
                     break;
-                case 2: {
-                    clear();
+                }else if(wybor == 2){
+                    wyczysc_ekran();
                     return;
                 }
             }
@@ -589,414 +839,245 @@ void dodawanie_film(struct film **head_film){
 }
 
 void usuwanie_film(struct film **head_film){
-    clear();
-    struct film *film_bufor = *head_film;
-    if(film_bufor == NULL){
-        puts(">> Lista filmÃ³w jest pusta!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+    wyczysc_ekran();
+
+    if(film_wypisz_dostepne(*head_film) != 0){
+        czekaj_na_input_ESCAPE();
         return;
     }
-    puts(">> JeÅ¼eli jakiegoÅ› filmu nie ma na poniÅ¼szej liÅ›cie to wszystkie jego egzemplarze sÄ… wypoÅ¼yczone");
-    puts(">> filmy moÅ¼liwe do usuniÄ™cia:\n");
-    int i = 1;
-    while (film_bufor != NULL) {
-        if (film_bufor->sztuki_dostepne > 0) {
-            printf(">> %d. %d / %d / %s / %s / %s\n", i, film_bufor->sztuki_dostepne, film_bufor->rok_produkcji, film_bufor->tytul, film_bufor->rezyser, film_bufor->gatunek);
-            i++;
-        }
-        film_bufor = film_bufor -> nastepny;
-    }
-    if(i == 1){
-        clear();
-        puts(">> Wszystkie filmy sÄ… wypoÅ¼yczone!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
-        return;
-    }
-    film_bufor = *head_film;
-    puts("\n>> Wpisz numer filmu ktÃ³ry chcesz usunÄ…Ä‡:");
-    int numer = input(1, i-1);
-    i = 1;
-    while (i != numer){
-        if(film_bufor->sztuki_dostepne > 0) {
-            i++;
-        }
-        film_bufor = film_bufor->nastepny;
-    }
-    if(film_bufor->sztuki_dostepne == 1){
-        film_usun(head_film,film_bufor->numer_filmu);
-        return;
-    } else{
-        puts(">> Wpisz ile sztuk filmu chcesz usunÄ…Ä‡:");
-        film_bufor -> sztuki_dostepne = film_bufor -> sztuki_dostepne - input(1,film_bufor->sztuki_dostepne);
-        if(film_bufor -> sztuki_dostepne == 0 && film_bufor->sztuki_wypozyczone == 0){
-            film_usun(head_film, film_bufor->numer_filmu);
+
+    printf("\n>> Wpisz numer filmu kt¢ry chcesz usun¥†:\n<< ");
+
+    int ilosc_dostepnych_filmow = film_licz_dostepne(*head_film);
+    int numer_filmu = input_int(1, ilosc_dostepnych_filmow);
+    struct film *film_usuwany_poprzedni = film_szukaj_po_kolejnosci_dostepne_poprzedni(head_film, numer_filmu);
+    struct film *film_usuwany = film_szukaj_po_kolejnosci_dostepne(head_film, numer_filmu);
+
+    if(film_czy_jedna_sztuka_poprzedni(head_film, film_usuwany_poprzedni) == false){
+
+        film_usun(head_film,film_usuwany_poprzedni);
+
+    } else {
+        printf(">> Wpisz ile sztuk filmu chcesz usun¥†:\n<< ");
+
+        int sztuki = input_int(1,film_usuwany->sztuki_dostepne);
+        film_usuwany -> sztuki_dostepne = film_usuwany -> sztuki_dostepne - sztuki;
+
+        if(film_usuwany -> sztuki_dostepne == 0 && film_usuwany->sztuki_wypozyczone == 0){
+            film_usun(head_film, film_usuwany_poprzedni);
         }
     }
+    wyczysc_ekran();
+    puts(">> Usuni©cie filmu przebieˆo pomy˜lnie!");
+    czekaj_na_input_ESCAPE();
 }
 
 void edytowanie_film(struct film **head_film){
-    clear();
-    struct film *film_bufor = *head_film;
-    puts(">> filmy moÅ¼liwe do edycji:\n");
-    int i = 1;
-    while (film_bufor != NULL) {
-        printf(">> %d. %d / %d / %s / %s / %s\n", i, film_bufor->sztuki_dostepne, film_bufor->rok_produkcji, film_bufor->tytul, film_bufor->rezyser, film_bufor->gatunek);
-        film_bufor = film_bufor -> nastepny;
-        i++;
-    }
-    film_bufor = *head_film;
-    puts("\n>> Wpisz numer filmu ktÃ³ry chcesz edytowaÄ‡:");
-    int numer = input(1, i);
-    i = 1;
-    while (i != numer){
-        i++;
-        film_bufor = film_bufor->nastepny;
-    }
 
+    struct film *film_bufor;
     char tytul[30];
     char rezyser[20];
     char gatunek[10];
-    int sztuki_dostepne = film_bufor -> sztuki_dostepne;
-    int rok_produkcji = film_bufor -> rok_produkcji;
+    int rok_produkcji;
+    int sztuki_dostepne;
+
+    wyczysc_ekran();
+    puts(">> filmy mo¾liwe do edycji:\n");
+
+    if(film_wypisz(*head_film) != 0){
+        czekaj_na_input_ESCAPE();
+        return;
+    }
+
+    printf("\n>> Wpisz numer filmu kt¢ry chcesz edytowa†:\n<< ");
+
+    int ilosc_dostepnych_filmow = film_licz(*head_film);
+    int numer_filmu = input_int(1, ilosc_dostepnych_filmow);
+    film_bufor = film_szukaj_po_kolejnosci(head_film, numer_filmu);
+
+    sztuki_dostepne = film_bufor -> sztuki_dostepne;
+    rok_produkcji = film_bufor -> rok_produkcji;
     strcpy(tytul, film_bufor->tytul);
     strcpy(rezyser,film_bufor -> rezyser);
     strcpy(gatunek,film_bufor -> gatunek);
 
     while(1){
-        clear();
-        puts(">> Wybierz pole ktÃ³re chcesz edytowaÄ‡:");
-        puts(">> 1. IloÅ›Ä‡ dostÄ™pnych sztuk");
+        wyczysc_ekran();
+        puts(">> Wybierz pole kt¢re chcesz edytowa†:");
+        puts(">> 1. Ilo˜† dost©pnych sztuk");
         puts(">> 2. Rok produkcji");
-        puts(">> 3. TytuÅ‚");
+        puts(">> 3. Tytuˆ");
         puts(">> 4. Rezyser");
         puts(">> 5. Gatunek");
         puts(">> 6. Wszystkie");
-        switch(input(1,6)){
-            case 1:{
-                clear();
-                puts(">> Wpisz nowÄ… iloÅ›Ä‡ dostÄ™pnych sztuk:");
-                sztuki_dostepne = input(0, 0);
-                do {
-                    if (film_bufor->sztuki_wypozyczone == 0 && sztuki_dostepne == 0) {
-                        clear();
-                        puts(">> Uwaga, zmieniajac liczbÄ™ sztuk tego filmu na 0 usuniesz go z bazy danych poniewaÅ¼ nikt aktualnie go nie wypoÅ¼ycza!");
-                        puts(">> Czy aby na pewno chcesz kontynuowaÄ‡?\n>> 1. Tak, usuÅ„ film z bazy danych\n>> 2. Nie, wpisz iloÅ›Ä‡ sztuk na nowo");
-                        switch (input(1, 2)) {
-                            case 1: {
-                                film_usun(head_film, film_bufor->numer_filmu);
-                                clear();
-                                return;
-                            }
-                            case 2: {
-                                clear();
-                                puts(">> Wpisz nowÄ… iloÅ›Ä‡ dostÄ™pnych sztuk:");
-                                sztuki_dostepne = input(0, 0);
-                            }
-                        }
-                    }
-                    else{
-                        break;
-                    }
-                }while(1);
-                clear();
+        switch(getch()){
+            case 49:{
+                wyczysc_ekran();
+                printf(">> Wpisz now¥ ilo˜† dost©pnych sztuk: (1-99)\n<< ");
+                sztuki_dostepne = input_int(1, 99);
+                wyczysc_ekran();
                 break;
             }
-            case 2:{
-                clear();
-                puts(">> Wpisz nowy rok produkcji:");
-                rok_produkcji = input(0,0);
+            case 50:{
+                wyczysc_ekran();
+                printf(">> Wpisz nowy rok produkcji:\n<< ");
+                rok_produkcji = input_int(1800, 2020);
                 break;
             }
-            case 3:{
-                clear();
-                puts(">> Wpisz nowy tytuÅ‚: (max. 30 znakÃ³w)");
+            case 51:{
+                wyczysc_ekran();
+                printf(">> Wpisz nowy tytuˆ: (max. 30 znak¢w)\n<< ");
                 scanf("%s", tytul);
                 break;
             }
-            case 4:{
-                clear();
-                puts(">> Wpisz nowego reÅ¼ysera: (max. 20 znakÃ³w)");
+            case 52:{
+                wyczysc_ekran();
+                printf(">> Wpisz nowego re¾ysera: (max. 20 znak¢w)\n<< ");
                 scanf("%s", rezyser);
                 break;
             }
-            case 5:{
-                clear();
-                puts(">> Wpisz nowy gatunek: (max. 10 znakÃ³w)");
+            case 53:{
+                wyczysc_ekran();
+                printf(">> Wpisz nowy gatunek: (max. 10 znak¢w)\n<< ");
                 scanf("%s", gatunek);
                 break;
             }
-            case 6:{
-                clear();
-                puts(">> Wpisz nowÄ… iloÅ›Ä‡ dostÄ™pnych sztuk:");
-                sztuki_dostepne = input(0, 0);
-                do {
-                    if (film_bufor->sztuki_wypozyczone == 0 && sztuki_dostepne == 0) {
-                        clear();
-                        puts(">> Uwaga, zmieniajac liczbÄ™ sztuk tego filmu na 0 usuniesz go z bazy danych poniewaÅ¼ nikt aktualnie go nie wypoÅ¼ycza!");
-                        puts(">> Czy aby na pewno chcesz kontynuowaÄ‡?\n>> 1. Tak, usuÅ„ film z bazy danych\n>> 2. Nie, wpisz iloÅ›Ä‡ sztuk na nowo");
-                        switch (input(1, 2)) {
-                            case 1: {
-                                clear();
-                                film_usun(head_film, film_bufor->numer_filmu);
-                                return;
-                            }
-                            case 2: {
-                                clear();
-                                puts(">> Wpisz nowÄ… iloÅ›Ä‡ dostÄ™pnych sztuk:");
-                                sztuki_dostepne = input(0, 0);
-                            }
-                        }
-                    }
-                    else{
-                        clear();
-                        break;
-                    }
-                }while(1);
-                clear();
-                puts(">> Wpisz nowy rok produkcji:");
-                rok_produkcji = input(0,0);
-                puts(">> Wpisz nowy tytuÅ‚: (max. 30 znakÃ³w)");
+            case 54:{
+                wyczysc_ekran();
+                printf(">> Wpisz now¥ ilo˜† dost©pnych sztuk: (1-99)\n<< ");
+                sztuki_dostepne = input_int(1, 99);
+                wyczysc_ekran();
+                printf(">> Wpisz nowy rok produkcji:\n<< ");
+                rok_produkcji = input_int(1800, 2020);
+                printf(">> Wpisz nowy tytuˆ: (max. 30 znak¢w)\n<< ");
                 scanf("%s", tytul);
-                puts(">> Wpisz nowego reÅ¼ysera: (max. 20 znakÃ³w)");
+                printf(">> Wpisz nowego re¾ysera: (max. 20 znak¢w)\n<< ");
                 scanf("%s", rezyser);
-                puts(">> Wpisz nowy gatunek: (max. 10 znakÃ³w)");
+                printf(">> Wpisz nowy gatunek: (max. 10 znak¢w)\n<< ");
                 scanf("%s", gatunek);
                 break;
             }
         }
-        clear();
+
+        wyczysc_ekran();
         printf(">> Stare dane filmu: %d / %d / %s / %s / %s\n", film_bufor->sztuki_dostepne, film_bufor->rok_produkcji, film_bufor->tytul, film_bufor->rezyser, film_bufor->gatunek);
         printf(">> Nowe dane filmu:  %d / %d / %s / %s / %s\n", sztuki_dostepne, rok_produkcji, tytul, rezyser, gatunek);
-        puts(">> Czy chcesz zaakceptowaÄ‡ zmiany?\n>> 1. Tak\n>> 2. Nie");
-        switch (input(1, 2)) {
-            case 1: {
-                clear();
-                film_edytuj(&film_bufor, sztuki_dostepne, rok_produkcji, tytul, rezyser ,gatunek);
-                return;
-            }
-            case 2: {
-                break;
-            }
+        puts(">> Czy chcesz zaakceptowa† zmiany?\n>> 1. Tak\n>> 2. Nie");
+        while(1){
+            int wybor = getch();
+             if(wybor == 49){
+                 wyczysc_ekran();
+                 film_edytuj(&film_bufor, sztuki_dostepne, rok_produkcji, tytul, rezyser, gatunek);
+                 return;
+             }else if(wybor == 50){
+                 break;
+             }
         }
-        puts(">> Czy chcesz wpisaÄ‡ nowe dane?\n>> 1. Tak\n>> 2. Nie, wyjdÅº z edycji danych");
-        switch (input(1, 2)) {
-            case 1: {
-                clear();
+
+        puts(">> Czy chcesz wpisa† nowe dane?\n>> 1. Tak\n>> 2. Nie, wyjd« z edycji danych");
+        while(1) {
+            int wybor = getch();
+            if(wybor == 49){
+                wyczysc_ekran();
                 break;
             }
-            case 2: {
-                clear();
+            else if(wybor == 50){
+                wyczysc_ekran();
                 return;
             }
         }
     }
 }
 
-void wypisz_film(struct film **head_film){
-    clear();
-    struct film *film_bufor = *head_film;
-    if(film_bufor == NULL){
-        puts(">> Baza filmÃ³w jest pusta!");
-        puts(">> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
-        return;
-    }
-    puts(">> Nr. / Sztuki dostÄ™pne / Sztuki wypoÅ¼yczone / rok produkcji / TytuÅ‚ / reÅ¼yser / gatunek");
-    for(int i=1; film_bufor != NULL; i++){
-        printf("\n>> %d. / %d / %d / %d / %s / %s / %s", i, film_bufor->sztuki_dostepne, film_bufor->sztuki_wypozyczone, film_bufor->rok_produkcji, film_bufor->tytul, film_bufor->rezyser, film_bufor->gatunek);
-        film_bufor = film_bufor -> nastepny;
-    }
-    printf("\n\n>> Wpisz '1' aby kontynuowaÄ‡");
-    input(1,1);
-}
+void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film){
 
-void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
-    struct klient *klient_bufor = *head_klient;
-    struct film *film_bufor = *head_film;
-    int i;
-    int czas_wypozyczenia;
-    clear();
-    if(klient_bufor == NULL){
-        puts(">> Baza klientÃ³w jest pusta!");
-        puts(">> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+    wyczysc_ekran();
+    printf(">> Dost©pni klienci:\n");
+
+    if(klient_wypisz(&head_klient) != 0){
+        czekaj_na_input_ESCAPE();
         return;
     }
-    else if(film_bufor == NULL){
-        puts(">> Baza filmÃ³w jest pusta!");
-        puts(">> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+
+    printf("\n>> Wybierz numer klienta kt¢remu chcesz wypo¾yczy† film:\n<< ");
+
+    struct klient *klient_bufor = klient_szukaj_po_kolejnosci(&head_klient, input_int(1,klient_licz(head_klient)));
+    wyczysc_ekran();
+    if(film_wypisz_dostepne(head_film) != 0) {
+        czekaj_na_input_ESCAPE();
         return;
     }
-    printf(">> Nr. / Pesel / Imie i Nazwisko / Telefon / E-Mail / IloÅ›Ä‡ posiadanych ksiaÅ¼ek\n\n");
-    klient_bufor = *head_klient;
-    for(i=1; klient_bufor != NULL; i++){
-        printf(">> %d. / %llu / %s %s / %llu / %s / %d\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
-        klient_bufor = klient_bufor -> nastepny;
-    }
-    puts("\n>> Wybierz numer klienta ktÃ³remu chcesz wypoÅ¼yczyÄ‡ ksiÄ…Å¼kÄ™:");
-    klient_bufor = *head_klient;
-    int numer_klienta = input(1,i-1);
-    i = 1;
-    clear();
-    while(i != numer_klienta){
-        klient_bufor = klient_bufor -> nastepny;
-        i++;
-    }
-    puts(">> filmy moÅ¼liwe do wypoÅ¼yczenia:\n");
-    puts(">> Nr. / Sztuki dostÄ™pne / Sztuki wypoÅ¼yczone / rok produkcji / TytuÅ‚ / reÅ¼yser / gatunek\n");
-    i = 1;
-    while (film_bufor != NULL) {
-        if(film_bufor -> sztuki_dostepne > 0) {
-            printf(">> %d. / %d / %d / %d / %s / %s / %s\n", i, film_bufor->sztuki_dostepne,
-                   film_bufor->sztuki_dostepne, film_bufor->rok_produkcji, film_bufor->tytul, film_bufor->rezyser,
-                   film_bufor->gatunek);
-            i++;
-        }
-        film_bufor = film_bufor -> nastepny;
-    }
-    if(i==1){
-        clear();
-        puts(">> Wszystkie filmy sÄ… wypoÅ¼yczone!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
-        return;
-    }
-    int numer_filmu = input(1,i-1);
-    i = 1;
-    film_bufor = *head_film;
-    while(i != numer_filmu){
-        if(film_bufor ->sztuki_dostepne > 0){
-            i++;
-        }
-        film_bufor = film_bufor -> nastepny;
-    }
-    clear();
-    puts(">> Na ile tygodni chcesz wypoÅ¼yczyÄ‡ film: (conajmniej 1, maksymalnie 52)");
-    czas_wypozyczenia = input(1,52);
+
+    printf("\n>> Wybierz numer filmu kt¢ry chcesz wypo¾yczy†:\n<< ");
+
+    struct film *film_bufor = film_szukaj_po_kolejnosci_dostepne(&head_film, input_int(1,film_licz_dostepne(head_film)));
+
+    printf(">> Na ile tygodni chcesz wypo¾yczy† film: (conajmniej 1, maksymalnie 52)\n<< ");
+
+    int czas_wypozyczenia = input_int(1,52);
     wypozyczenie_dodaj(head_wypozyczenie, film_bufor, klient_bufor, czas_wypozyczenia);
+
+    wyczysc_ekran();
+    puts(">> Dodanie wypo¾yczenia przebieˆo pomy˜lnie!");
+    czekaj_na_input_ESCAPE();
 }
 
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
-    clear();
-    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
-    if(wypozyczenie_bufor == NULL){
-        puts(">> Lista wypoÅ¼yczeÅ„ jest pusta!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+
+    if(wypozyczenie_wypisz(head_wypozyczenie) != 0){
+        czekaj_na_input_ESCAPE();
         return;
     }
-    int i;
-    puts(">> Aktywne wypoÅ¼yczenia:\n");
-    for(i=1; wypozyczenie_bufor != NULL; i++){
-        printf("\n>> %d. / %s %s / %s / %s / %s ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-    }
-    wypozyczenie_bufor = *head_wypozyczenie;
-    puts("\n>> Wpisz numer wypoÅ¼yczenia ktÃ³re chcesz zwrÃ³ciÄ‡:");
-    int numer = input(1,i-1);
-    for(i=1; i != numer; i++){
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-    }
-    wypozyczenie_usun(head_wypozyczenie, wypozyczenie_bufor->numer_wypozyczenia);
+
+    printf("\n\n>> Wpisz numer wypo¾yczenia kt¢re chcesz zwr¢ci†:\n<< ");
+
+    wypozyczenie_usun(head_wypozyczenie, wypozyczenie_szukaj_po_kolejnosci_poprzedni(head_wypozyczenie, input_int(1,wypozyczenie_licz(head_wypozyczenie))));
+
+    wyczysc_ekran();
+    puts(">> Usuni©cie wypo¾yczenia przebieˆo pomy˜lnie!");
+    czekaj_na_input_ESCAPE();
 }
 
 void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
-    clear();
-    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
-    if(wypozyczenie_bufor == NULL){
-        puts(">> Lista wypoÅ¼yczeÅ„ jest pusta!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
+
+    if(wypozyczenie_wypisz(head_wypozyczenie) != 0){
+        czekaj_na_input_ESCAPE();
         return;
     }
-    puts(">> Nr. / ImiÄ™ i Nazwisko / TytuÅ‚ filmu / Data wypoÅ¼yczenia / Data zwrotu");
-    int i;
-    for(i=1; wypozyczenie_bufor != NULL; i++){
-        printf("\n>> %d. / %s %s / %s / %s / %s ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-    }
-    wypozyczenie_bufor = *head_wypozyczenie;
-    puts("\n\n>> Wpisz numer wypoÅ¼yczenia ktÃ³re chcesz edytowaÄ‡:");
-    int numer = input(1,i-1);
-    for(i=1; i != numer; i++){
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-    }
-    while(1){
-        clear();
-        puts(">> Wpisz iloÅ›Ä‡ tygodni do koÅ„ca wypoÅ¼yczenia (0-52)");
-        puts(">> Tygodnie liczÄ… siÄ™ od tego momentu, przy wpisaniu 0 wypoÅ¼yczenie zostaje uznane jako przeterminowane.");
-        int czas_do_konca = input(0, 52);
-        time_t czas1 = time(NULL) + (czas_do_konca * 604800);
-        struct tm *czas2;
-        czas2 = localtime(&czas1);
-        char czas_tablica[11];
-        strftime(czas_tablica, 11, "%Y/%m/%d", czas2);
-        clear();
-        printf("Poprzednia data zwrotu wypoÅ¼yczenia: %s\n", wypozyczenie_bufor->data_zwrotu);
-        printf("Nowa data zwrotu wypoÅ¼yczenia: %s\n", czas_tablica);
-        puts(">> Czy chcesz zaakceptowaÄ‡ zmiany?\n>> 1. Tak\n>> 2. Nie");
-        switch (input(1, 2)) {
-            case 1: {
-                wypozyczenie_edytuj(&wypozyczenie_bufor, czas_tablica);
-                clear();
-                return;
-            }
-            case 2: {
-                break;
-            }
-        }
-        clear();
-        puts(">> Czy chcesz wpisaÄ‡ nowe dane?\n>> 1. Tak\n>> 2. Nie, wyjdÅº z edycji danych");
-        switch (input(1, 2)) {
-            case 1: {
-                break;
-            }
-            case 2: {
-                clear();
-                return;
-            }
-        }
-    }
+
+    printf("\n\n>> Wpisz numer wypo¾yczenia kt¢re chcesz edytowa†:\n<< ");
+
+    struct wypozyczenie *wypozyczenie_bufor = wypozyczenie_szukaj_po_kolejnosci(head_wypozyczenie, input_int(1,wypozyczenie_licz(head_wypozyczenie)));
+
+    wyczysc_ekran();
+    printf(">> Aktualna data zwrotu wypo¾yczenia: %s\n\n", wypozyczenie_bufor->data_zwrotu);
+    printf(">> Wpisz ilo˜† tygodni do koäca wypo¾yczenia (0-52)\n");
+    printf(">> Tygodnie licz¥ si© od tego momentu, przy wpisaniu 0 wypo¾yczenie zostaje uznane jako przeterminowane.\n<< ");
+
+    wypozyczenie_edytuj(&wypozyczenie_bufor, input_int(0,52));
+
+    wyczysc_ekran();
+    printf(">> Edycja wypo¾yczenia przebiegˆa pomy˜lnie!\n");
+    printf(">> Nowa data zwrotu wypo¾yczenia: %s", wypozyczenie_bufor->data_zwrotu);
+    czekaj_na_input_ESCAPE();
 }
 
-void wypisz_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
-    clear();
-    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
-    if(wypozyczenie_bufor == NULL){
-        puts(">> Lista wypoÅ¼yczeÅ„ jest pusta!");
-        puts("\n>> Wpisz '1' aby kontynuowaÄ‡.");
-        input(1,1);
-        return;
-    }
-    puts(">> Nr. / ImiÄ™ i Nazwisko / TytuÅ‚ filmu / Data wypoÅ¼yczenia / Data zwrotu");
-    for(int i=1; wypozyczenie_bufor != NULL; i++){
-        printf("\n>> %d. / %s %s / %s / %s / %s ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-    }
-    printf("\n\n>> Wpisz '1' aby kontynuowaÄ‡\n");
-    input(1,1);
-}
-
-///////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void zarzadznie_klient(struct klient **head_klient){
     do {
-        clear();
-        puts("////// ZarzÄ…dzanie Klientami //////");
+        wyczysc_ekran();
+        puts("////// Zarz¥dzanie Klientami //////\n");
         puts(">> 1. Dodaj klienta");
-        puts(">> 2. UsuÅ„ klienta");
+        puts(">> 2. Usuä klienta");
         puts(">> 3. Edytuj klienta");
-        puts(">> 4. WyÅ›wietl caÅ‚Ä… bazÄ™");
-        puts(">> 5. WrÃ³Ä‡ do menu gÅ‚Ã³wnego");
+        puts(">> 4. Wy˜wietl caˆ¥ baz©");
+        puts("\n>> ESCAPE -> Wr¢† do menu gˆ¢wnego");
         switch (getch()) {
             default:{
                 break;
             }
-            case 27:
-            case 53: {
+            case 27:{
                 return;
             }
             case 49: {
@@ -1012,7 +1093,9 @@ void zarzadznie_klient(struct klient **head_klient){
                 break;
             }
             case 52: {
-                wypisz_klient(head_klient);
+                wyczysc_ekran();
+                klient_wypisz(head_klient);
+                czekaj_na_input_ESCAPE();
                 break;
             }
         }
@@ -1021,19 +1104,18 @@ void zarzadznie_klient(struct klient **head_klient){
 
 void zarzadzanie_film(struct film **head_film){
     do {
-        clear();
-        puts("////// ZarzÄ…dzanie Filmami //////");
+        wyczysc_ekran();
+        puts("////// Zarz¥dzanie Filmami //////\n");
         puts(">> 1. Dodaj film");
-        puts(">> 2. UsuÅ„ film");
+        puts(">> 2. Usuä film");
         puts(">> 3. Edytuj film");
-        puts(">> 4. WyÅ›wietl caÅ‚Ä… bazÄ™");
-        puts(">> 5. WrÃ³Ä‡ do menu gÅ‚Ã³wnego");
+        puts(">> 4. Wy˜wietl caˆ¥ baz©");
+        puts("\n>> ESCAPE -> Wr¢† do menu gˆ¢wnego");
         switch (getch()) {
             default:{
                 break;
             }
-            case 27:
-            case 53: {
+            case 27:{
                 return;
             }
             case 49: {
@@ -1049,7 +1131,9 @@ void zarzadzanie_film(struct film **head_film){
                 break;
             }
             case 52: {
-                wypisz_film(head_film);
+                wyczysc_ekran();
+                film_wypisz(*head_film);
+                czekaj_na_input_ESCAPE();
                 break;
             }
         }
@@ -1058,23 +1142,22 @@ void zarzadzanie_film(struct film **head_film){
 
 void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     do {
-        clear();
-        puts("////// ZarzÄ…dzanie WypoÅ¼yczeniami //////");
-        puts(">> 1. Dodaj wypoÅ¼yczenie");
-        puts(">> 2. Zwrot wypoÅ¼yczenia");
-        puts(">> 3. Edytuj wypoÅ¼yczenie");
-        puts(">> 4. WyÅ›wietl wypoÅ¼yczenia");
-        puts(">> 5. WrÃ³Ä‡ do menu gÅ‚Ã³wnego");
+        wyczysc_ekran();
+        puts("////// Zarz¥dzanie Wypo¾yczeniami //////\n");
+        puts(">> 1. Dodaj wypo¾yczenie");
+        puts(">> 2. Zwrot wypo¾yczenia");
+        puts(">> 3. Edytuj wypo¾yczenie");
+        puts(">> 4. Wy˜wietl wypo¾yczenia");
+        puts("\n>> ESCAPE -> Wr¢† do menu gˆ¢wnego");
         switch (getch()) {
             default:{
                 break;
             }
-            case 27:
-            case 53: {
+            case 27:{
                 return;
             }
             case 49: {
-                dodawanie_wypozyczenie(head_wypozyczenie, head_klient, head_film);
+                dodawanie_wypozyczenie(head_wypozyczenie, *head_klient, *head_film);
                 break;
             }
             case 50: {
@@ -1086,7 +1169,8 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
                 break;
             }
             case 52: {
-                wypisz_wypozyczenie(head_wypozyczenie);
+                wypozyczenie_wypisz(head_wypozyczenie);
+                czekaj_na_input_ESCAPE();
                 break;
             }
         }
@@ -1095,19 +1179,18 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
 
 void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     do {
-        clear();
-        puts("////// DEBUG MENU//////");
-        puts(">> 1. Dodaj przykÅ‚adowych klientÃ³w");
-        puts(">> 2. Dodaj przykÅ‚adowe filmy");
-        puts(">> 3. Dodaj przykÅ‚adowe wypoÅ¼yczenia (+powyÅ¼sze)");
-        puts(">> 4. WyczyÅ›Ä‡ wszystkie bazy");
-        puts(">> 5. WrÃ³Ä‡ do menu gÅ‚Ã³wnego");
+        wyczysc_ekran();
+        puts("////// DEBUG MENU//////\n");
+        puts(">> 1. Dodaj przykˆadowych klient¢w");
+        puts(">> 2. Dodaj przykˆadowe filmy");
+        puts(">> 3. Dodaj przykˆadowe wypo¾yczenia (+powy¾sze)");
+        puts("\n>> ESCEAPE -> Wr¢† do menu gˆ¢wnego");
+
         switch (getch()) {
             default:{
                 break;
             }
-            case 27:
-            case 53: {
+            case 27:{
                 return;
             }
             case 49: {
@@ -1118,10 +1201,10 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 break;
             }
             case 50: {
-                film_dodaj(head_film,3,1998,"Harry Potter - Komnata Tajemnic", "J.k. Rowiling", "Horror");
-                film_dodaj(head_film,1,2010,"Kobbit - Ostatnia costam", "Al Pacino", "Sci-Fi");
+                film_dodaj(head_film,3,1998,"Harry Potter", "J.k. ", "Horror");
+                film_dodaj(head_film,1,2010,"Kobbit", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
-                film_dodaj(head_film,2,2020,"8 Mila", "Sylverster Stallone", "Przygodowe");
+                film_dodaj(head_film,2,2020,"8 Mila", "Sylverster ", "Przygodowe");
                 break;
             }
             case 51: {
@@ -1129,8 +1212,8 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 klient_dodaj(head_klient, 32455123458, 115512467, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
                 klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz", "Nowak", "t.Nowaczek@op.pl");
                 klient_dodaj(head_klient, 12562341233, 634126234, "Jakub", "Milek", "JakubMilek@gmail.com");
-                film_dodaj(head_film,3,1998,"Harry Potter - Komnata Tajemnic", "J.k. Rowiling", "Horror");
-                film_dodaj(head_film,1,2010,"Kobbit - Ostatnia costam", "Al Pacino", "Sci-Fi");
+                film_dodaj(head_film,3,1998,"Harry Potter", "J.k. ", "Horror");
+                film_dodaj(head_film,1,2010,"Kobbitm", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
                 film_dodaj(head_film,2,2020,"8 Mila", "Sylverst", "Przygodo");
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film), (*head_klient), 10);
@@ -1139,18 +1222,9 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny->nastepny, (*head_klient)->nastepny->nastepny->nastepny, 50);
                 break;
             }
-            case 52: {
-                while((*head_wypozyczenie) != NULL){
-                    wypozyczenie_usun(head_wypozyczenie, (*head_wypozyczenie)->numer_wypozyczenia);
-                }
-                while((*head_film) != NULL){
-                    film_usun(head_film,(*head_film)->numer_filmu);
-                }
-                while((*head_klient) != NULL){
-                    klient_usun(head_klient, (*head_klient)->numer_klienta);
-                }
-                break;
-            }
         }
+        wyczysc_ekran();
+        printf("Zmiany zostaˆy zapisane");
+        czekaj_na_input_ESCAPE();
     }while(1);
 }
