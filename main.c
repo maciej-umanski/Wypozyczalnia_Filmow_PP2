@@ -2,7 +2,7 @@
 #include <string.h>
 #include <conio.h>
 #include <stdbool.h>
-#include <locale.H>
+#include <locale.h>
 #include "film.h"
 #include "klient.h"
 #include "wypozyczenie.h"
@@ -328,10 +328,9 @@ void usuwanie_film(struct film **head_film){
     struct film *film_usuwany_poprzedni = film_szukaj_po_kolejnosci_dostepne_poprzedni(head_film, numer_filmu);
     struct film *film_usuwany = film_szukaj_po_kolejnosci_dostepne(head_film, numer_filmu);
 
-    if(film_czy_jedna_sztuka_poprzedni(head_film, film_usuwany_poprzedni) == false){
+    if(film_czy_jedna_sztuka_poprzedni(head_film, film_usuwany_poprzedni) == false) {
 
-        film_usun(head_film,film_usuwany_poprzedni);
-
+        film_usun(head_film, film_usuwany_poprzedni);
     } else {
         printf(">> Wpisz ile sztuk filmu chcesz usun¹æ:\n<< ");
 
@@ -478,6 +477,7 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
 
     struct klient *klient_bufor = klient_szukaj_po_kolejnosci(&head_klient, input_int(1,klient_licz(head_klient)));
     wyczysc_ekran();
+
     if(film_wypisz_dostepne(head_film) != 0) {
         czekaj_na_input_ESCAPE();
         return;
@@ -677,9 +677,9 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
             }
             case 50: {
                 film_dodaj(head_film,3,1998,"Harry Potter", "J.k. ", "Horror");
-                film_dodaj(head_film,1,2010,"Kobbit", "Al Pacino", "Sci-Fi");
+                film_dodaj(head_film,1,2010,"Kobbitm", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
-                film_dodaj(head_film,2,2020,"8 Mila", "Sylverster ", "Przygodowe");
+                film_dodaj(head_film,2,2020,"8 Mila", "Sylverst", "Przygodo");
                 break;
             }
             case 51: {
