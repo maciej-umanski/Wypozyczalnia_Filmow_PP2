@@ -1,6 +1,3 @@
-# INFO
-Kodowanie pliku - IBM852!!
-# BUGS
 Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie wywalały programu
 # 2 Kamień milowy - w trakcie
 - Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu.
