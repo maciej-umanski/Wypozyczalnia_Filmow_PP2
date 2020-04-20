@@ -18,6 +18,8 @@ void edytowanie_film(struct film **head_film);
 void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film);
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
 void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
+void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
+void zapisywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 
 // MENU //
 void zarzadznie_klient(struct klient **head_klient);
@@ -32,20 +34,21 @@ int main() {
     struct klient *head_klient = NULL;
     struct film *head_film = NULL;
     struct wypozyczenie *head_wypozyczenie = NULL;
+    wczytywanie_baz_danych(&head_wypozyczenie, &head_klient, &head_film);
     while(1){
         wyczysc_ekran();
         puts("////// Menu G³ówne //////\n");
-        puts(">> 1. Zarz¹dzanie baz¹ klientów");
-        puts(">> 2. Zarz¹dzanie baz¹ filmów");
+        puts(">> 1. Zarz¹dzanie klientami");
+        puts(">> 2. Zarz¹dzanie filmami");
         puts(">> 3. Zarz¹dzanie wypo¿yczeniami");
         puts(">> 4. DEBUG_MENU");
         puts("\n>> ESCAPE -> WyjdŸ z programu");
-
         switch(getch()) {
             default:{
                 break;
             }
             case 27:{
+                zapisywanie_baz_danych(&head_wypozyczenie,&head_klient,&head_film);
                 wyczysc_ekran();
                 puts(">> Czy na pewno chcesz opuœciæ program?\n");
                 puts(">> COKOLWIEK -> WyjdŸ");
@@ -537,6 +540,64 @@ void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     czekaj_na_input_ESCAPE();
 }
 
+void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
+    FILE *file_wypozyczenie = fopen("wypozyczenie.db", "r");
+    FILE *file_klient = fopen("klient.db", "r");
+    FILE *file_film = fopen("film.db", "r");
+    if(file_wypozyczenie == NULL || file_klient == NULL || file_film == NULL){
+        return;
+    }
+    puts(">> Zosta³y wykryte bazy danych, czy chcesz wczytaæ je do programu?\n ");
+    puts(">> ENTER -> Tak");
+    puts(">> ESC -> Nie");
+    while(1) {
+        switch (getch()) {
+            default: {
+                break;
+            }
+            case 13: {
+                film_wczytaj_z_pliku(head_film);
+                film_zamien_tylde_na_spacje(*head_film);
+                klient_wczytaj_z_pliku(head_klient);
+                klient_zamien_tylde_na_spacje(*head_klient);
+                wypozyczenie_wczytaj_z_pliku(head_wypozyczenie);
+                wypozyczenie_przebuduj_znaczniki(*head_wypozyczenie, *head_film, *head_klient);
+                return;
+            }
+            case 27: {
+                return;
+            }
+        }
+    }
+}
+
+void zapisywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
+    while(1){
+        wyczysc_ekran();
+        puts(">> Czy chcesz zapisaæ aktualny stan baz danych?");
+        puts(">> UWAGA! Wyjœcie bez zapisywania skutkuje utrat¹ zmian w aktualnej sesji!\n");
+        puts(">> ENTER -> TAK");
+        puts(">> ESCAPE -> NIE");
+        switch(getch()){
+            default:{
+                break;
+            }
+            case 13: {
+                film_zamien_spacje_na_tylde(*head_film);
+                film_zapisz_do_pliku(*head_film);
+                klient_zamien_spacje_na_tylde(*head_klient);
+                klient_zapisz_do_pliku(*head_klient);
+                wypozyczenie_zapisz_do_pliku(*head_wypozyczenie);
+            }
+            case 27:{
+                return;
+            }
+        }
+    }
+
+
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void zarzadznie_klient(struct klient **head_klient){
@@ -546,7 +607,7 @@ void zarzadznie_klient(struct klient **head_klient){
         puts(">> 1. Dodaj klienta");
         puts(">> 2. Usuñ klienta");
         puts(">> 3. Edytuj klienta");
-        puts(">> 4. Wyœwietl ca³¹ bazê");
+        puts(">> 4. Wyœwietl wszystkich klientów");
         puts("\n>> ESCAPE -> Wróæ do menu g³ównego");
         switch (getch()) {
             default:{
@@ -584,7 +645,7 @@ void zarzadzanie_film(struct film **head_film){
         puts(">> 1. Dodaj film");
         puts(">> 2. Usuñ film");
         puts(">> 3. Edytuj film");
-        puts(">> 4. Wyœwietl ca³¹ bazê");
+        puts(">> 4. Wyœwietl wszystkie filmy");
         puts("\n>> ESCAPE -> Wróæ do menu g³ównego");
         switch (getch()) {
             default:{
@@ -622,7 +683,7 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
         puts(">> 1. Dodaj wypo¿yczenie");
         puts(">> 2. Zwrot wypo¿yczenia");
         puts(">> 3. Edytuj wypo¿yczenie");
-        puts(">> 4. Wyœwietl wypo¿yczenia");
+        puts(">> 4. Wyœwietl aktualne wypo¿yczenia");
         puts("\n>> ESCAPE -> Wróæ do menu g³ównego");
         switch (getch()) {
             default:{
@@ -656,11 +717,13 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
     do {
         wyczysc_ekran();
         puts("////// DEBUG MENU//////\n");
+        puts(">> UWAGA, korzystanie z tych funkcji mo¿e zepsuæ dzia³anie programu\n");
         puts(">> 1. Dodaj przyk³adowych klientów");
         puts(">> 2. Dodaj przyk³adowe filmy");
         puts(">> 3. Dodaj przyk³adowe wypo¿yczenia (+powy¿sze)");
+        puts(">> 4. Zapisz bazy danych do plików");
+        puts(">> 5. Wczytaj bazy danych z plików");
         puts("\n>> ESCEAPE -> Wróæ do menu g³ównego");
-
         switch (getch()) {
             default:{
                 break;
@@ -683,10 +746,10 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 break;
             }
             case 51: {
-                klient_dodaj(head_klient, 98932401321, 123542864, "Maciej", "Kowalski", "m.kowalski123@gmail.com");
-                klient_dodaj(head_klient, 32455123458, 115512467, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
-                klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz", "Nowak", "t.Nowaczek@op.pl");
-                klient_dodaj(head_klient, 12562341233, 634126234, "Jakub", "Milek", "JakubMilek@gmail.com");
+                klient_dodaj(head_klient, 98932401321, 123542864, "Maciej ", "Kowa lski", "m.kowalsk i123@gmail.com");
+                klient_dodaj(head_klient, 32455123458, 115512467, "Michal ", "Sze wczyk", "szewc zyk@buziaczek.pl");
+                klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz ", "Now ak", " t.Nowaczek@op.pl");
+                klient_dodaj(head_klient, 12562341233, 634126234, "Jakub ", "M ilek", " JakubMilek@gmail.com");
                 film_dodaj(head_film,3,1998,"Harry Potter", "J.k. ", "Horror");
                 film_dodaj(head_film,1,2010,"Kobbitm", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
@@ -695,6 +758,23 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny, (*head_klient)->nastepny, 10);
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny, (*head_klient)->nastepny->nastepny, 30);
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny->nastepny, (*head_klient)->nastepny->nastepny->nastepny, 50);
+                break;
+            }
+            case 52:{
+                film_zamien_spacje_na_tylde(*head_film);
+                film_zapisz_do_pliku(*head_film);
+                klient_zamien_spacje_na_tylde(*head_klient);
+                klient_zapisz_do_pliku(*head_klient);
+                wypozyczenie_zapisz_do_pliku(*head_wypozyczenie);
+                break;
+            }
+            case 53:{
+                film_wczytaj_z_pliku(head_film);
+                film_zamien_tylde_na_spacje(*head_film);
+                klient_wczytaj_z_pliku(head_klient);
+                klient_zamien_tylde_na_spacje(*head_klient);
+                wypozyczenie_wczytaj_z_pliku(head_wypozyczenie);
+                wypozyczenie_przebuduj_znaczniki(*head_wypozyczenie, *head_film, *head_klient);
                 break;
             }
         }

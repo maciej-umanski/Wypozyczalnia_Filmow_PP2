@@ -4,6 +4,8 @@
 #include <string.h>
 #include <conio.h>
 #include "wypozyczenie.h"
+#include "film.h"
+#include "klient.h"
 
 struct wypozyczenie{
     int numer_wypozyczenia;
@@ -116,14 +118,79 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
     system("cls");
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
     if(wypozyczenie_bufor == NULL){
-        puts(">> Lista wypoÅ¼yczeÅ„ jest pusta!");
+        puts(">> Lista wypo¿yczeñ jest pusta!");
         return -1;
     }
-    printf(">> Aktywne wypoÅ¼yczenia:\n");
-    printf(">> Nr. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "TytuÅ‚ Filmu", "Data wypoÅ¼yczenia", "Data Zwrotu");
+    printf(">> Aktywne wypo¿yczenia:\n");
+    printf(">> Nr. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu³ Filmu", "Data wypo¿yczenia", "Data Zwrotu");
     for(int i=1; wypozyczenie_bufor != NULL; i++){
         printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
         wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
     }
     return 0;
+}
+
+bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
+    FILE *file = fopen("wypozyczenie.db", "w");
+    if (file == NULL)  {
+        return false;
+    } else {
+        while (head_wypozyczenie != NULL){
+            fprintf(file, "%d %llu %d %s %ld %s %ld\n",head_wypozyczenie->numer_wypozyczenia, head_wypozyczenie->numer_klienta, head_wypozyczenie->numer_filmu, head_wypozyczenie->data_wypozyczenia, head_wypozyczenie->data_wypozyczenia_sekundy, head_wypozyczenie->data_zwrotu, head_wypozyczenie->data_zwrotu_sekundy);
+            head_wypozyczenie = head_wypozyczenie->nastepny;
+        }
+    }
+    fclose(file);
+    return true;
+}
+
+bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie){
+    FILE *file = fopen("wypozyczenie.db", "r");
+    if (file == NULL) {
+        return false;
+    }
+    else{
+        unsigned long long numer_klienta;
+        int numer_wypozyczenia, numer_filmu;
+        char data_wypozyczenia[11], data_zwrotu[11];
+        time_t data_wypozyczenia_sekundy, data_zwrotu_sekundy;
+        while(fscanf(file, "%d %llu %d %s %ld %s %ld", &numer_wypozyczenia, &numer_klienta, &numer_filmu, data_wypozyczenia, &data_wypozyczenia_sekundy, data_zwrotu, &data_zwrotu_sekundy) != EOF){
+            if(*head_wypozyczenie == NULL){
+                *head_wypozyczenie = (struct wypozyczenie *)malloc(sizeof(struct wypozyczenie));
+                (*head_wypozyczenie) -> numer_wypozyczenia = numer_wypozyczenia;
+                (*head_wypozyczenie) -> numer_klienta = numer_klienta;
+                (*head_wypozyczenie) -> numer_filmu = numer_filmu;
+                (*head_wypozyczenie) -> data_wypozyczenia_sekundy = data_wypozyczenia_sekundy;
+                (*head_wypozyczenie) -> data_zwrotu_sekundy = data_zwrotu_sekundy;
+                (*head_wypozyczenie) -> nastepny = NULL;
+                strcpy((*head_wypozyczenie) -> data_wypozyczenia, data_wypozyczenia);
+                strcpy((*head_wypozyczenie) -> data_zwrotu, data_zwrotu);
+            }
+            else {
+                struct wypozyczenie *wypozyczenie_nowy = *head_wypozyczenie;
+                while (wypozyczenie_nowy->nastepny != NULL) {
+                    wypozyczenie_nowy = wypozyczenie_nowy->nastepny;
+                }
+                wypozyczenie_nowy-> nastepny = (struct wypozyczenie *)malloc(sizeof(struct wypozyczenie));
+                wypozyczenie_nowy-> nastepny -> numer_wypozyczenia = numer_wypozyczenia;
+                wypozyczenie_nowy-> nastepny -> numer_klienta = numer_klienta;
+                wypozyczenie_nowy-> nastepny -> numer_filmu = numer_filmu;
+                wypozyczenie_nowy-> nastepny -> data_wypozyczenia_sekundy = data_wypozyczenia_sekundy;
+                wypozyczenie_nowy-> nastepny -> data_zwrotu_sekundy = data_zwrotu_sekundy;
+                wypozyczenie_nowy-> nastepny->nastepny = NULL;
+                strcpy(wypozyczenie_nowy-> nastepny -> data_wypozyczenia, data_wypozyczenia);
+                strcpy(wypozyczenie_nowy-> nastepny -> data_zwrotu, data_zwrotu);
+            }
+        }
+        fclose(file);
+    }
+    return true;
+}
+
+void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, struct film *head_film, struct klient *head_klient){
+    while(head_wypozyczenie != NULL){
+        head_wypozyczenie->znacznik_klienta = klient_szukaj_po_numerze(&head_klient, head_wypozyczenie->numer_klienta);
+        head_wypozyczenie->znacznik_filmu = film_szukaj_po_numerze(&head_film, head_wypozyczenie->numer_filmu);
+        head_wypozyczenie = head_wypozyczenie -> nastepny;
+    }
 }

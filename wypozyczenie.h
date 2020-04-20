@@ -9,6 +9,8 @@ struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **hea
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, int kolejnosc);
 int wypozyczenie_licz(struct wypozyczenie **head_wypozyczenie);
 int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie);
+bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie);
+void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, struct film *head_film, struct klient *head_klient);
 
 
 #endif //PP2_WYPOZYCZENIE_H

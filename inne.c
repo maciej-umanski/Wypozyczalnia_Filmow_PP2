@@ -6,7 +6,7 @@ int input_int(int a, int b){
     scanf("%s", bufortab);
     int bufor = strtol(bufortab, &koniec, 10);
     while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
-        printf("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.\n<< ");
+        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
         scanf("%s", bufortab);
         bufor = strtol(bufortab, &koniec, 10);
     }
@@ -18,7 +18,7 @@ unsigned long long input_ull(unsigned long long a, unsigned long long b){
     scanf("%s", bufortab);
     unsigned long long bufor = strtoull(bufortab, &koniec, 10);
     while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)){
-        printf("\nBÅ‚Ä…d, zÅ‚a dana wejÅ›ciowa. ProszÄ™ wpisz ponownie.\n<< ");
+        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
         memset(bufortab, 0, 11 * sizeof(char));
         scanf("%s", bufortab);
         bufor = strtoull(bufortab, &koniec, 10);
@@ -27,7 +27,7 @@ unsigned long long input_ull(unsigned long long a, unsigned long long b){
 }
 
 void czekaj_na_input_ESCAPE(){
-    puts("\n\n>> WciÅ›nij ESCAPE aby powrÃ³ciÄ‡.");
+    puts("\n\n>> Wciœnij ESCAPE aby powróciæ.");
     while(getch() != 27){
 
     }

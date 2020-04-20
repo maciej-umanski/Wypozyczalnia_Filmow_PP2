@@ -6,7 +6,7 @@ Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie 
 
 - Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych.
 
-- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików.
+- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików. (GOTOWE)
 
 # 1 Kamień milowy - gotowe
 - Wykorzystanie list
