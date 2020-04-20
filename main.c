@@ -282,14 +282,14 @@ void dodawanie_film(struct film **head_film){
         sztuki_dostepne = input_int(1, 99);
         printf("\n>> Wpisz rok produkcji filmu:\n<< ");
         rok_produkcji = input_int(1800,2020);
-        printf("\n>> Wpisz tytu³ filmi: (max. 30 liter)\n<< ");
+        printf("\n>> Wpisz tytu³ filmu: (max. 30 liter)\n<< ");
         scanf("%s", tytul);
         printf("\n>> Wpisz rezysera filmu: (max. 20 liter)\n<< ");
         scanf("%s", rezyser);
         printf("\n>> Wpisz gatunek filmu: (max. 10 liter)\n<< ");
         scanf("%s", gatunek);
 
-        if(film_czy_istnieje(*head_film, rok_produkcji,tytul,rezyser,gatunek) == true){
+        if(film_czy_istnieje(*head_film, rok_produkcji,tytul,rezyser,gatunek) == false){
 
             film_dodaj(head_film,sztuki_dostepne,rok_produkcji,tytul,rezyser,gatunek);
             wyczysc_ekran();
