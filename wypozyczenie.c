@@ -4,8 +4,6 @@
 #include <string.h>
 #include <conio.h>
 #include "wypozyczenie.h"
-#include "film.h"
-#include "klient.h"
 
 struct wypozyczenie{
     int numer_wypozyczenia;
@@ -45,7 +43,7 @@ void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *fi
     nowe_wypozyczenie->znacznik_klienta = klient_wypozyczajacy;
     nowe_wypozyczenie->nastepny = (*head_wypozyczenie);
     nowe_wypozyczenie->data_wypozyczenia_sekundy = data_wypozyczenia_sekundy;
-    nowe_wypozyczenie->data_zwrotu_sekundy = data_wypozyczenia_sekundy;
+    nowe_wypozyczenie->data_zwrotu_sekundy = data_zwrotu_sekundy;
     strcpy(nowe_wypozyczenie->data_zwrotu, data_zwrotu);
     strcpy(nowe_wypozyczenie->data_wypozyczenia, data_wypozyczenia);
     film_wypozyczany->sztuki_dostepne--;
@@ -130,6 +128,42 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
     return 0;
 }
 
+int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const double kara){
+    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
+    time_t aktualna_data = time(NULL);
+    system("cls");
+    printf(">> Zaleg³e wypo¿yczenia:\n");
+    printf(">> Nr. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu³ Filmu", "Data wypo¿yczenia", "Data Zwrotu");
+    int i;
+    for(i=1; wypozyczenie_bufor != NULL;){
+        if(aktualna_data > wypozyczenie_bufor->data_zwrotu_sekundy){
+            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", i, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->data_zwrotu_sekundy) / 86400);
+            printf("\n>> Dni opóŸnienia: %d, Naliczona kara: %.2fz³\n", (int)dni_opoznienia, dni_opoznienia*kara);
+            i++;
+        }
+        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
+    }
+    if(i == 1){
+        system("cls");
+        printf(">> Brak zaleg³ych wypo¿yczeñ!");
+        return -1;
+    }
+    return 0;
+}
+
+int licz_zalegle(struct wypozyczenie *head_wypozyczenie){
+    time_t aktualna_data = time(NULL);
+    int count = 0;
+    while(head_wypozyczenie != NULL){
+        if(aktualna_data > head_wypozyczenie->data_zwrotu_sekundy){
+            count++;
+        }
+        head_wypozyczenie = head_wypozyczenie -> nastepny;
+    }
+    return count;
+}
+
 bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
     FILE *file = fopen("wypozyczenie.db", "w");
     if (file == NULL)  {
@@ -192,5 +226,42 @@ void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, st
         head_wypozyczenie->znacznik_klienta = klient_szukaj_po_numerze(&head_klient, head_wypozyczenie->numer_klienta);
         head_wypozyczenie->znacznik_filmu = film_szukaj_po_numerze(&head_film, head_wypozyczenie->numer_filmu);
         head_wypozyczenie = head_wypozyczenie -> nastepny;
+    }
+}
+
+double wczytaj_kare_z_pliku(){
+    double bufor;
+    FILE *file = fopen("kara.db", "r");
+    if (file == NULL)  {
+        system("cls");
+        printf(">> Plik z wartoœci¹ kary nie zosta³ wczytany, ustawiona zosta³a domyœlna wartoœæ (2z³)");
+        czekaj_na_input_ESCAPE();
+        system("cls");
+        return 2.0;
+    }
+    else {
+        fscanf(file, "%lf", &bufor);
+        fclose(file);
+        return bufor;
+    }
+}
+
+int zapisz_kare_do_pliku(double kara){
+    FILE *file = fopen("kara.db", "w");
+    if(file != NULL){
+        fprintf(file, "%f", kara);
+        fclose(file);
+        return 0;
+    }
+    else{
+        return -1;
+    }
+}
+
+void powiadom_zalegle(struct wypozyczenie *head_wypozyczenie){
+    if(licz_zalegle(head_wypozyczenie) > 0){
+        system("cls");
+        printf("Masz %d zaleg³ych wypo¿yczeñ! SprawdŸ menu wypo¿yczeñ!", licz_zalegle(head_wypozyczenie));
+        czekaj_na_input_ESCAPE();
     }
 }

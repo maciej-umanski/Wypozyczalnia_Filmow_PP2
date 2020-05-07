@@ -12,6 +12,8 @@ int klient_licz_dostepne(struct klient *head_klient);
 int klient_licz(struct klient *head_klient);
 int klient_wypisz(struct klient **head_klient);
 int klient_wypisz_dostepni(struct klient **head_klient);
+int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long numer_telefonu);
+int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilosc_posiadanych_filmow);
 bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta);
 bool klient_zapisz_do_pliku(struct klient *head_klient);
 void klient_zamien_spacje_na_tylde(struct klient *head_klient);

@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
 #include "inne.h"
 
 int input_int(int a, int b){
@@ -22,6 +25,18 @@ unsigned long long input_ull(unsigned long long a, unsigned long long b){
         memset(bufortab, 0, 11 * sizeof(char));
         scanf("%s", bufortab);
         bufor = strtoull(bufortab, &koniec, 10);
+    }
+    return bufor;
+}
+
+double input_dbl(double a, double b){
+    char bufortab[10], *koniec;
+    scanf("%s", bufortab);
+    double bufor = strtod(bufortab, &koniec);
+    while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
+        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
+        scanf("%s", bufortab);
+        bufor = strtod(bufortab, &koniec);
     }
     return bufor;
 }

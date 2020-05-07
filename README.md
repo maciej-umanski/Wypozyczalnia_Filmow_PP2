@@ -1,10 +1,10 @@
 Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie wywalały programu
 # 2 Kamień milowy - w trakcie
-- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu.
+- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. (50%)
 
 - Sortowanie rosnące i malejące wszystkich list po dowolnym polu.
 
-- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych.
+- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych. (GOTOWE)
 
 - Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików. (GOTOWE)
 

@@ -134,11 +134,11 @@ int film_wypisz(struct film *head_film){
         return -1;
     }
 
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Dostêpne | Wypo¿yczone |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
 
     for(int i = 1 ; head_film != NULL; i++) {
-        printf(">> %2d. |%30s |%20s |%10s | %13d |   %2d     |     %2d      |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
-                   head_film->sztuki_dostepne, head_film->sztuki_wypozyczone);
+        printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+               head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
         head_film = head_film -> nastepny;
     }
     return 0;
@@ -154,13 +154,13 @@ int film_wypisz_dostepne(struct film *head_film){
         return -1;
     }
 
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Dostêpne sztuki\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
 
     int i;
     for(i = 1 ; head_film != NULL;) {
         if(head_film -> sztuki_dostepne > 0) {
-            printf(">> %2d. |%30s |%20s |%10s | %13d | %2d\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
-                   head_film->sztuki_dostepne);
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
             i++;
         }
         head_film = head_film -> nastepny;
@@ -169,6 +169,69 @@ int film_wypisz_dostepne(struct film *head_film){
     if(i == 1){
         system("cls");
         puts(">> ¯aden film nie jest aktualnie dostêpny!");
+        return -1;
+    }
+
+    return 0;
+}
+
+int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    int i;
+    for(i = 1 ; head_film != NULL;) {
+        if(head_film -> sztuki_dostepne == sztuki_dostepne) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film -> nastepny;
+    }
+
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ¿adnego filmu!");
+        return -1;
+    }
+
+    return 0;
+}
+
+int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczone){
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    int i;
+    for(i = 1 ; head_film != NULL;) {
+        if(head_film -> sztuki_wypozyczone == sztuki_wypozyczone) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film -> nastepny;
+    }
+
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ¿adnego filmu!");
+        return -1;
+    }
+
+    return 0;
+}
+
+int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji){
+    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    int i;
+    for(i = 1 ; head_film != NULL;) {
+        if(head_film -> rok_produkcji == rok_produkcji) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film -> nastepny;
+    }
+
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ¿adnego filmu!");
         return -1;
     }
 

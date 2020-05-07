@@ -139,6 +139,44 @@ int klient_wypisz_dostepni(struct klient **head_klient){
     return 0;
 }
 
+int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long numer_telefonu){
+    struct klient *klient_bufor = *head_klient;
+    printf(">> Nr. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    int i;
+    for(i = 1;klient_bufor != NULL;){
+        if(numer_telefonu == klient_bufor->numer_telefonu){
+            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
+            i++;
+        }
+        klient_bufor = klient_bufor -> nastepny;
+    }
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ¿adnego klienta!");
+        return -1;
+    }
+    return 0;
+}
+
+int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilosc_posiadanych_filmow){
+    struct klient *klient_bufor = *head_klient;
+    printf(">> Nr. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    int i;
+    for(i = 1;klient_bufor != NULL;){
+        if(ilosc_posiadanych_filmow == klient_bufor->ilosc_posiadanych_filmow){
+            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", i, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
+            i++;
+        }
+        klient_bufor = klient_bufor -> nastepny;
+    }
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ¿adnego klienta!");
+        return -1;
+    }
+    return 0;
+}
+
 bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta){
     while(head_klient != NULL){
         if(head_klient -> numer_klienta == numer_klienta){

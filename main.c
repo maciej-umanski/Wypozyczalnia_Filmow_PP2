@@ -3,28 +3,34 @@
 #include <conio.h>
 #include <stdbool.h>
 #include <locale.h>
+#include "inne.h"
 #include "film.h"
 #include "klient.h"
 #include "wypozyczenie.h"
-#include "inne.h"
 
 // FUNKCJE MENU//
 void dodawanie_klient(struct klient **head_klient);
 void usuwanie_klient(struct klient **head_klient);
 void edytowanie_klient(struct klient **head_klient);
+void szukaj_klient(struct klient *head_klient);
 void dodawanie_film(struct film **head_film);
 void usuwanie_film(struct film **head_film);
 void edytowanie_film(struct film **head_film);
+void szukaj_film(struct film *head_film);
 void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film);
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
 void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie);
+void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie);
+void zalegle_wypozyczenie(struct wypozyczenie *head_wypozyczenie);
 void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 void zapisywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
+
 
 // MENU //
 void zarzadznie_klient(struct klient **head_klient);
 void zarzadzanie_film(struct film **head_film);
 void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
+void wyszukiwarka(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,13 +41,15 @@ int main() {
     struct film *head_film = NULL;
     struct wypozyczenie *head_wypozyczenie = NULL;
     wczytywanie_baz_danych(&head_wypozyczenie, &head_klient, &head_film);
+    powiadom_zalegle(head_wypozyczenie);
     while(1){
         wyczysc_ekran();
         puts("////// Menu G³ówne //////\n");
         puts(">> 1. Zarz¹dzanie klientami");
         puts(">> 2. Zarz¹dzanie filmami");
         puts(">> 3. Zarz¹dzanie wypo¿yczeniami");
-        puts(">> 4. DEBUG_MENU");
+        puts(">> 4. Wyszukiwarka");
+        puts(">> 5. DEBUG_MENU");
         puts("\n>> ESCAPE -> WyjdŸ z programu");
         switch(getch()) {
             default:{
@@ -76,6 +84,10 @@ int main() {
                 break;
             }
             case 52:{
+              wyszukiwarka(&head_wypozyczenie, &head_klient, &head_film);
+              break;
+            }
+            case 53:{
                 DEBUG_MENU(&head_wypozyczenie,&head_klient,&head_film);
                 break;
             }
@@ -266,6 +278,58 @@ void edytowanie_klient(struct klient **head_klient){
             }
         }
     }
+}
+
+void szukaj_klient(struct klient *head_klient){
+  while(1){
+    wyczysc_ekran();
+    puts(">> Po jakim polu chcesz szukaæ klienta?\n");
+    puts(">> 1. Numer Telefonu");
+    puts(">> 2. Imiê"); //TODO: Napisac szukanie imienia z ignorowaniem wielkosci liter
+    puts(">> 3. Nazwisko"); //TODO: Napisaæ szukanie nazwiska z ignorowaniem wielkosci liter
+    puts(">> 4. e-mail"); //TODO: Napisaæ szukanie emaila z ignorowaniem wielkoœci liter
+    puts(">> 5. Iloœæ posiadanych filmów\n");
+    puts(">> ESCAPE -> Wróæ");
+
+    switch(getch()){
+      default:{
+        break;
+      }
+      case 27:{
+        return;
+      }
+      case 49:{
+          wyczysc_ekran();
+          printf(">> Wpisz numer telefonu:\n<< ");
+          unsigned long long numer_telefonu = input_ull(99999999, 1000000000);
+          wyczysc_ekran();
+          klient_wypisz_numer_telefonu(&head_klient, numer_telefonu);
+          czekaj_na_input_ESCAPE();
+        break;
+      }
+      case 50:{
+          //IMIÊ
+        break;
+      }
+      case 51:{
+          //NAZWISKO
+        break;
+      }
+      case 52:{
+          //EMAIL
+        break;
+      }
+      case 53:{
+          wyczysc_ekran();
+          printf(">> Wpisz Iloœæ posiadanych filmów:\n<< ");
+          int ilosc_posiadanych_filmow = input_int(0, 2147483647);
+          wyczysc_ekran();
+          klient_wypisz_ilosc_posiadanych_filmow(&head_klient, ilosc_posiadanych_filmow);
+          czekaj_na_input_ESCAPE();
+        break;
+      }
+    }
+  }
 }
 
 void dodawanie_film(struct film **head_film){
@@ -466,6 +530,68 @@ void edytowanie_film(struct film **head_film){
     }
 }
 
+void szukaj_film(struct film *head_film){
+    while(1){
+        wyczysc_ekran();
+        puts(">> Po jakim polu chcesz szukaæ filmu?\n");
+        puts(">> 1. Sztuki Dostêpne");
+        puts(">> 2. Sztuki Wypo¿yczone");
+        puts(">> 3. Rok Produkcji");
+        puts(">> 4. Tytu³"); //TODO: Napisaæ szukanie z ignorowaniem wielkoœci liter
+        puts(">> 5. Re¿yser"); //TODO: Napisac szukanie z ignorowaniem wielkosci liter
+        puts(">> 6. Gatunek\n"); //TODO: Napisaæ szukanie z ignorowaniem wielkosci liter
+        puts(">> ESCAPE -> Wróæ");
+
+        switch(getch()){
+            default:{
+                break;
+            }
+            case 27:{
+                return;
+            }
+            case 49:{
+                wyczysc_ekran();
+                printf(">> Wpisz Sztuki Dostêpne:\n<< ");
+                int sztuki_dostepne = input_int(0, 2147483647);
+                wyczysc_ekran();
+                film_wypisz_sztuki_dostepne(head_film, sztuki_dostepne);
+                czekaj_na_input_ESCAPE();
+                break;
+            }
+            case 50:{
+                wyczysc_ekran();
+                printf(">> Wpisz Sztuki Wypo¿yczone:\n<< ");
+                int sztuki_wypozyczone = input_int(0, 2147483647);
+                wyczysc_ekran();
+                film_wypisz_sztuki_wypozyczone(head_film, sztuki_wypozyczone);
+                czekaj_na_input_ESCAPE();
+                break;
+            }
+            case 51:{
+                wyczysc_ekran();
+                printf(">> Wpisz Rok Produkcji:\n<< ");
+                int rok_produkcji = input_int(0, 2147483647);
+                wyczysc_ekran();
+                film_wypisz_rok_produkcji(head_film, rok_produkcji);
+                czekaj_na_input_ESCAPE();
+                break;
+            }
+            case 52:{
+                //TYTUL
+                break;
+            }
+            case 53:{
+                //REZYSER
+                break;
+            }
+            case 54:{
+                //GATUNEK
+                break;
+            }
+        }
+    }
+}
+
 void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film){
 
     wyczysc_ekran();
@@ -501,16 +627,28 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
 }
 
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
-
+    double kara = wczytaj_kare_z_pliku();
     if(wypozyczenie_wypisz(head_wypozyczenie) != 0){
         czekaj_na_input_ESCAPE();
         return;
     }
-
     printf("\n\n>> Wpisz numer wypo¿yczenia które chcesz zwróciæ:\n<< ");
-
-    wypozyczenie_usun(head_wypozyczenie, wypozyczenie_szukaj_po_kolejnosci_poprzedni(head_wypozyczenie, input_int(1,wypozyczenie_licz(head_wypozyczenie))));
-
+    time_t aktualna_data = time(NULL);
+    int numer_wypozyczenia = input_int(1,wypozyczenie_licz(head_wypozyczenie));
+    struct wypozyczenie *wypozyczenie_bufor = wypozyczenie_szukaj_po_kolejnosci_poprzedni(head_wypozyczenie, numer_wypozyczenia);
+    if(wypozyczenie_bufor != NULL && aktualna_data > wypozyczenie_bufor->nastepny->data_zwrotu_sekundy){
+        wyczysc_ekran();
+        int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->nastepny->data_zwrotu_sekundy)/ 86400);
+        printf(">> Dni opóŸnienia: %d, Naliczona kara: %.2fz³. Nie zapomnij pobraæ op³aty!\n", dni_opoznienia, dni_opoznienia*kara);
+        czekaj_na_input_ESCAPE();
+    }
+    if(wypozyczenie_bufor == NULL && aktualna_data > (*head_wypozyczenie)->data_zwrotu_sekundy){
+        wyczysc_ekran();
+        int dni_opoznienia = ((aktualna_data - (*head_wypozyczenie)->data_zwrotu_sekundy)/ 86400);
+        printf(">> Dni opóŸnienia: %d, Naliczona kara: %.2fz³. Nie zapomnij pobraæ op³aty!\n", dni_opoznienia, dni_opoznienia*kara);
+        czekaj_na_input_ESCAPE();
+    }
+    wypozyczenie_usun(head_wypozyczenie, wypozyczenie_bufor);
     wyczysc_ekran();
     puts(">> Usuniêcie wypo¿yczenia przebie³o pomyœlnie!");
     czekaj_na_input_ESCAPE();
@@ -530,7 +668,7 @@ void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     wyczysc_ekran();
     printf(">> Aktualna data zwrotu wypo¿yczenia: %s\n\n", wypozyczenie_bufor->data_zwrotu);
     printf(">> Wpisz iloœæ tygodni do koñca wypo¿yczenia (0-52)\n");
-    printf(">> Tygodnie licz¹ siê od tego momentu, przy wpisaniu 0 wypo¿yczenie zostaje uznane jako przeterminowane.\n<< ");
+    printf(">> Tygodnie licz¹ siê od tego momentu, przy wpisaniu 0 wypo¿yczenie zostaje uznane jako zwrot dzisiejszy.\n<< ");
 
     wypozyczenie_edytuj(&wypozyczenie_bufor, input_int(0,52));
 
@@ -538,6 +676,83 @@ void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     printf(">> Edycja wypo¿yczenia przebieg³a pomyœlnie!\n");
     printf(">> Nowa data zwrotu wypo¿yczenia: %s", wypozyczenie_bufor->data_zwrotu);
     czekaj_na_input_ESCAPE();
+}
+
+void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie){ //TODO: Napisaæ ca³¹ sekcje
+    while(1){
+        wyczysc_ekran();
+        puts(">> Po jakim polu chcesz szukaæ Wypo¿yczenia?\n");
+        puts(">> 1. Klient wypo¿yczaj¹cy");
+        puts(">> 2. Film wypo¿oczony");
+        puts(">> 3. Data Wypo¿yczenia");
+        puts(">> 4. Data Zwrotu\n");
+        puts(">> ESCAPE -> Wróæ");
+
+        switch(getch()){
+            default:{
+                break;
+            }
+            case 27:{
+                return;
+            }
+            case 49:{
+                //KLIENT (wyszukiwanie klienta a potem wyszukiwanie filmow ktore ten klient ma)
+                break;
+            }
+            case 50:{
+                //FILM (wyszukiwanie filmu a potem którzy klienci go maja)
+                break;
+            }
+            case 51:{
+                //Data wypo¿yczenia
+                break;
+            }
+            case 52:{
+                //Data zwrotu
+                break;
+            }
+        }
+    }
+}
+
+void zalegle_wypozyczenie(struct wypozyczenie *head_wypozyczenie){
+    while(1){
+        wyczysc_ekran();
+        puts(">> 1. Wyœwietl zaleg³e wypo¿yczenia");
+        puts(">> 2. Ustal wysokoœæ kary");
+        puts("\n>> ESCAPE -> Wróæ");
+
+        switch(getch()){
+            default:{
+                break;
+            }
+            case 27:{
+                return;
+            }
+            case 49:{
+                if(head_wypozyczenie != NULL){
+                    double kara = wczytaj_kare_z_pliku();
+                    wypozyczenie_wypisz_zalegle(&head_wypozyczenie, kara);
+                    czekaj_na_input_ESCAPE();
+                }
+                else{
+                    wyczysc_ekran();
+                    printf(">> Lista wypo¿yczeñ jest pusta!");
+                    czekaj_na_input_ESCAPE();
+                }
+                break;
+            }
+            case 50:{
+                wyczysc_ekran();
+                double kara = wczytaj_kare_z_pliku();
+                printf(">> Aktualna kara : %.2f\n", kara);
+                printf(">> Wpisz now¹ wielkoœæ kary za 1 dzieñ zw³oki: (0z³-200z³)\n<< ");
+                kara = input_dbl(0.0,200.0);
+                zapisz_kare_do_pliku(kara);
+                break;
+            }
+        }
+    }
 }
 
 void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
@@ -683,7 +898,8 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
         puts(">> 1. Dodaj wypo¿yczenie");
         puts(">> 2. Zwrot wypo¿yczenia");
         puts(">> 3. Edytuj wypo¿yczenie");
-        puts(">> 4. Wyœwietl aktualne wypo¿yczenia");
+        puts(">> 4. Aktualne wypo¿yczenia");
+        puts(">> 5. Zaleg³e zwroty");
         puts("\n>> ESCAPE -> Wróæ do menu g³ównego");
         switch (getch()) {
             default:{
@@ -709,8 +925,63 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
                 czekaj_na_input_ESCAPE();
                 break;
             }
+            case 53: {
+                zalegle_wypozyczenie((*head_wypozyczenie));
+            }
         }
     }while(1);
+}
+
+void wyszukiwarka(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
+  while(1){
+    wyczysc_ekran();
+    puts("////// Wyszukiwarka //////\n");
+    puts(">> 1. Szukaj klienta");
+    puts(">> 2. Szukaj film");
+    puts(">> 3. Szukaj wypo¿yczenia");
+    puts("\n>> ESCAPE -> Wróæ do menu g³ównego");
+    switch(getch()){
+      default:{
+        break;
+      }
+      case 27:{
+        return;
+      }
+      case 49:{
+          if((*head_klient) != NULL){
+              szukaj_klient((*head_klient));
+          }
+          else{
+              wyczysc_ekran();
+              puts(">> Baza klientów jest pusta!");
+              czekaj_na_input_ESCAPE();
+          }
+        break;
+      }
+      case 50:{
+          if((*head_film) != NULL){
+              szukaj_film((*head_film));
+          }
+          else{
+              wyczysc_ekran();
+              puts(">> Baza filmów jest pusta!");
+              czekaj_na_input_ESCAPE();
+          }
+        break;
+      }
+      case 51:{
+          if((*head_wypozyczenie) != NULL){
+              szukaj_wypozyczenie((*head_wypozyczenie));
+          }
+          else{
+              wyczysc_ekran();
+              puts(">> Baza wypo¿yczeñ jest pusta!");
+              czekaj_na_input_ESCAPE();
+          }
+        break;
+      }
+    }
+  }
 }
 
 void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
@@ -732,8 +1003,8 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 return;
             }
             case 49: {
-                klient_dodaj(head_klient, 98932401321, 123542864, "Maciej", "Kowalski", "m.kowalski123@gmail.com");
-                klient_dodaj(head_klient, 32455123458, 115512467, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
+                klient_dodaj(head_klient, 98932401321, 123456789, "Maciej", "Kowalski", "m.kowalski123@gmail.com");
+                klient_dodaj(head_klient, 32455123458, 123456789, "Michal", "Szewczyk", "szewczyk@buziaczek.pl");
                 klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz", "Nowak", "t.Nowaczek@op.pl");
                 klient_dodaj(head_klient, 12562341233, 634126234, "Jakub", "Milek", "JakubMilek@gmail.com");
                 break;
@@ -746,18 +1017,18 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
                 break;
             }
             case 51: {
-                klient_dodaj(head_klient, 98932401321, 123542864, "Maciej ", "Kowa lski", "m.kowalsk i123@gmail.com");
-                klient_dodaj(head_klient, 32455123458, 115512467, "Michal ", "Sze wczyk", "szewc zyk@buziaczek.pl");
+                klient_dodaj(head_klient, 98932401321, 123456789, "Maciej ", "Kowa lski", "m.kowalsk i123@gmail.com");
+                klient_dodaj(head_klient, 32455123458, 123456789, "Michal ", "Sze wczyk", "szewc zyk@buziaczek.pl");
                 klient_dodaj(head_klient, 12356234123, 123672134, "Tomasz ", "Now ak", " t.Nowaczek@op.pl");
                 klient_dodaj(head_klient, 12562341233, 634126234, "Jakub ", "M ilek", " JakubMilek@gmail.com");
                 film_dodaj(head_film,3,1998,"Harry Potter", "J.k. ", "Horror");
                 film_dodaj(head_film,1,2010,"Kobbitm", "Al Pacino", "Sci-Fi");
                 film_dodaj(head_film,1,2005,"Die Hard", "John Rambo", "Fabularne");
                 film_dodaj(head_film,2,2020,"8 Mila", "Sylverst", "Przygodo");
-                wypozyczenie_dodaj(head_wypozyczenie, (*head_film), (*head_klient), 10);
+                wypozyczenie_dodaj(head_wypozyczenie, (*head_film), (*head_klient), -2);
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny, (*head_klient)->nastepny, 10);
                 wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny, (*head_klient)->nastepny->nastepny, 30);
-                wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny->nastepny, (*head_klient)->nastepny->nastepny->nastepny, 50);
+                wypozyczenie_dodaj(head_wypozyczenie, (*head_film)->nastepny->nastepny->nastepny, (*head_klient)->nastepny->nastepny->nastepny, -1);
                 break;
             }
             case 52:{
