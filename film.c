@@ -7,7 +7,7 @@
 
 
 struct film{
-    int numer_filmu;
+    unsigned int id_filmu;
     int sztuki_dostepne;
     int sztuki_wypozyczone;
     int rok_produkcji;
@@ -18,15 +18,20 @@ struct film{
 };
 
 void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
+        FILE *file = fopen("id/last_id_film.db", "r");
+        if (!file) {
+            printf("Nie moÅ¼na otworzyÄ‡ pliku wymaganego do utworzenia filmu. Dodanie nieudane.\n");
+            return;
+        }
+        unsigned int id;
+        char temp[10];
+        fgets(temp, 10, file);
+        sscanf(temp,"%d", &id);
+        fclose(file);
 
     struct film *film_nowy = (struct film *)malloc(sizeof(struct film));
 
-    if((*head_film)==NULL){
-        film_nowy -> numer_filmu = 0;
-    }
-    else{
-        film_nowy -> numer_filmu = (*head_film)->numer_filmu+1;
-    }
+        film_nowy -> id_filmu = ++id;
 
     film_nowy -> sztuki_dostepne = sztuki_dostepne;
     film_nowy -> sztuki_wypozyczone = 0;
@@ -36,6 +41,10 @@ void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji,
     strcpy(film_nowy -> rezyser, rezyser);
     strcpy(film_nowy -> gatunek, gatunek);
     *head_film = film_nowy;
+
+        FILE *file2 = fopen("id/last_id_film.db", "w");
+        fprintf(file2, "%d", id);
+        fclose(file2);
 }
 
 void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni){
@@ -59,40 +68,48 @@ void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_prod
     strcpy((*film_edytowany) -> gatunek, gatunek);
 }
 
-struct film *film_szukaj_po_numerze(struct film **head_film, int numer_filmu){
+struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_filmu){
     struct film *film_bufor = *head_film;
-    while(film_bufor -> numer_filmu != numer_filmu){
+    while(film_bufor -> id_filmu != id_filmu){
         film_bufor = film_bufor->nastepny;
     }
     return film_bufor;
 }
 
-struct film *film_szukaj_po_kolejnosci(struct film **head_film, int kolejnosc){
+struct film *film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
-    for(int i = 1 ; i != kolejnosc; i++){
+    for(int i = 1 ; i != id; i++){
         film_bufor = film_bufor->nastepny;
     }
     return film_bufor;
 }
 
-struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, int kolejnosc){
+struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigned int id){
+    /*
     struct film *film_bufor = *head_film;
     int i = 0;
-    while(i != kolejnosc){
+    while(i != id){
         if(film_bufor->sztuki_dostepne >0){
             i++;
         }
-        if(i == kolejnosc){
+        if(i == id){
             break;
         }
         film_bufor = film_bufor->nastepny;
     }
     return film_bufor;
+    */
+    struct film *film_bufor = *head_film;
+    while (id != film_bufor->id_filmu) {
+        film_bufor = film_bufor -> nastepny;
+    }
+    return film_bufor;
 }
 
-struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, int kolejnosc){
+struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
     struct film *poprzedni = NULL;
+    /*
     int i = 0;
     while(i != kolejnosc){
         if(film_bufor->sztuki_dostepne >0){
@@ -104,6 +121,17 @@ struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_fil
         poprzedni = film_bufor;
         film_bufor = film_bufor->nastepny;
     }
+    */
+    int i=0;
+    while(film_bufor != NULL) {
+        if(id == film_bufor->id_filmu) {
+            i++;
+            break;
+        }
+        poprzedni = film_bufor;
+        film_bufor = film_bufor->nastepny;
+    }
+    if(i==0) return NULL;
     return poprzedni;
 }
 
@@ -130,14 +158,14 @@ int film_licz_dostepne(struct film *head_film){
 int film_wypisz(struct film *head_film){
 
     if(head_film == NULL){
-        puts(">> Baza filmów jest pusta!");
+        puts(">> Baza filmï¿½w jest pusta!");
         return -1;
     }
 
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
 
-    for(int i = 1 ; head_film != NULL; i++) {
-        printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+    while(head_film != NULL) {
+        printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
                head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
         head_film = head_film -> nastepny;
     }
@@ -147,19 +175,19 @@ int film_wypisz(struct film *head_film){
 int film_wypisz_dostepne(struct film *head_film){
 
     system("cls");
-    puts(">> Dostêpne filmy");
+    puts(">> Dostï¿½pne filmy");
 
     if(head_film == NULL){
-        puts(">> Baza filmów jest pusta!");
+        puts(">> Baza filmï¿½w jest pusta!");
         return -1;
     }
 
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
 
     int i;
     for(i = 1 ; head_film != NULL;) {
         if(head_film -> sztuki_dostepne > 0) {
-            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
                    head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
             i++;
         }
@@ -168,7 +196,7 @@ int film_wypisz_dostepne(struct film *head_film){
 
     if(i == 1){
         system("cls");
-        puts(">> ¯aden film nie jest aktualnie dostêpny!");
+        puts(">> ï¿½aden film nie jest aktualnie dostï¿½pny!");
         return -1;
     }
 
@@ -176,11 +204,11 @@ int film_wypisz_dostepne(struct film *head_film){
 }
 
 int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
     int i;
     for(i = 1 ; head_film != NULL;) {
         if(head_film -> sztuki_dostepne == sztuki_dostepne) {
-            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
                    head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
             i++;
         }
@@ -189,7 +217,7 @@ int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
 
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ¿adnego filmu!");
+        puts(">> Nie znaleziono ï¿½adnego filmu!");
         return -1;
     }
 
@@ -197,11 +225,11 @@ int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
 }
 
 int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczone){
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
     int i;
     for(i = 1 ; head_film != NULL;) {
         if(head_film -> sztuki_wypozyczone == sztuki_wypozyczone) {
-            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
                    head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
             i++;
         }
@@ -210,7 +238,7 @@ int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczon
 
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ¿adnego filmu!");
+        puts(">> Nie znaleziono ï¿½adnego filmu!");
         return -1;
     }
 
@@ -218,11 +246,11 @@ int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczon
 }
 
 int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji){
-    printf(">> Nr. |%30s |%20s |%10s | Rok produkcji | Wypo¿yczone | Dostêpne |\n\n", "Tytu³", "Re¿yser", "Gatunek");
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
     int i;
     for(i = 1 ; head_film != NULL;) {
         if(head_film -> rok_produkcji == rok_produkcji) {
-            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", i, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
                    head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
             i++;
         }
@@ -231,10 +259,91 @@ int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji){
 
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ¿adnego filmu!");
+        puts(">> Nie znaleziono ï¿½adnego filmu!");
         return -1;
     }
 
+    return 0;
+}
+
+int film_wypisz_tytul(struct film *head_film, char tytul[]){
+    tytul = strlwr(tytul);
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
+    int i;
+    for(i = 1;head_film != NULL;) {
+        strlwr(head_film->tytul);
+        int z=0, n=0;
+        do {
+            if (tytul[n] != head_film->tytul[n]) z++;
+            n++;
+        } while(strlen(tytul) > n);
+        if(z==0) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film->nastepny;
+
+    }
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ?adnego filmu!");
+        return -1;
+    }
+    return 0;
+}
+
+int film_wypisz_rezyser(struct film *head_film, char rezyser[]){
+    rezyser = strlwr(rezyser);
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
+    int i;
+    for(i = 1;head_film != NULL;) {
+        strlwr(head_film->rezyser);
+        int z=0, n=0;
+        do {
+            if (rezyser[n] != head_film->rezyser[n]) z++;
+            n++;
+        } while(strlen(rezyser) > n);
+        if(z==0) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film->nastepny;
+
+    }
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ?adnego filmu!");
+        return -1;
+    }
+    return 0;
+}
+
+int film_wypisz_gatunek(struct film *head_film, char gatunek[]){
+    gatunek = strlwr(gatunek);
+    printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypoï¿½yczone | Dostï¿½pne |\n\n", "Tytuï¿½", "Reï¿½yser", "Gatunek");
+    int i;
+    for(i = 1;head_film != NULL;) {
+        strlwr(head_film->gatunek);
+        int z=0, n=0;
+        do {
+            if (gatunek[n] != head_film->gatunek[n]) z++;
+            n++;
+        } while(strlen(gatunek) > n);
+        if(z==0) {
+            printf(">> %2d. |%30s |%20s |%10s | %13d | %11d | %8d |\n", head_film->id_filmu, head_film->tytul, head_film->rezyser, head_film->gatunek, head_film->rok_produkcji,
+                   head_film->sztuki_wypozyczone, head_film->sztuki_dostepne);
+            i++;
+        }
+        head_film = head_film->nastepny;
+
+    }
+    if(i == 1){
+        system("cls");
+        puts(">> Nie znaleziono ?adnego filmu!");
+        return -1;
+    }
     return 0;
 }
 
@@ -266,7 +375,7 @@ bool film_zapisz_do_pliku(struct film *head_film){
         return false;
     } else {
         while (head_film != NULL){
-            fprintf(file, "%d %d %d %d %s %s %s\n", head_film->numer_filmu, head_film->sztuki_dostepne, head_film->sztuki_wypozyczone, head_film->rok_produkcji, head_film->tytul, head_film->rezyser, head_film->gatunek);
+            fprintf(file, "%d %d %d %d %s %s %s\n", head_film->id_filmu, head_film->sztuki_dostepne, head_film->sztuki_wypozyczone, head_film->rok_produkcji, head_film->tytul, head_film->rezyser, head_film->gatunek);
             head_film = head_film->nastepny;
         }
     }
@@ -325,12 +434,13 @@ bool film_wczytaj_z_pliku(struct film **head_film){
         return false;
     }
     else{
-        int numer_filmu, sztuki_dostepne, sztuki_wypozyczone, rok_produkcji;
+        unsigned int id_filmu;
+        int sztuki_dostepne, sztuki_wypozyczone, rok_produkcji;
         char tytul[30], rezyser[20], gatunek[10];
-        while(fscanf(file, "%d %d %d %d %s %s %s", &numer_filmu, &sztuki_dostepne, &sztuki_wypozyczone, &rok_produkcji, tytul, rezyser, gatunek) != EOF){
+        while(fscanf(file, "%d %d %d %d %s %s %s", &id_filmu, &sztuki_dostepne, &sztuki_wypozyczone, &rok_produkcji, tytul, rezyser, gatunek) != EOF){
             if(*head_film == NULL){
                 *head_film = (struct film *)malloc(sizeof(struct film));
-                (*head_film) -> numer_filmu = numer_filmu;
+                (*head_film) -> id_filmu = id_filmu;
                 (*head_film) -> sztuki_dostepne = sztuki_dostepne;
                 (*head_film) -> sztuki_wypozyczone = sztuki_wypozyczone;
                 (*head_film) -> rok_produkcji =  rok_produkcji;
@@ -345,7 +455,7 @@ bool film_wczytaj_z_pliku(struct film **head_film){
                     film_nowy = film_nowy->nastepny;
                 }
                 film_nowy->nastepny = (struct film *)malloc(sizeof(struct film));
-                film_nowy->nastepny -> numer_filmu = numer_filmu;
+                film_nowy->nastepny -> id_filmu = id_filmu;
                 film_nowy->nastepny -> sztuki_dostepne = sztuki_dostepne;
                 film_nowy->nastepny -> sztuki_wypozyczone = sztuki_wypozyczone;
                 film_nowy->nastepny -> rok_produkcji = rok_produkcji;

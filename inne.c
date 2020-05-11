@@ -9,7 +9,19 @@ int input_int(int a, int b){
     scanf("%s", bufortab);
     int bufor = strtol(bufortab, &koniec, 10);
     while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
-        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
+        printf("\nBï¿½ï¿½d, zï¿½a dana wejï¿½ciowa. Proszï¿½ wpisz ponownie.\n<< ");
+        scanf("%s", bufortab);
+        bufor = strtol(bufortab, &koniec, 10);
+    }
+    return bufor;
+}
+
+unsigned int input_uint(unsigned int a, unsigned int b){
+    char bufortab[10], *koniec;
+    scanf("%s", bufortab);
+    unsigned int bufor = strtol(bufortab, &koniec, 10);
+    while (((*koniec == *bufortab) || (bufor < a) || (bufor > b)) || bufor < 0) {
+        printf("\nBï¿½ï¿½d, zï¿½a dana wejï¿½ciowa. Proszï¿½ wpisz ponownie.\n<< ");
         scanf("%s", bufortab);
         bufor = strtol(bufortab, &koniec, 10);
     }
@@ -21,7 +33,7 @@ unsigned long long input_ull(unsigned long long a, unsigned long long b){
     scanf("%s", bufortab);
     unsigned long long bufor = strtoull(bufortab, &koniec, 10);
     while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)){
-        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
+        printf("\nBï¿½ï¿½d, zï¿½a dana wejï¿½ciowa. Proszï¿½ wpisz ponownie.\n<< ");
         memset(bufortab, 0, 11 * sizeof(char));
         scanf("%s", bufortab);
         bufor = strtoull(bufortab, &koniec, 10);
@@ -34,7 +46,7 @@ double input_dbl(double a, double b){
     scanf("%s", bufortab);
     double bufor = strtod(bufortab, &koniec);
     while ((*koniec == *bufortab) || (bufor < a) || (bufor > b)) {
-        printf("\nB³¹d, z³a dana wejœciowa. Proszê wpisz ponownie.\n<< ");
+        printf("\nBï¿½ï¿½d, zï¿½a dana wejï¿½ciowa. Proszï¿½ wpisz ponownie.\n<< ");
         scanf("%s", bufortab);
         bufor = strtod(bufortab, &koniec);
     }
@@ -42,7 +54,7 @@ double input_dbl(double a, double b){
 }
 
 void czekaj_na_input_ESCAPE(){
-    puts("\n\n>> Wciœnij ESCAPE aby powróciæ.");
+    puts("\n\n>> Wciï¿½nij ESCAPE aby powrï¿½ciï¿½.");
     while(getch() != 27){
 
     }
