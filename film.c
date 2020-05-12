@@ -17,11 +17,12 @@ struct film{
     struct film *nastepny;
 };
 
-void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
-        FILE *file = fopen("id/last_id_film.db", "r");
-        if (!file) {
-            printf("Nie można otworzyć pliku wymaganego do utworzenia filmu. Dodanie nieudane.\n");
-            return;
+bool film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
+        if(!dodaj_folder("data")) return false;
+        if(!dodaj_folder("data/id")) return false;
+        FILE *file = fopen("data/id/last_id_film.db", "r");
+        if (file==NULL && (*head_film)!=NULL) {
+            return false;
         }
         unsigned int id;
         char temp[10];
@@ -30,9 +31,18 @@ void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji,
         fclose(file);
 
     struct film *film_nowy = (struct film *)malloc(sizeof(struct film));
-
-        film_nowy -> id_filmu = ++id;
-
+        if((*head_film)== NULL) {
+            if(!file) {
+                film_nowy->id_filmu = 1;
+                id = 1;
+            }
+            else {
+                film_nowy->id_filmu = ++id;
+            }
+        }
+        else {
+            film_nowy->id_filmu = ++id;
+        }
     film_nowy -> sztuki_dostepne = sztuki_dostepne;
     film_nowy -> sztuki_wypozyczone = 0;
     film_nowy -> nastepny = (*head_film);
@@ -42,9 +52,10 @@ void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji,
     strcpy(film_nowy -> gatunek, gatunek);
     *head_film = film_nowy;
 
-        FILE *file2 = fopen("id/last_id_film.db", "w");
+        FILE *file2 = fopen("data/id/last_id_film.db", "w");
         fprintf(file2, "%d", id);
         fclose(file2);
+        return true;
 }
 
 void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni){
@@ -370,7 +381,9 @@ bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_
 }
 
 bool film_zapisz_do_pliku(struct film *head_film){
-    FILE *file = fopen("film.db", "w");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/databases/film.db", "w");
     if (file == NULL)  {
         return false;
     } else {
@@ -429,7 +442,9 @@ void film_zamien_tylde_na_spacje(struct film *head_film){
 }
 
 bool film_wczytaj_z_pliku(struct film **head_film){
-    FILE *file = fopen("film.db", "r");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/databases/film.db", "r");
     if (file == NULL) {
         return false;
     }

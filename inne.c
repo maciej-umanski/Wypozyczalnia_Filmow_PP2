@@ -3,6 +3,8 @@
 #include <string.h>
 #include <conio.h>
 #include "inne.h"
+#include <sys/stat.h>
+#include <errno.h>
 
 int input_int(int a, int b){
     char bufortab[10], *koniec;
@@ -62,4 +64,24 @@ void czekaj_na_input_ESCAPE(){
 
 void wyczysc_ekran(){
     system("cls");
+}
+
+bool dodaj_folder(char folder[]) {
+    int errnum;
+    int dir_result = mkdir(folder);
+    if (dir_result != 0 && errno != 17) {
+        errnum = errno;
+        fprintf(stderr, "Nie można utworzyć folderu.\n");
+        fprintf(stderr, "Value of errno: %d\n", errno);
+        perror("Błąd wypisany przez funkcję perror");
+        fprintf(stderr, "Błąd utworzenia folderu: %s\n", strerror(errnum));
+
+    } else {
+        return true;
+    }
+}
+
+void input_string(char *result, int max) {
+    fgets(result, max, stdin);
+    fflush(stdin);
 }

@@ -135,13 +135,24 @@ void dodawanie_klient(struct klient **head_klient){
             printf("\n>> Wpisz numer telefonu klienta:\n<< ");
             numer_telefonu = input_ull(111111111,999999999);
             printf("\n>> Wpisz imi? klienta: (max 15 znak?w)\n<< ");
-            scanf("%s", imie);
+            fflush(stdin);
+            input_string(imie, 15);
             printf("\n>> Wpisz nazwisko klienta: (max 15 znak?w)\n<< ");
-            scanf("%s", nazwisko);
+            input_string(nazwisko, 15);
             printf("\n>> Wpisz email klienta: (max 30 znak?w)\n<< ");
-            scanf("%s", email);
+            while(1) {
+                input_string(email, 30);
+                if(!check_email(email)) puts("Podano nieprawidłowy adres email. Podaj jeszcze raz.\n");
+                else break;
+            }
 
-            klient_dodaj(head_klient, numer_klienta, numer_telefonu, imie, nazwisko, email);
+
+            if(!klient_dodaj(head_klient, numer_klienta, numer_telefonu, imie, nazwisko, email)) {
+                wyczysc_ekran(); //TODO: dodaj u innych dodawań
+                printf("Nie można otworzyć pliku wymaganego do utworzenia użytkownika. Dodanie nieudane.\n");
+                czekaj_na_input_ESCAPE();
+                break;
+            }
 
             wyczysc_ekran();
             printf(">> Klient zosta? poprawnie dodany!");
@@ -154,10 +165,10 @@ void dodawanie_klient(struct klient **head_klient){
 
 void usuwanie_klient(struct klient **head_klient) { //TODO: chyba działa?
     wyczysc_ekran();
-    FILE *file = fopen("id/last_id_klient.db", "r");
+    FILE *file = fopen("data/id/last_id_klient.db", "r");
     unsigned int id_klienta;
     if(file == NULL) {
-        printf("Nie można usunąć filmu.\n");
+        printf("Nie można usunąć klienta.\n");
         czekaj_na_input_ESCAPE();
         return;
     }
@@ -228,7 +239,7 @@ void edytowanie_klient(struct klient **head_klient){
         puts(">> 3. Nazwisko");
         puts(">> 4. E-Mail");
         puts(">> 5. Wszystkie");
-
+        fflush(stdin);
         switch (getch()) {
             case 49: {
                 wyczysc_ekran();
@@ -239,19 +250,19 @@ void edytowanie_klient(struct klient **head_klient){
             case 50: {
                 wyczysc_ekran();
                 printf(">> Wpisz nowe imi? klienta:\n<< ");
-                scanf("%s", imie);
+                input_string(imie, 15);
                 break;
             }
             case 51: {
                 wyczysc_ekran();
                 printf(">> Wpisz nowe nazwisko klienta:\n<< ");
-                scanf("%s", nazwisko);
+                input_string(nazwisko, 15);
                 break;
             }
             case 52: {
                 wyczysc_ekran();
                 printf(">> Wpisz nowy E-mail klienta:\n<< ");
-                scanf("%s", email);
+                input_string(email, 30);
                 break;
             }
             case 53: {
@@ -259,11 +270,11 @@ void edytowanie_klient(struct klient **head_klient){
                 printf(">> Wpisz nowy numer telefonu:\n<< ");
                 numer_telefonu = input_ull(99999999, 1000000000);
                 printf("\n>> Wpisz nowe imi? klienta:\n<< ");
-                scanf("%s", imie);
+                input_string(imie, 15);
                 printf("\n>> Wpisz nowe nazwisko klienta:\n<< ");
-                scanf("%s", nazwisko);
+                input_string(nazwisko, 15);
                 printf("\n>> Wpisz nowy E-mail klienta:\n<< ");
-                scanf("%s", email);
+                input_string(email, 30);
                 break;
             }
         }
@@ -394,9 +405,15 @@ void dodawanie_film(struct film **head_film){
         fgets(gatunek, 10, stdin);
 
         if(film_czy_istnieje(*head_film, rok_produkcji,tytul,rezyser,gatunek) == false){
-
-            film_dodaj(head_film,sztuki_dostepne,rok_produkcji,tytul,rezyser,gatunek);
+            if(!film_dodaj(head_film,sztuki_dostepne,rok_produkcji,tytul,rezyser,gatunek)) {
+                wyczysc_ekran();
+                printf("Nie można otworzyć pliku wymaganego do utworzenia filmu. Dodanie nieudane.\n");
+                czekaj_na_input_ESCAPE();
+                break;
+            }
             wyczysc_ekran();
+            puts("Dodawanie pomyślne.\n");
+            czekaj_na_input_ESCAPE();
             break;
 
         } else {
@@ -423,7 +440,7 @@ void dodawanie_film(struct film **head_film){
 void usuwanie_film(struct film **head_film){ //TODO: powinno działać?
     wyczysc_ekran();
 
-    FILE *file = fopen("id/last_id_film.db", "r");
+    FILE *file = fopen("data/id/last_id_film.db", "r");
     unsigned int ilosc_dostepnych_filmow;
     if(file == NULL) {
         printf("Nie można usunąć filmu.\n");
@@ -505,7 +522,7 @@ void edytowanie_film(struct film **head_film){
     }
     unsigned int ilosc_dostepnych_filmow;
     printf("\n>> Wpisz ID filmu kt?ry chcesz edytowa?:\n<< ");
-        FILE *file = fopen("id/last_id_film.db", "r");
+        FILE *file = fopen("data/id/last_id_film.db", "r");
         if(file == NULL) {
             printf("Nie można usunąć filmu.\n");
             return;
@@ -533,6 +550,7 @@ void edytowanie_film(struct film **head_film){
         puts(">> 4. Rezyser");
         puts(">> 5. Gatunek");
         puts(">> 6. Wszystkie");
+        fflush(stdin);
         switch(getch()){
             case 49:{
                 wyczysc_ekran();
@@ -550,19 +568,19 @@ void edytowanie_film(struct film **head_film){
             case 51:{
                 wyczysc_ekran();
                 printf(">> Wpisz nowy tytu?: (max. 30 znak?w)\n<< ");
-                scanf("%s", tytul);
+                input_string(tytul,30);
                 break;
             }
             case 52:{
                 wyczysc_ekran();
                 printf(">> Wpisz nowego re?ysera: (max. 20 znak?w)\n<< ");
-                scanf("%s", rezyser);
+                input_string(rezyser, 20);
                 break;
             }
             case 53:{
                 wyczysc_ekran();
                 printf(">> Wpisz nowy gatunek: (max. 10 znak?w)\n<< ");
-                scanf("%s", gatunek);
+                input_string(gatunek, 10);
                 break;
             }
             case 54:{
@@ -573,11 +591,11 @@ void edytowanie_film(struct film **head_film){
                 printf(">> Wpisz nowy rok produkcji:\n<< ");
                 rok_produkcji = input_int(1800, 2020);
                 printf(">> Wpisz nowy tytu?: (max. 30 znak?w)\n<< ");
-                scanf("%s", tytul);
+                input_string(tytul,30);
                 printf(">> Wpisz nowego re?ysera: (max. 20 znak?w)\n<< ");
-                scanf("%s", rezyser);
+                input_string(rezyser, 20);
                 printf(">> Wpisz nowy gatunek: (max. 10 znak?w)\n<< ");
-                scanf("%s", gatunek);
+                input_string(gatunek, 10);
                 break;
             }
         }
@@ -623,7 +641,7 @@ void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają orygina
         puts(">> 5. Re?yser");
         puts(">> 6. Gatunek\n");
         puts(">> ESCAPE -> Wr??");
-
+        fflush(stdin);
         switch(getch()){
             default:{
                 break;
@@ -726,7 +744,14 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
     printf(">> Na ile tygodni chcesz wypo?yczy? film: (conajmniej 1, maksymalnie 52)\n<< ");
 
     int czas_wypozyczenia = input_int(1,52);
-    wypozyczenie_dodaj(head_wypozyczenie, film_bufor, klient_bufor, czas_wypozyczenia);
+
+
+    if(!wypozyczenie_dodaj(head_wypozyczenie, film_bufor, klient_bufor, czas_wypozyczenia)) {
+        wyczysc_ekran();
+        printf("Nie można otworzyć pliku wymaganego do utworzenia wypożyczenia. Dodanie nieudane.\n");
+        czekaj_na_input_ESCAPE();
+        return;
+    }
 
     wyczysc_ekran();
     puts(">> Dodanie wypo?yczenia przebie?o pomy?lnie!");
@@ -900,9 +925,9 @@ void zalegle_wypozyczenie(struct wypozyczenie *head_wypozyczenie){
 }
 
 void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
-    FILE *file_wypozyczenie = fopen("wypozyczenie.db", "r");
-    FILE *file_klient = fopen("klient.db", "r");
-    FILE *file_film = fopen("film.db", "r");
+    FILE *file_wypozyczenie = fopen("data/databases/wypozyczenie.db", "r");
+    FILE *file_klient = fopen("data/databases/klient.db", "r");
+    FILE *file_film = fopen("data/databases/film.db", "r");
     if(file_wypozyczenie == NULL || file_klient == NULL || file_film == NULL){
         return;
     }
@@ -921,9 +946,15 @@ void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klie
                 klient_zamien_tylde_na_spacje(*head_klient);
                 wypozyczenie_wczytaj_z_pliku(head_wypozyczenie);
                 wypozyczenie_przebuduj_znaczniki(*head_wypozyczenie, *head_film, *head_klient);
+                fclose(file_film);
+                fclose(file_klient);
+                fclose(file_wypozyczenie);
                 return;
             }
             case 27: {
+                fclose(file_film);
+                fclose(file_klient);
+                fclose(file_wypozyczenie);
                 return;
             }
         }

@@ -18,17 +18,18 @@ struct wypozyczenie{
     struct wypozyczenie *nastepny;
 };
 
-void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni){
-    FILE *file = fopen("id/last_id_wypozyczenie.db", "r");
-    if (!file) {
-        printf("Nie można otworzyć pliku wymaganego do utworzenia wypożyczenia. Dodanie nieudane.\n");
-        return;
-    }
-    unsigned int id;
-    char temp[10];
-    fgets(temp, 10, file);
-    sscanf(temp,"%d", &id);
-    fclose(file);
+bool wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni){
+            if(!dodaj_folder("data")) return false;
+            if(!dodaj_folder("data/id")) return false;
+            FILE *file = fopen("data/id/last_id_wypozyczenie.db", "r");
+            if (file==NULL && (*head_wypozyczenie)!=NULL) {
+                return false;
+            }
+            unsigned int id;
+            char temp[10];
+            fgets(temp, 10, file);
+            sscanf(temp,"%d", &id);
+            fclose(file);
     char data_zwrotu[11];
     char data_wypozyczenia[11];
     time_t data_zwrotu_sekundy;
@@ -42,7 +43,18 @@ void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *fi
     data = localtime(&data_zwrotu_sekundy);
     strftime(data_zwrotu, 11, "%Y/%m/%d", data);
 
-        nowe_wypozyczenie -> id_wypozyczenia = ++id;
+    if((*head_wypozyczenie)== NULL) {
+        if(!file) {
+            nowe_wypozyczenie->id_wypozyczenia = 1;
+            id = 1;
+        }
+        else {
+            nowe_wypozyczenie->id_wypozyczenia = ++id;
+        }
+    }
+    else {
+        nowe_wypozyczenie->id_wypozyczenia = ++id;
+    }
 
     nowe_wypozyczenie->numer_filmu = film_wypozyczany->id_filmu;
     nowe_wypozyczenie->znacznik_filmu = film_wypozyczany;
@@ -57,9 +69,10 @@ void wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *fi
     film_wypozyczany->sztuki_wypozyczone++;
     klient_wypozyczajacy->ilosc_posiadanych_filmow++;
     (*head_wypozyczenie) = nowe_wypozyczenie;
-    FILE *file2 = fopen("id/last_id_wypozyczenie.db", "w");
+    FILE *file2 = fopen("data/id/last_id_wypozyczenie.db", "w");
     fprintf(file2, "%d", id);
     fclose(file2);
+    return true;
 }
 
 void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozyczenie *wypozyczenie_przed_usuwanym){
@@ -136,9 +149,9 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
         return -1;
     }
     printf(">> Aktywne wypo�yczenia:\n");
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     while(wypozyczenie_bufor != NULL){
-        printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+        printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
         wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
     }
     return 0;
@@ -146,7 +159,7 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
 
 int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         int z=0, n=0;
@@ -155,7 +168,7 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
             n++;
         } while(strlen(data) > n);
         if(z==0) {
-            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             i++;
         }
         wypozyczenie_bufor = wypozyczenie_bufor->nastepny;
@@ -171,7 +184,7 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
 
 int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         int z=0, n=0;
@@ -180,7 +193,7 @@ int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char
             n++;
         } while(strlen(data) > n);
         if(z==0) {
-            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             i++;
         }
         wypozyczenie_bufor = wypozyczenie_bufor->nastepny;
@@ -196,11 +209,11 @@ int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char
 
 int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     int i;
         for(i = 1;wypozyczenie_bufor != NULL;) {
             if(id == wypozyczenie_bufor->znacznik_klienta->id_klienta) {
-            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             i++;
             }
             wypozyczenie_bufor = wypozyczenie_bufor->nastepny;
@@ -215,11 +228,11 @@ int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned 
 
 int wypozeczenie_wypisz_film(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         if(id == wypozyczenie_bufor->znacznik_filmu->id_filmu) {
-            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             i++;
         }
         wypozyczenie_bufor = wypozyczenie_bufor->nastepny;
@@ -237,11 +250,11 @@ int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const d
     time_t aktualna_data = time(NULL);
     system("cls");
     printf(">> Zaleg�e wypo�yczenia:\n");
-    printf(">> ID. |%10s |%10s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
     int i;
     for(i=1; wypozyczenie_bufor != NULL;){
         if(aktualna_data > wypozyczenie_bufor->data_zwrotu_sekundy){
-            printf("\n>> %2d. |%10s |%10s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
+            printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->data_zwrotu_sekundy) / 86400);
             printf("\n>> Dni op�nienia: %d, Naliczona kara: %.2fz�\n", (int)dni_opoznienia, dni_opoznienia*kara);
             i++;
@@ -269,7 +282,9 @@ int licz_zalegle(struct wypozyczenie *head_wypozyczenie){
 }
 
 bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
-    FILE *file = fopen("wypozyczenie.db", "w");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/databases/wypozyczenie.db", "w");
     if (file == NULL)  {
         return false;
     } else {
@@ -283,7 +298,9 @@ bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
 }
 
 bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie){
-    FILE *file = fopen("wypozyczenie.db", "r");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/dabasases/wypozyczenie.db", "r");
     if (file == NULL) {
         return false;
     }
@@ -334,7 +351,8 @@ void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, st
 
 double wczytaj_kare_z_pliku(){
     double bufor;
-    FILE *file = fopen("kara.db", "r");
+    if(!dodaj_folder("data")) return false;
+    FILE *file = fopen("data/kara.db", "r");
     if (file == NULL)  {
         system("cls");
         printf(">> Plik z warto�ci� kary nie zosta� wczytany, ustawiona zosta�a domy�lna warto�� (2z�)");
@@ -350,7 +368,8 @@ double wczytaj_kare_z_pliku(){
 }
 
 int zapisz_kare_do_pliku(double kara){
-    FILE *file = fopen("kara.db", "w");
+    if(!dodaj_folder("data")) return false;
+    FILE *file = fopen("data/kara.db", "w");
     if(file != NULL){
         fprintf(file, "%f", kara);
         fclose(file);

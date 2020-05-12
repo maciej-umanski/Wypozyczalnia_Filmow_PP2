@@ -2,7 +2,7 @@
 #define PP2_FILM_H
 #include "film.c"
 
-void film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
+bool film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
 void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni);
 void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]);
 struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_filmu);

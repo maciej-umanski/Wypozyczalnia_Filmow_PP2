@@ -1,8 +1,11 @@
-Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie wywalały programu
 # 2 Kamień milowy - w trakcie
-- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. (50%)
-
 - Sortowanie rosnące i malejące wszystkich list po dowolnym polu.
+
+-Walidacja adresów email (GOTOWE)
+
+-Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia (GOTOWE)
+
+- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. (GOTOWE)
 
 - Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych. (GOTOWE)
 

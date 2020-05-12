@@ -10,18 +10,20 @@ struct klient{
     unsigned int id_klienta;
     unsigned long long numer_klienta;
     unsigned long long numer_telefonu;
-    char imie[10];
-    char nazwisko[10];
+    char imie[15];
+    char nazwisko[15];
     char email[30];
     int ilosc_posiadanych_filmow;
     struct klient *nastepny;
 };
 
-void klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
-        FILE *file = fopen("id/last_id_klient.db", "r");
-        if (!file) {
-            printf("Nie mo¿na otworzyæ pliku wymaganego do utworzenia u¿ytkownika. Dodanie nieudane.\n");
-            return;
+bool klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
+        if(!dodaj_folder("data")) return false;
+        if(!dodaj_folder("data/id")) return false;
+        FILE *file = fopen("data/id/last_id_klient.db", "r");
+
+        if (file==NULL && (*head_klient)!=NULL) {
+            return false;
         }
         unsigned int id;
         char temp[10];
@@ -31,7 +33,18 @@ void klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta,
 
     struct klient *klient_nowy = (struct klient *) malloc(sizeof(struct klient));
 
-           klient_nowy->id_klienta = ++id;
+            if((*head_klient)== NULL) {
+                if(!file) {
+                    klient_nowy->id_klienta = 1;
+                    id = 1;
+                }
+                else {
+                    klient_nowy->id_klienta = ++id;
+                }
+            }
+            else {
+                klient_nowy->id_klienta = ++id;
+            }
 
     klient_nowy->numer_klienta = numer_klienta;
     klient_nowy->numer_telefonu = numer_telefonu;
@@ -42,9 +55,10 @@ void klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta,
     klient_nowy->nastepny = (*head_klient);
     *head_klient = klient_nowy;
 
-    FILE *file2 = fopen("id/last_id_klient.db", "w");
+    FILE *file2 = fopen("data/id/last_id_klient.db", "w");
     fprintf(file2, "%d", id);
     fclose(file2);
+    return true;
 }
 
 void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwanym){
@@ -125,9 +139,9 @@ int klient_wypisz(struct klient **head_klient){
         puts(">> Baza klient?w jest pusta!");
         return -1;
     }
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     while(klient_bufor != NULL){
-        printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+        printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                 klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email,
                 klient_bufor->ilosc_posiadanych_filmow);
         klient_bufor = klient_bufor -> nastepny;
@@ -142,11 +156,11 @@ int klient_wypisz_dostepni(struct klient **head_klient){
         puts(">> Baza klient?w jest pusta!");
         return -1;
     }
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i=1; klient_bufor != NULL;){
         if(klient_bufor->ilosc_posiadanych_filmow == 0) {
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                    klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->numer_telefonu, klient_bufor->email,
                    klient_bufor->ilosc_posiadanych_filmow);
             i++;
@@ -163,11 +177,11 @@ int klient_wypisz_dostepni(struct klient **head_klient){
 
 int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long numer_telefonu){
     struct klient *klient_bufor = *head_klient;
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i = 1;klient_bufor != NULL;){
         if(numer_telefonu == klient_bufor->numer_telefonu){
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                     klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email,
                     klient_bufor->ilosc_posiadanych_filmow);
             i++;
@@ -184,11 +198,11 @@ int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long
 
 int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilosc_posiadanych_filmow){
     struct klient *klient_bufor = *head_klient;
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i = 1;klient_bufor != NULL;){
         if(ilosc_posiadanych_filmow == klient_bufor->ilosc_posiadanych_filmow){
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta, klient_bufor->imie, klient_bufor->nazwisko, klient_bufor-> numer_telefonu, klient_bufor->email, klient_bufor->ilosc_posiadanych_filmow);
             i++;
         }
         klient_bufor = klient_bufor -> nastepny;
@@ -204,7 +218,7 @@ int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilos
 int klient_wypisz_imie(struct klient *head_klient, char imie[]){
     struct klient *klient_bufor = head_klient;
     imie = strlwr(imie);
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i = 1;klient_bufor != NULL;) {
         strlwr(klient_bufor->imie);
@@ -214,7 +228,7 @@ int klient_wypisz_imie(struct klient *head_klient, char imie[]){
             n++;
         } while(strlen(imie) > n);
         if(z==0) {
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                    klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->numer_telefonu,
                    klient_bufor->email,
                    klient_bufor->ilosc_posiadanych_filmow);
@@ -234,7 +248,7 @@ int klient_wypisz_imie(struct klient *head_klient, char imie[]){
 int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
     struct klient *klient_bufor = head_klient;
     nazwisko = strlwr(nazwisko);
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i = 1;klient_bufor != NULL;) {
         strlwr(klient_bufor->nazwisko);
@@ -244,7 +258,7 @@ int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
             n++;
         } while(strlen(nazwisko) > n);
         if(z==0) {
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                    klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->numer_telefonu,
                    klient_bufor->email,
                    klient_bufor->ilosc_posiadanych_filmow);
@@ -264,7 +278,7 @@ int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
 int klient_wypisz_mail(struct klient *head_klient, char mail[]){
     struct klient *klient_bufor = head_klient;
     mail = strlwr(mail);
-    printf(">> ID. | %11s | %10s | %10s | %9s |%25s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
+    printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
     int i;
     for(i = 1;klient_bufor != NULL;) {
         strlwr(klient_bufor->email);
@@ -274,7 +288,7 @@ int klient_wypisz_mail(struct klient *head_klient, char mail[]){
             n++;
         } while(strlen(mail) > n);
         if(z==0) {
-            printf(">> %2d. | %llu | %10s | %10s | %9llu |%25s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
+            printf(">> %2d. | %llu | %15s | %15s | %9llu |%30s |%2d\n", klient_bufor->id_klienta, klient_bufor->numer_klienta,
                    klient_bufor->imie, klient_bufor->nazwisko, klient_bufor->numer_telefonu,
                    klient_bufor->email,
                    klient_bufor->ilosc_posiadanych_filmow);
@@ -302,7 +316,9 @@ bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long nu
 }
 
 bool klient_zapisz_do_pliku(struct klient *head_klient){
-    FILE *file = fopen("klient.db", "w");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/databases/klient.db", "w");
     if (file == NULL)  {
         return false;
     } else {
@@ -358,7 +374,9 @@ void klient_zamien_tylde_na_spacje(struct klient *head_klient){
 }
 
 bool klient_wczytaj_z_pliku(struct klient **head_klient){
-    FILE *file = fopen("klient.db", "r");
+    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data/databases")) return false;
+    FILE *file = fopen("data/databases/klient.db", "r");
     if (file == NULL) {
         return false;
     }
@@ -366,7 +384,7 @@ bool klient_wczytaj_z_pliku(struct klient **head_klient){
         unsigned int id;
         unsigned long long numer_klienta, numer_telefonu;
         int ilosc_posiadanych_filmow;
-        char imie[10], nazwisko[10], email[30];
+        char imie[15], nazwisko[15], email[30];
         while(fscanf(file, "%d %llu %llu %s %s %s %d", &id, &numer_klienta, &numer_telefonu, imie, nazwisko, email, &ilosc_posiadanych_filmow) != EOF){
             if(*head_klient == NULL){
                 *head_klient = (struct klient *)malloc(sizeof(struct klient));
@@ -398,4 +416,40 @@ bool klient_wczytaj_z_pliku(struct klient **head_klient){
         fclose(file);
     }
     return true;
+}
+
+bool check_email(char mail[]) {
+    int exact, exact2;
+    mail = strlwr(mail);
+    int chars[5]= {0};
+    if(strlen(mail)<5) return false;
+    else {
+        for(int i=0;i<strlen(mail)-1; i++){
+            if(mail[i]=='@') {
+                chars[0]++;
+                exact = i;
+            }
+            if(mail[i]=='.') chars[1]++;
+            if(mail[i]==' ') chars[2]++;
+        }
+        if(chars[0]!=1) return false;
+        if(chars[1]==0 || chars[1]==strlen(mail)-chars[0]) return false;
+        if(chars[2]!=0) return false;
+        if(57<mail[0] && mail[0]<97) return false;
+        if(48>mail[0] || mail[0]>122) return false;
+        for(;exact<strlen(mail);exact++){
+            if(mail[exact]=='.') {
+                chars[3]++;
+                exact2=exact;
+            }
+        }
+        exact2++;
+        if(chars[3]==0) return false;
+        if(exact2 == strlen(mail)-1) return false;
+        for(;exact2<strlen(mail)-1;exact2++){
+            if(48>mail[exact2] || mail[exact2]>122) return false;
+            if(57<mail[exact2] && mail[exact2]<97) return false;
+        }
+        return true;
+    }
 }
