@@ -1,9 +1,9 @@
 # 2 Kamień milowy - w trakcie
-- Sortowanie rosnące i malejące wszystkich list po dowolnym polu.
+- Sortowanie rosnące i malejące wszystkich list po dowolnym polu. (GOTOWE)
 
--Walidacja adresów email (GOTOWE)
+- Walidacja adresów email (GOTOWE)
 
--Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia (GOTOWE)
+- Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia (GOTOWE)
 
 - Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. (GOTOWE)
 

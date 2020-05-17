@@ -107,6 +107,22 @@ void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_
     (*wypozyczenie_edytowane) -> data_zwrotu_sekundy = czas1;
 }
 
+void push_wypozyczenie (struct wypozyczenie **head_wypozyczenie, struct wypozyczenie **bufor){
+    struct wypozyczenie *nowe_wypozyczenie = (struct wypozyczenie *) malloc(sizeof(struct wypozyczenie));
+    nowe_wypozyczenie->id_wypozyczenia = (*bufor)->id_wypozyczenia;
+    nowe_wypozyczenie->numer_filmu = (*bufor)->numer_filmu;
+    nowe_wypozyczenie->znacznik_filmu = (*bufor)->znacznik_filmu;
+    nowe_wypozyczenie->numer_klienta = (*bufor)->numer_klienta;
+    nowe_wypozyczenie->znacznik_klienta = (*bufor)->znacznik_klienta;
+    nowe_wypozyczenie->data_wypozyczenia_sekundy = (*bufor)->data_wypozyczenia_sekundy;
+    nowe_wypozyczenie->data_zwrotu_sekundy = (*bufor)->data_zwrotu_sekundy;
+    strcpy(nowe_wypozyczenie->data_zwrotu, (*bufor)->data_zwrotu);
+    strcpy(nowe_wypozyczenie->data_wypozyczenia, (*bufor)->data_wypozyczenia);
+    nowe_wypozyczenie->nastepny = (*head_wypozyczenie);
+    *head_wypozyczenie = nowe_wypozyczenie;
+}
+
+
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, unsigned int id){
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
     while(id != wypozyczenie_bufor->id_wypozyczenia){
@@ -145,11 +161,11 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
     system("cls");
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
     if(wypozyczenie_bufor == NULL){
-        puts(">> Lista wypo�ycze� jest pusta!");
+        puts(">> Lista wypożyczeń jest pusta!");
         return -1;
     }
-    printf(">> Aktywne wypo�yczenia:\n");
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> Aktywne wypożyczenia:\n");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     while(wypozyczenie_bufor != NULL){
         printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
         wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
@@ -159,7 +175,7 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
 
 int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         int z=0, n=0;
@@ -176,7 +192,7 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego wypożyczenia!");
+        puts(">> Nie znaleziono żadnego wypożyczenia!");
         return -1;
     }
     return 0;
@@ -184,7 +200,7 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
 
 int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         int z=0, n=0;
@@ -201,7 +217,7 @@ int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego wypożyczenia!");
+        puts(">> Nie znaleziono żadnego wypożyczenia!");
         return -1;
     }
     return 0;
@@ -209,7 +225,7 @@ int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char
 
 int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     int i;
         for(i = 1;wypozyczenie_bufor != NULL;) {
             if(id == wypozyczenie_bufor->znacznik_klienta->id_klienta) {
@@ -220,7 +236,7 @@ int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned 
         }
         if(i == 1){
             system("cls");
-            puts(">> Nie znaleziono ?adnego wypożyczenia!");
+            puts(">> Nie znaleziono żadnego wypożyczenia!");
             return -1;
         }
     return 0;
@@ -228,7 +244,7 @@ int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned 
 
 int wypozeczenie_wypisz_film(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     int i;
     for(i = 1;wypozyczenie_bufor != NULL;) {
         if(id == wypozyczenie_bufor->znacznik_filmu->id_filmu) {
@@ -239,7 +255,7 @@ int wypozeczenie_wypisz_film(struct wypozyczenie *head_wypozyczenie, unsigned in
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego wypożyczenia!");
+        puts(">> Nie znaleziono żadnego wypożyczenia!");
         return -1;
     }
     return 0;
@@ -249,25 +265,160 @@ int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const d
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
     time_t aktualna_data = time(NULL);
     system("cls");
-    printf(">> Zaleg�e wypo�yczenia:\n");
-    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytu� Filmu", "Data wypo�yczenia", "Data Zwrotu");
+    printf(">> Zaległe wypożyczenia:\n");
+    printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
     int i;
     for(i=1; wypozyczenie_bufor != NULL;){
         if(aktualna_data > wypozyczenie_bufor->data_zwrotu_sekundy){
             printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->data_zwrotu_sekundy) / 86400);
-            printf("\n>> Dni op�nienia: %d, Naliczona kara: %.2fz�\n", (int)dni_opoznienia, dni_opoznienia*kara);
+            printf("\n>> Dni opónienia: %d, Naliczona kara: %.2fzł\n", (int)dni_opoznienia, dni_opoznienia*kara);
             i++;
         }
         wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
     }
     if(i == 1){
         system("cls");
-        printf(">> Brak zaleg�ych wypo�ycze�!");
+        printf(">> Brak zaległych wypożyczeń!");
         return -1;
     }
     return 0;
 }
+
+void wypozyczenie_data_wypozyczenia(struct wypozyczenie **head_wypozyczenie, int mode) {
+    struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_wypozyczenie)->nastepny != NULL) {
+        bufor = *head_wypozyczenie;
+        temp = *head_wypozyczenie;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            if (temp->data_wypozyczenia_sekundy < bufor->nastepny->data_wypozyczenia_sekundy && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (temp->data_wypozyczenia_sekundy > bufor->nastepny->data_wypozyczenia_sekundy && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+        push_wypozyczenie(&main, &temp);
+        wypozyczenie_usun(head_wypozyczenie, prev);
+    }
+    push_wypozyczenie(&main, head_wypozyczenie);
+    wypozyczenie_usun(head_wypozyczenie, NULL);
+    *head_wypozyczenie = main;
+}
+
+void wypozyczenie_data_zwrotu(struct wypozyczenie **head_wypozyczenie, int mode) {
+    struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_wypozyczenie)->nastepny != NULL) {
+        bufor = *head_wypozyczenie;
+        temp = *head_wypozyczenie;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            if (temp->data_zwrotu_sekundy < bufor->nastepny->data_zwrotu_sekundy && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (temp->data_zwrotu_sekundy > bufor->nastepny->data_zwrotu_sekundy && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+        push_wypozyczenie(&main, &temp);
+        wypozyczenie_usun(head_wypozyczenie, prev);
+    }
+    push_wypozyczenie(&main, head_wypozyczenie);
+    wypozyczenie_usun(head_wypozyczenie, NULL);
+    *head_wypozyczenie = main;
+}
+
+void wypozyczenie_imie(struct wypozyczenie **head_wypozyczenie, int mode) {
+    struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_wypozyczenie)->nastepny != NULL) {
+        bufor = *head_wypozyczenie;
+        temp = *head_wypozyczenie;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->znacznik_klienta->imie);
+            strlwr(bufor->nastepny->znacznik_klienta->imie);
+            if (strcmp(temp->znacznik_klienta->imie, bufor->nastepny->znacznik_klienta->imie)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->znacznik_klienta->imie, bufor->nastepny->znacznik_klienta->imie)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_wypozyczenie(&main, &temp);
+        wypozyczenie_usun(head_wypozyczenie, prev);
+    }
+    push_wypozyczenie(&main, head_wypozyczenie);
+    wypozyczenie_usun(head_wypozyczenie, NULL);
+    *head_wypozyczenie = main;
+}
+
+void wypozyczenie_nazwisko(struct wypozyczenie **head_wypozyczenie, int mode) {
+    struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_wypozyczenie)->nastepny != NULL) {
+        bufor = *head_wypozyczenie;
+        temp = *head_wypozyczenie;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->znacznik_klienta->nazwisko);
+            strlwr(bufor->nastepny->znacznik_klienta->nazwisko);
+            if (strcmp(temp->znacznik_klienta->nazwisko, bufor->nastepny->znacznik_klienta->nazwisko)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->znacznik_klienta->nazwisko, bufor->nastepny->znacznik_klienta->nazwisko)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_wypozyczenie(&main, &temp);
+        wypozyczenie_usun(head_wypozyczenie, prev);
+    }
+    push_wypozyczenie(&main, head_wypozyczenie);
+    wypozyczenie_usun(head_wypozyczenie, NULL);
+    *head_wypozyczenie = main;
+}
+
+void wypozyczenie_tytul(struct wypozyczenie **head_wypozyczenie, int mode) {
+    struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_wypozyczenie)->nastepny != NULL) {
+        bufor = *head_wypozyczenie;
+        temp = *head_wypozyczenie;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->znacznik_filmu->tytul);
+            strlwr(bufor->nastepny->znacznik_filmu->tytul);
+            if (strcmp(temp->znacznik_filmu->tytul, bufor->nastepny->znacznik_filmu->tytul)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->znacznik_filmu->tytul, bufor->nastepny->znacznik_filmu->tytul)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_wypozyczenie(&main, &temp);
+        wypozyczenie_usun(head_wypozyczenie, prev);
+    }
+    push_wypozyczenie(&main, head_wypozyczenie);
+    wypozyczenie_usun(head_wypozyczenie, NULL);
+    *head_wypozyczenie = main;
+}
+
 
 int licz_zalegle(struct wypozyczenie *head_wypozyczenie){
     time_t aktualna_data = time(NULL);
@@ -300,7 +451,7 @@ bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
 bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie){
     if(!dodaj_folder("data")) return false;
     if(!dodaj_folder("data/databases")) return false;
-    FILE *file = fopen("data/dabasases/wypozyczenie.db", "r");
+    FILE *file = fopen("data/databases/wypozyczenie.db", "r");
     if (file == NULL) {
         return false;
     }
@@ -355,7 +506,7 @@ double wczytaj_kare_z_pliku(){
     FILE *file = fopen("data/kara.db", "r");
     if (file == NULL)  {
         system("cls");
-        printf(">> Plik z warto�ci� kary nie zosta� wczytany, ustawiona zosta�a domy�lna warto�� (2z�)");
+        printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
         czekaj_na_input_ESCAPE();
         system("cls");
         return 2.0;
@@ -383,7 +534,7 @@ int zapisz_kare_do_pliku(double kara){
 void powiadom_zalegle(struct wypozyczenie *head_wypozyczenie){
     if(licz_zalegle(head_wypozyczenie) > 0){
         system("cls");
-        printf("Masz %d zaleg�ych wypo�ycze�! Sprawd� menu wypo�ycze�!", licz_zalegle(head_wypozyczenie));
+        printf("Masz %d zaległych wypożyczeń! Sprawdź menu wypożyczeń!", licz_zalegle(head_wypozyczenie));
         czekaj_na_input_ESCAPE();
     }
 }

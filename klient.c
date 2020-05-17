@@ -81,6 +81,19 @@ void klient_edytuj(struct klient **klient_edytowany, unsigned long long numer_te
     strcpy((*klient_edytowany) -> email, email);
 }
 
+void push_klient (struct klient **head_klient, struct klient **bufor){
+    struct klient *klient_nowy = (struct klient *) malloc(sizeof(struct klient));
+    klient_nowy->id_klienta = (*bufor)->id_klienta;
+    klient_nowy->numer_klienta = (*bufor)->numer_klienta;
+    klient_nowy->numer_telefonu = (*bufor)->numer_telefonu;
+    strcpy(klient_nowy->imie, (*bufor)->imie);
+    strcpy(klient_nowy->nazwisko, (*bufor)->nazwisko);
+    strcpy(klient_nowy->email, (*bufor)->email);
+    klient_nowy->ilosc_posiadanych_filmow = (*bufor)->ilosc_posiadanych_filmow;
+    klient_nowy->nastepny = (*head_klient);
+    *head_klient = klient_nowy;
+}
+
 struct klient *klient_szukaj_po_numerze(struct klient **head_klient, unsigned int id){
     struct klient *klient_bufor = *head_klient;
     while(klient_bufor -> id_klienta != id){
@@ -136,7 +149,7 @@ int klient_licz_dostepne(struct klient *head_klient){
 int klient_wypisz(struct klient **head_klient){
     struct klient *klient_bufor = *head_klient;
     if(klient_bufor == NULL){
-        puts(">> Baza klient?w jest pusta!");
+        puts(">> Baza klientów jest pusta!");
         return -1;
     }
     printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
@@ -153,7 +166,7 @@ int klient_wypisz_dostepni(struct klient **head_klient){
     struct klient *klient_bufor = *head_klient;
     if(klient_bufor == NULL){
         system("cls");
-        puts(">> Baza klient?w jest pusta!");
+        puts(">> Baza klientów jest pusta!");
         return -1;
     }
     printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
@@ -169,7 +182,7 @@ int klient_wypisz_dostepni(struct klient **head_klient){
     }
     if(i==1){
         system("cls");
-        puts(">> ?aden klient nie mo?e zosta? usuni?ty!");
+        puts(">> Żaden klient nie może zostać usunięty!");
         return -1;
     }
     return 0;
@@ -190,7 +203,7 @@ int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego klienta!");
+        puts(">> Nie znaleziono żadnego klienta!");
         return -1;
     }
     return 0;
@@ -209,7 +222,7 @@ int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilos
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego klienta!");
+        puts(">> Nie znaleziono żadnego klienta!");
         return -1;
     }
     return 0;
@@ -239,7 +252,7 @@ int klient_wypisz_imie(struct klient *head_klient, char imie[]){
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego klienta!");
+        puts(">> Nie znaleziono żadnego klienta!");
         return -1;
     }
     return 0;
@@ -269,7 +282,7 @@ int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego klienta!");
+        puts(">> Nie znaleziono żadnego klienta!");
         return -1;
     }
     return 0;
@@ -299,10 +312,171 @@ int klient_wypisz_mail(struct klient *head_klient, char mail[]){
     }
     if(i == 1){
         system("cls");
-        puts(">> Nie znaleziono ?adnego klienta!");
+        puts(">> Nie znaleziono żadnego klienta!");
         return -1;
     }
     return 0;
+}
+
+void klient_telefon(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            if (temp->numer_telefonu < bufor->nastepny->numer_telefonu && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (temp->numer_telefonu > bufor->nastepny->numer_telefonu && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
+}
+
+void klient_pesel(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            if (temp->numer_klienta < bufor->nastepny->numer_klienta && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (temp->numer_klienta > bufor->nastepny->numer_klienta && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
+}
+
+void klient_filmy(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            if (temp->ilosc_posiadanych_filmow < bufor->nastepny->ilosc_posiadanych_filmow && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (temp->ilosc_posiadanych_filmow > bufor->nastepny->ilosc_posiadanych_filmow && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
+}
+
+void klient_imie(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->imie);
+            strlwr(bufor->nastepny->imie);
+            if (strcmp(temp->imie, bufor->nastepny->imie)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->imie, bufor->nastepny->imie)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
+}
+
+void klient_nazwisko(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->nazwisko);
+            strlwr(bufor->nastepny->nazwisko);
+            if (strcmp(temp->nazwisko, bufor->nastepny->nazwisko)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->nazwisko, bufor->nastepny->nazwisko)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
+}
+
+void klient_mail(struct klient **head_klient, int mode) {
+    struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
+    while ((*head_klient)->nastepny != NULL) {
+        bufor = *head_klient;
+        temp = *head_klient;
+        prev = NULL;
+        while (bufor->nastepny != NULL) {
+            strlwr(temp->email);
+            strlwr(bufor->nastepny->email);
+            if (strcmp(temp->email, bufor->nastepny->email)<0 && mode == 0) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            if (strcmp(temp->email, bufor->nastepny->email)>0 && mode == 1) {
+                temp = bufor->nastepny;
+                prev = bufor;
+            }
+            bufor = bufor->nastepny;
+        }
+
+        push_klient(&main, &temp);
+        klient_usun(head_klient, prev);
+    }
+    push_klient(&main, head_klient);
+    klient_usun(head_klient, NULL);
+    *head_klient = main;
 }
 
 bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta){

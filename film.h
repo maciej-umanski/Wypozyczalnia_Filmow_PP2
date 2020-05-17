@@ -24,5 +24,8 @@ bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_
 void film_zamien_spacje_na_tylde(struct film *head_film);
 void film_zamien_tylde_na_spacje(struct film *head_film);
 bool film_zapisz_do_pliku(struct film *head_film);
+void film_wypozyczone(struct film **head_film, int mode);
+void film_rok(struct film **head_film, int mode);
+void film_tytul(struct film **head_film, int mode);
 
 #endif

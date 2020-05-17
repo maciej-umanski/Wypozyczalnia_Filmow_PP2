@@ -20,5 +20,6 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
 int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char data[]);
 int wypozeczenie_wypisz_klient (struct wypozyczenie *head_wypozyczenie, unsigned int id);
 int wypozeczenie_wypisz_film (struct wypozyczenie *head_wypozyczenie, unsigned int id);
+void wypozyczenie_nazwisko(struct wypozyczenie **head_wypozyczenie, int mode);
 
 #endif //PP2_WYPOZYCZENIE_H

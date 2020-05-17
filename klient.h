@@ -23,5 +23,12 @@ void klient_zamien_spacje_na_tylde(struct klient *head_klient);
 void klient_zamien_tylde_na_spacje(struct klient *head_klient);
 bool klient_wczytaj_z_pliku(struct klient **head_klient);
 bool check_email(char mail[]);
+void push_klient (struct klient **head_klient, struct klient **bufor);
+void klient_telefon(struct klient **head_klient, int mode);
+void klient_pesel(struct klient **head_klient, int mode);
+void klient_filmy(struct klient **head_klient, int mode);
+void klient_imie(struct klient **head_klient, int mode);
+void klient_nazwisko(struct klient **head_klient, int mode);
+void klient_mail(struct klient **head_klient, int mode);
 
 #endif //PP2_KLIENT_H
