@@ -103,17 +103,29 @@ struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_fil
 
 struct film *film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
-    for(int i = 1 ; i != id; i++){
+    int i=0;
+    while(film_bufor != NULL) {
+        if(id == film_bufor->id_filmu) {
+            i++;
+            break;
+        }
         film_bufor = film_bufor->nastepny;
     }
+    if(i==0) return NULL;
     return film_bufor;
 }
 
 struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
-    while (id != film_bufor->id_filmu) {
-        film_bufor = film_bufor -> nastepny;
+    int i=0;
+    while(film_bufor != NULL) {
+        if(id == film_bufor->id_filmu) {
+            i++;
+            break;
+        }
+        film_bufor = film_bufor->nastepny;
     }
+    if(i==0) return NULL;
     return film_bufor;
 }
 
@@ -131,26 +143,6 @@ struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_fil
     }
     if(i==0) return NULL;
     return poprzedni;
-}
-
-int film_licz(struct film *head_film){
-    int ilosc = 0;
-    while(head_film != NULL){
-            ilosc++;
-        head_film = head_film -> nastepny;
-    }
-    return ilosc;
-}
-
-int film_licz_dostepne(struct film *head_film){
-    int ilosc = 0;
-    while(head_film != NULL){
-        if(head_film -> sztuki_dostepne > 0){
-            ilosc++;
-        }
-        head_film = head_film -> nastepny;
-    }
-    return ilosc;
 }
 
 int film_wypisz(struct film *head_film){

@@ -83,6 +83,9 @@ bool dodaj_folder(char folder[]) {
 }
 
 void input_string(char *result, int max) {
-    fgets(result, max, stdin);
+    do {
+        fgets(result, max, stdin);
+    }while(result[0] < 48);
+    strtok(result, "\n");
     fflush(stdin);
 }

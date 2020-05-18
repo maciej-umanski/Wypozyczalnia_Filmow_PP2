@@ -1,15 +1,15 @@
-# 2 Kamień milowy - w trakcie
-- Sortowanie rosnące i malejące wszystkich list po dowolnym polu. (GOTOWE)
+# 2 Kamień milowy - gotowe
+- Sortowanie rosnące i malejące wszystkich list po dowolnym polu.
 
-- Walidacja adresów email (GOTOWE)
+- Walidacja adresów email 
 
-- Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia (GOTOWE)
+- Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia 
 
-- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. (GOTOWE)
+- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. 
 
-- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych. (GOTOWE)
+- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych. 
 
-- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików. (GOTOWE)
+- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików. 
 
 # 1 Kamień milowy - gotowe
 - Wykorzystanie list

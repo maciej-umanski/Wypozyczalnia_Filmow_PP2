@@ -9,8 +9,6 @@ struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_fil
 struct film *film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id);
 struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigned int id);
 struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, unsigned int id);
-int film_licz(struct film *head_film);
-int film_licz_dostepne(struct film *head_film);
 int film_wypisz(struct film *head_film);
 int film_wypisz_dostepne(struct film *head_film);
 int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne);

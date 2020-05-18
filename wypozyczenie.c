@@ -124,11 +124,17 @@ void push_wypozyczenie (struct wypozyczenie **head_wypozyczenie, struct wypozycz
 
 
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, unsigned int id){
-    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
-    while(id != wypozyczenie_bufor->id_wypozyczenia){
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
+    struct wypozyczenie *bufor = *head_wypozyczenie;
+    int i=0;
+    while (bufor != NULL){
+        if(id == bufor->id_wypozyczenia) {
+            i++;
+            break;
+        }
+        bufor = bufor -> nastepny;
     }
-    return wypozyczenie_bufor;
+    if(i==0) return NULL;
+    return bufor;
 }
 
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, unsigned int id){
@@ -145,16 +151,6 @@ struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozycz
     }
     if(i==0) return NULL;
     return poprzedni;
-}
-
-int wypozyczenie_licz(struct wypozyczenie **head_wypozyczenie){
-    struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
-    int ilosc = 0;
-    while(wypozyczenie_bufor != 0){
-        wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
-        ilosc++;
-    }
-    return ilosc;
 }
 
 int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
@@ -501,25 +497,32 @@ void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, st
 }
 
 double wczytaj_kare_z_pliku(){
-    double bufor;
-    if(!dodaj_folder("data")) return false;
-    FILE *file = fopen("data/kara.db", "r");
-    if (file == NULL)  {
-        system("cls");
-        printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
-        czekaj_na_input_ESCAPE();
-        system("cls");
-        return 2.0;
-    }
-    else {
-        fscanf(file, "%lf", &bufor);
-        fclose(file);
-        return bufor;
-    }
+        double bufor;
+        if(!dodaj_folder("data")){
+            system("cls");
+            printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
+            czekaj_na_input_ESCAPE();
+            system("cls");
+            return 2.0;
+        }
+        FILE *file = fopen("data/kara.db", "r");
+        if (file == NULL)  {
+            system("cls");
+            printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
+            czekaj_na_input_ESCAPE();
+            system("cls");
+            return 2.0;
+        }
+        else {
+            fscanf(file, "%lf", &bufor);
+            fclose(file);
+            return bufor;
+        }
 }
 
+
 int zapisz_kare_do_pliku(double kara){
-    if(!dodaj_folder("data")) return false;
+    if(!dodaj_folder("data")) return -1;
     FILE *file = fopen("data/kara.db", "w");
     if(file != NULL){
         fprintf(file, "%f", kara);

@@ -114,7 +114,6 @@ void dodawanie_klient(struct klient **head_klient){
     char email[30];
 
     do {
-
         wyczysc_ekran();
         puts(">> UWAGA! Numeru pesel klienta nie można potem zmienić!");
         printf(">> Wpisz numer pesel klienta:\n<< ");
@@ -154,7 +153,7 @@ void dodawanie_klient(struct klient **head_klient){
 
 
             if(!klient_dodaj(head_klient, numer_klienta, numer_telefonu, imie, nazwisko, email)) {
-                wyczysc_ekran(); //TODO: dodaj u innych dodawań
+                wyczysc_ekran();
                 printf("Nie można otworzyć pliku wymaganego do utworzenia użytkownika. Dodanie nieudane.\n");
                 czekaj_na_input_ESCAPE();
                 break;
@@ -169,7 +168,7 @@ void dodawanie_klient(struct klient **head_klient){
     wyczysc_ekran();
 }
 
-void usuwanie_klient(struct klient **head_klient) { //TODO: chyba działa?
+void usuwanie_klient(struct klient **head_klient) {
     wyczysc_ekran();
     FILE *file = fopen("data/id/last_id_klient.db", "r");
     unsigned int id_klienta;
@@ -231,6 +230,11 @@ void edytowanie_klient(struct klient **head_klient){
     char email[30];
 
     klient_bufor = klient_szukaj_po_kolejnosci(head_klient, input_uint(1,4294967295));
+    if (klient_bufor == NULL) {
+        puts("Nie znaleziono klienta o takim ID. Edytowanie nieudane.");
+        czekaj_na_input_ESCAPE();
+        return;
+    }
     numer_telefonu = klient_bufor->numer_telefonu;
     strcpy(imie, klient_bufor->imie);
     strcpy(nazwisko, klient_bufor->nazwisko);
@@ -356,8 +360,8 @@ void szukaj_klient(struct klient *head_klient){ //TODO: wyszukiwarki używają o
       case 50:{
           wyczysc_ekran();
           printf(">> Wpisz imię klienta:\n<< ");
-          char imie[10];
-          gets(imie);
+          char imie[15];
+          input_string(imie, 15);
           wyczysc_ekran();
           klient_wypisz_imie(head_klient, imie);
           czekaj_na_input_ESCAPE();
@@ -366,8 +370,8 @@ void szukaj_klient(struct klient *head_klient){ //TODO: wyszukiwarki używają o
       case 51:{
           wyczysc_ekran();
           printf(">> Wpisz nazwisko klienta:\n<< ");
-          char nazwisko[10];
-          gets(nazwisko);
+          char nazwisko[15];
+          input_string(nazwisko, 15);
           wyczysc_ekran();
           klient_wypisz_nazwisko(head_klient, nazwisko);
           czekaj_na_input_ESCAPE();
@@ -377,7 +381,7 @@ void szukaj_klient(struct klient *head_klient){ //TODO: wyszukiwarki używają o
           wyczysc_ekran();
           printf(">> Wpisz adres e-mail klienta:\n<< ");
           char mail[30];
-          gets(mail);
+          input_string(mail, 30);
           wyczysc_ekran();
           klient_wypisz_mail(head_klient, mail);
           czekaj_na_input_ESCAPE();
@@ -596,11 +600,11 @@ void dodawanie_film(struct film **head_film){
         rok_produkcji = input_int(1800,2020);
         fflush(stdin);
         printf("\n>> Wpisz tytuł filmu: (max. 30 liter)\n<< ");
-        fgets(tytul, 30, stdin);
+        input_string(tytul, 30);
         printf("\n>> Wpisz reżysera filmu: (max. 20 liter)\n<< ");
-        fgets(rezyser, 20, stdin);
+        input_string(rezyser, 20);
         printf("\n>> Wpisz gatunek filmu: (max. 10 liter)\n<< ");
-        fgets(gatunek, 10, stdin);
+        input_string(gatunek, 10);
 
         if(film_czy_istnieje(*head_film, rok_produkcji,tytul,rezyser,gatunek) == false){
             if(!film_dodaj(head_film,sztuki_dostepne,rok_produkcji,tytul,rezyser,gatunek)) {
@@ -635,7 +639,7 @@ void dodawanie_film(struct film **head_film){
     }while(1);
 }
 
-void usuwanie_film(struct film **head_film){ //TODO: powinno działać?
+void usuwanie_film(struct film **head_film){
     wyczysc_ekran();
 
     FILE *file = fopen("data/id/last_id_film.db", "r");
@@ -729,8 +733,9 @@ void edytowanie_film(struct film **head_film){
         fclose(file);
     unsigned int numer_filmu = input_uint(1, ilosc_dostepnych_filmow);
     film_bufor = film_szukaj_po_kolejnosci(head_film, numer_filmu);
-        if (film_bufor->id_filmu != numer_filmu) {
+        if (film_bufor == NULL) {
             printf("Nie znaleziono filmu o takim ID.\n");
+            czekaj_na_input_ESCAPE();
             return;
         }
     sztuki_dostepne = film_bufor -> sztuki_dostepne;
@@ -878,7 +883,7 @@ void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają orygina
                 wyczysc_ekran();
                 printf(">> Wpisz tytuł filmu:\n<< ");
                 char tytul[30];
-                gets(tytul);
+                input_string(tytul, 30);
                 wyczysc_ekran();
                 film_wypisz_tytul(head_film, tytul);
                 czekaj_na_input_ESCAPE();
@@ -888,7 +893,7 @@ void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają orygina
                 wyczysc_ekran();
                 printf(">> Wpisz reżysera filmu:\n<< ");
                 char rezyser[20];
-                gets(rezyser);
+                input_string(rezyser, 20);
                 wyczysc_ekran();
                 film_wypisz_rezyser(head_film, rezyser);
                 czekaj_na_input_ESCAPE();
@@ -898,7 +903,7 @@ void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają orygina
                 wyczysc_ekran();
                 printf(">> Wpisz gatunek filmu:\n<< ");
                 char gatunek[10];
-                gets(gatunek);
+                input_string(gatunek, 10);
                 wyczysc_ekran();
                 film_wypisz_gatunek(head_film, gatunek);
                 czekaj_na_input_ESCAPE();
@@ -1100,8 +1105,9 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
     printf("\n>> Wybierz ID klienta któremu chcesz wypożyczyć film:\n<< ");
     unsigned int id_klienta =input_uint(1,4294967295);
     struct klient *klient_bufor = klient_szukaj_po_kolejnosci(&head_klient, id_klienta);
-    if(klient_bufor->id_klienta !=id_klienta) {
+    if(klient_bufor == NULL) {
         printf("Nie znaleziono klienta o takim ID.\n");
+        czekaj_na_input_ESCAPE();
         return;
     }
     wyczysc_ekran();
@@ -1111,11 +1117,12 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
         return;
     }
 
-    printf("\n>> Wybierz ID filmu który chcesz wypożyczyć:\n<< "); //TODO: sprawdzić, czy jeśli pierwszysch id nie ma w bazie, a sie je poda, to czy nie wypierdolą programu
+    printf("\n>> Wybierz ID filmu który chcesz wypożyczyć:\n<< ");
         unsigned int id_filmu =input_uint(1,4294967295);
     struct film *film_bufor = film_szukaj_po_kolejnosci_dostepne(&head_film, id_filmu);
-        if(film_bufor->id_filmu !=id_filmu) {
+        if(film_bufor == NULL) {
             printf("Nie znaleziono filmu o takim ID.\n");
+            czekaj_na_input_ESCAPE();
             return;
         }
     printf(">> Na ile tygodni chcesz wypożyczyć film: (conajmniej 1, maksymalnie 52)\n<< ");
@@ -1143,18 +1150,18 @@ void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     }
     printf("\n\n>> Wpisz ID wypożyczenia które chcesz zwrócić:\n<< ");
     time_t aktualna_data = time(NULL);
-    unsigned int numer_wypozyczenia = input_uint(1,4294967295); //TODO: jak nie, to wjebać plik z id.
+    unsigned int numer_wypozyczenia = input_uint(1,4294967295);
     struct wypozyczenie *wypozyczenie_bufor = wypozyczenie_szukaj_po_kolejnosci_poprzedni(head_wypozyczenie, numer_wypozyczenia);
     if(wypozyczenie_bufor != NULL && aktualna_data > wypozyczenie_bufor->nastepny->data_zwrotu_sekundy){
         wyczysc_ekran();
         int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->nastepny->data_zwrotu_sekundy)/ 86400);
-        printf(">> Dni opónienia: %d, Naliczona kara: %.2fz?. Nie zapomnij pobrać opłaty!\n", dni_opoznienia, dni_opoznienia*kara);
+        printf(">> Dni opónienia: %d, Naliczona kara: %.2fzł. Nie zapomnij pobrać opłaty!\n", dni_opoznienia, dni_opoznienia*kara);
         czekaj_na_input_ESCAPE();
     }
     else if(wypozyczenie_bufor == NULL && aktualna_data > (*head_wypozyczenie)->data_zwrotu_sekundy){
         wyczysc_ekran();
         int dni_opoznienia = ((aktualna_data - (*head_wypozyczenie)->data_zwrotu_sekundy)/ 86400);
-        printf(">> Dni opónienia: %d, Naliczona kara: %.2fz?. Nie zapomnij pobrać opłaty!\n", dni_opoznienia, dni_opoznienia*kara);
+        printf(">> Dni opónienia: %d, Naliczona kara: %.2fzł. Nie zapomnij pobrać opłaty!\n", dni_opoznienia, dni_opoznienia*kara);
         czekaj_na_input_ESCAPE();
     }
     else if (wypozyczenie_bufor ==NULL && numer_wypozyczenia != (*head_wypozyczenie)->id_wypozyczenia){
@@ -1179,7 +1186,7 @@ void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     printf("\n\n>> Wpisz ID wypożyczenia które chcesz edytować:\n<< ");
     unsigned int id = input_uint(1,4294967295);
     struct wypozyczenie *wypozyczenie_bufor = wypozyczenie_szukaj_po_kolejnosci(head_wypozyczenie, id);
-        if(wypozyczenie_bufor->id_wypozyczenia != id){
+        if(wypozyczenie_bufor == NULL){
             wyczysc_ekran();
             puts("Nie znaleziono wypożyczenia o podanym numerze ID.\n");
             czekaj_na_input_ESCAPE();
@@ -1222,7 +1229,7 @@ void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *he
                 unsigned int id;
                 id = input_uint(1, 4294967295);
                 wyczysc_ekran();
-                wypozeczenie_wypisz_klient(head_wypozyczenie,id); //TODO: nie działa bo numer klienta to jebany pesel (powinno działać)
+                wypozeczenie_wypisz_klient(head_wypozyczenie,id);
                 czekaj_na_input_ESCAPE();
                 break;
             }
@@ -1233,7 +1240,7 @@ void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *he
                 unsigned int id;
                 id = input_uint(1, 4294967295);
                 wyczysc_ekran();
-                wypozeczenie_wypisz_film(head_wypozyczenie,id); //TODO: CO TU SIE Z TYM NUMEREM ODPIERDALA (powinno działać)
+                wypozeczenie_wypisz_film(head_wypozyczenie,id);
                 czekaj_na_input_ESCAPE();
                 break;
             }
@@ -1241,7 +1248,7 @@ void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *he
                 wyczysc_ekran();
                 printf(">> Wpisz date wypożyczenia filmu (format rrrr/mm/dd):\n<< "); //TODO: do poprawy (użyć też sekund daty)
                 char data[11];
-                gets(data);
+                input_string(data, 11);
                 wyczysc_ekran();
                 wypozeczenie_wypisz_data(head_wypozyczenie,data);
                 czekaj_na_input_ESCAPE();
@@ -1251,7 +1258,7 @@ void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *he
                 wyczysc_ekran();
                 printf(">> Wpisz date zwrotu filmu (format rrrr/mm/dd):\n<< "); //TODO: do poprawy (użyć też sekund daty)
                 char data[11];
-                gets(data);
+                input_string(data, 11);
                 wyczysc_ekran();
                 wypozeczenie_wypisz_data_zwrot(head_wypozyczenie,data);
                 czekaj_na_input_ESCAPE();

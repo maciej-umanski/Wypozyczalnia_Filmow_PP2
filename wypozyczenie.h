@@ -7,7 +7,6 @@ void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozycze
 void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_do_zwrotu);
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, unsigned int id);
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, unsigned int id);
-int wypozyczenie_licz(struct wypozyczenie **head_wypozyczenie);
 int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie);
 int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const double kara);
 int licz_zalegle(struct wypozyczenie *head_wypozyczenie);

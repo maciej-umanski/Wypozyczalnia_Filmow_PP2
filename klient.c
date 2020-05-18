@@ -104,9 +104,15 @@ struct klient *klient_szukaj_po_numerze(struct klient **head_klient, unsigned in
 
 struct klient *klient_szukaj_po_kolejnosci(struct klient **head_klient, unsigned int id){
     struct klient *klient_bufor = *head_klient;
-   while (id != klient_bufor->id_klienta) {
-        klient_bufor = klient_bufor -> nastepny;
+    int i=0;
+    while(klient_bufor != NULL) {
+        if(id == klient_bufor->id_klienta) {
+            i++;
+            break;
+        }
+        klient_bufor = klient_bufor->nastepny;
     }
+    if(i==0) return NULL;
     return klient_bufor;
 }
 
@@ -124,26 +130,6 @@ struct klient *klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **he
     }
     if(i==0) return NULL;
     return poprzedni;
-}
-
-int klient_licz(struct klient *head_klient){
-    int ilosc = 0;
-    while(head_klient != 0){
-        head_klient = head_klient -> nastepny;
-        ilosc++;
-    }
-    return ilosc;
-}
-
-int klient_licz_dostepne(struct klient *head_klient){
-    int ilosc = 0;
-    while(head_klient != 0){
-        if(head_klient -> ilosc_posiadanych_filmow == 0){
-            ilosc++;
-        }
-        head_klient = head_klient -> nastepny;
-    }
-    return ilosc;
 }
 
 int klient_wypisz(struct klient **head_klient){
