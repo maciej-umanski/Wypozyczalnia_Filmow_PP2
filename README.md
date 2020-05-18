@@ -1,12 +1,15 @@
-Trzeba wymyślić sposób na wypisywanie stringów przez użytkownika żeby nie wywalały programu
-# 2 Kamień milowy - w trakcie
-- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu.
-
+# 2 Kamień milowy - gotowe
 - Sortowanie rosnące i malejące wszystkich list po dowolnym polu.
 
-- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych.
+- Walidacja adresów email 
 
-- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików.
+- Funkcja do wpisywania stringów, ktróra zapobiega przepełnieniu strumienia 
+
+- Wyszukiwanie filmów, klientów i wypożyczeń po dowolnym polu. 
+
+- Przypominanie o zaległych zwrotach z automatycznym naliczaniem kar umownych. 
+
+- Zapisywanie/wczytywanie danych o klientach, filmach i wypożyczeniach do/z plików. 
 
 # 1 Kamień milowy - gotowe
 - Wykorzystanie list
