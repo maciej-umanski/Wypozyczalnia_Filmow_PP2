@@ -1,0 +1,28 @@
+var main_8c =
+[
+    [ "DEBUG_MENU", "main_8c.html#afec55cbf2db347ff3dbeecd4193db744", null ],
+    [ "dodawanie_film", "main_8c.html#a4434f975d8ea6103b04df1e8d3211887", null ],
+    [ "dodawanie_klient", "main_8c.html#a708fe531799083583370c04723461335", null ],
+    [ "dodawanie_wypozyczenie", "main_8c.html#a2c7dab3a5fe6980a07b6188aebe866cc", null ],
+    [ "edytowanie_film", "main_8c.html#a5bad79e4b21a3cbae66f02aea4b6bf2d", null ],
+    [ "edytowanie_klient", "main_8c.html#a7472689e3bfee06846ae3ba371cf1de6", null ],
+    [ "edytowanie_wypozyczenie", "main_8c.html#af55fa57cd61c470a40446682a8d8037f", null ],
+    [ "main", "main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
+    [ "sortowanie", "main_8c.html#aabb74d6ef230c44998fe43747f6e04e2", null ],
+    [ "sortuj_film", "main_8c.html#a70ddc19897bed55c5fcbecb8b2bacd66", null ],
+    [ "sortuj_klient", "main_8c.html#aab8d1b295715476f8f2054de88da62f2", null ],
+    [ "sortuj_wypozyczenie", "main_8c.html#a3d687df465cc7a416c22aa0f235d0139", null ],
+    [ "szukaj_film", "main_8c.html#ae6964f0ef94de5153da2d866c281b717", null ],
+    [ "szukaj_klient", "main_8c.html#afb6051800285ea0faf2e7d318f279e8f", null ],
+    [ "szukaj_wypozyczenie", "main_8c.html#a49c63ec01192f7da9736f6b7c627c8f8", null ],
+    [ "usuwanie_film", "main_8c.html#aa83a1861247c1ef4ca1a3e4e1e363802", null ],
+    [ "usuwanie_klient", "main_8c.html#a982677171e3d4e215e20b8f33c32c59e", null ],
+    [ "usuwanie_wypozyczenie", "main_8c.html#a37dae44028075ebcdb32e0246abdf14d", null ],
+    [ "wczytywanie_baz_danych", "main_8c.html#a0de068cc6478a5560d0fd2130740f53f", null ],
+    [ "wyszukiwarka", "main_8c.html#a1072b0c8fca1930cf2fa5ed9ae668309", null ],
+    [ "zalegle_wypozyczenie", "main_8c.html#a6fe03145ae1c4a43d2bbaf89e94d80e9", null ],
+    [ "zapisywanie_baz_danych", "main_8c.html#a1bdef2de99127945b75f3a39f88dfacf", null ],
+    [ "zarzadzanie_film", "main_8c.html#a1c81bb56860a2504f3fef97d58181c4f", null ],
+    [ "zarzadzanie_wypozyczenie", "main_8c.html#a46636704e01b10891331996fbcc010ea", null ],
+    [ "zarzadznie_klient", "main_8c.html#af166b53c94906695365617d9f3b123ae", null ]
+];

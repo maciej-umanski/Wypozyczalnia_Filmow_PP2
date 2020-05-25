@@ -7,6 +7,17 @@
 #include <errno.h>
 #include <io.h>
 
+/**
+* \brief Walidacja danych typu int wprowadzanych przez użytkownika.
+*
+* Funkcja sprawdza czy w podanym ciągu znaków wprowadzanym przez użytkownika nie znajdują
+* się żadne litery czy znaki interpunkcyjne i zwraca jedynie liczby całkowite.
+* @param a Najmniejsza akceptowana wprowadzona liczba.
+* @param b Najwieksza akceptowana wprowadzona liczba.
+* @return Liczba wprowadzona przez użytkownika.
+*
+*/
+
 int input_int(int a, int b){
     char bufortab[10], *koniec;
     scanf("%s", bufortab);
@@ -19,6 +30,17 @@ int input_int(int a, int b){
     return bufor;
 }
 
+/**
+* \brief Walidacja danych typu unsigned int wprowadzanych przez użytkownika.
+*
+* Funkcja sprawdza czy w podanym ciągu znaków wprowadzanym przez użytkownika nie znajdują
+* się żadne litery czy znaki interpunkcyjne i zwraca jedynie liczby całkowite większe od zera.
+* @param a Najmniejsza akceptowana wprowadzona liczba.
+* @param b Najwieksza akceptowana wprowadzona liczba.
+* @return Liczba wprowadzona przez użytkownika.
+*
+*/
+
 unsigned int input_uint(unsigned int a, unsigned int b){
     char bufortab[10], *koniec;
     scanf("%s", bufortab);
@@ -30,6 +52,17 @@ unsigned int input_uint(unsigned int a, unsigned int b){
     }
     return bufor;
 }
+
+/**
+* \brief Walidacja danych typu unsigned long long int wprowadzanych przez użytkownika.
+*
+* Funkcja sprawdza czy w podanym ciągu znaków wprowadzanym przez użytkownika nie znajdują
+* się żadne litery czy znaki interpunkcyjne i zwraca jedynie liczby całkowite.
+* @param a Najmniejsza akceptowana wprowadzona liczba.
+* @param b Najwieksza akceptowana wprowadzona liczba.
+* @return Liczba wprowadzona przez użytkownika.
+*
+*/
 
 unsigned long long input_ull(unsigned long long a, unsigned long long b){
     char bufortab[15], *koniec;
@@ -44,6 +77,17 @@ unsigned long long input_ull(unsigned long long a, unsigned long long b){
     return bufor;
 }
 
+/**
+* \brief Walidacja danych typu double wprowadzanych przez użytkownika.
+*
+* Funkcja sprawdza czy w podanym ciągu znaków wprowadzanym przez użytkownika nie znajdują
+* się żadne litery czy znaki interpunkcyjne i zwraca jedynie liczby rzeczywiste.
+* @param a Najmniejsza akceptowana wprowadzona liczba.
+* @param b Najwieksza akceptowana wprowadzona liczba.
+* @return Liczba wprowadzona przez użytkownika.
+*
+*/
+
 double input_dbl(double a, double b){
     char bufortab[10], *koniec;
     scanf("%s", bufortab);
@@ -56,6 +100,10 @@ double input_dbl(double a, double b){
     return bufor;
 }
 
+/**
+ * \brief Oczekiwanie na wciśnięcie klawisza ESC na klawiaturze
+ */
+
 void czekaj_na_input_ESCAPE(){
     puts("\n\n>> Wcisnij ESCAPE aby powrócić.");
     while(getch() != 27){
@@ -63,9 +111,22 @@ void czekaj_na_input_ESCAPE(){
     }
 }
 
+/**
+ * \brief Usuwanie całej wyświetlonej zawartości terminala
+ */
+
 void wyczysc_ekran(){
     system("cls");
 }
+
+/**
+ * \brief Dodawanie folderu
+ *
+ * Funkcja tworzy folder. Jeśli folder został utworzony, lub już istnieje, to zwraca prawdę.
+ * W przeciwnym wypadku wyświetla komunikat oraz kod błędu wraz z wyjaśnieniem i zwraca fałsz.
+ * @param folder[] nazwa folderu do utworzenia
+ * @return true w przypadku powodzenia, false w przypadku błędu
+ */
 
 bool dodaj_folder(char folder[]) {
     int errnum;
@@ -81,6 +142,15 @@ bool dodaj_folder(char folder[]) {
         return true;
     }
 }
+
+/**
+ * \brief Pobieranie łańcucha znaków
+ *
+ * Funkcja pobiera łańcuch o określonej długości, usuwając z niego znak końca linii oraz czyszcząc
+ * strumień wejściowy.
+ * @param *result wskaźnik zawierający podany łańcuch
+ * @param max maksymalna ilość znaków
+ */
 
 void input_string(char *result, int max) {
     do {

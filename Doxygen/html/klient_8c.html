@@ -1,0 +1,1149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Dokumentacja pliku klient.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('klient_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Struktury danych</a> &#124;
+<a href="#func-members">Funkcje</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja pliku klient.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;conio.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="klient_8h_source.html">klient.h</a>&quot;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Struktury danych</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structklient.html">klient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura przechowująca klientów.  <a href="structklient.html#details">Więcej...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:adc9e96fb0927e0f8ab106e9cd6f926c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#adc9e96fb0927e0f8ab106e9cd6f926c9">klient_dodaj</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[])</td></tr>
+<tr class="memdesc:adc9e96fb0927e0f8ab106e9cd6f926c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodanie elementu do listy klientów.  <a href="klient_8c.html#adc9e96fb0927e0f8ab106e9cd6f926c9">Więcej...</a><br /></td></tr>
+<tr class="separator:adc9e96fb0927e0f8ab106e9cd6f926c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab262738bba7aa5e818be8feb0e11b45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ab262738bba7aa5e818be8feb0e11b45d">klient_usun</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structklient.html">klient</a> *klient_przed_usuwanym)</td></tr>
+<tr class="memdesc:ab262738bba7aa5e818be8feb0e11b45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwanie elementu z listy klientów.  <a href="klient_8c.html#ab262738bba7aa5e818be8feb0e11b45d">Więcej...</a><br /></td></tr>
+<tr class="separator:ab262738bba7aa5e818be8feb0e11b45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c608a0249457c3375bc97f8fb58333f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a8c608a0249457c3375bc97f8fb58333f">klient_edytuj</a> (struct <a class="el" href="structklient.html">klient</a> **klient_edytowany, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[])</td></tr>
+<tr class="memdesc:a8c608a0249457c3375bc97f8fb58333f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edytowanie istniejącego elementu listy klientów.  <a href="klient_8c.html#a8c608a0249457c3375bc97f8fb58333f">Więcej...</a><br /></td></tr>
+<tr class="separator:a8c608a0249457c3375bc97f8fb58333f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a31bc436a1e3da68caeb4a7e24ae82e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a8a31bc436a1e3da68caeb4a7e24ae82e">push_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structklient.html">klient</a> **bufor)</td></tr>
+<tr class="memdesc:a8a31bc436a1e3da68caeb4a7e24ae82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kopiowanie klienta podczas sortowania.  <a href="klient_8c.html#a8a31bc436a1e3da68caeb4a7e24ae82e">Więcej...</a><br /></td></tr>
+<tr class="separator:a8a31bc436a1e3da68caeb4a7e24ae82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5831d4ae3ba7d095de91979603cf987"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structklient.html">klient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ab5831d4ae3ba7d095de91979603cf987">klient_szukaj_po_numerze</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, unsigned int id)</td></tr>
+<tr class="memdesc:ab5831d4ae3ba7d095de91979603cf987"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukiwanie klienta z określonym ID.  <a href="klient_8c.html#ab5831d4ae3ba7d095de91979603cf987">Więcej...</a><br /></td></tr>
+<tr class="separator:ab5831d4ae3ba7d095de91979603cf987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc09ccd116e698969463dd9a6fe65732"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structklient.html">klient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#adc09ccd116e698969463dd9a6fe65732">klient_szukaj_po_kolejnosci</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, unsigned int id)</td></tr>
+<tr class="memdesc:adc09ccd116e698969463dd9a6fe65732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukiwanie klienta z określonym ID.  <a href="klient_8c.html#adc09ccd116e698969463dd9a6fe65732">Więcej...</a><br /></td></tr>
+<tr class="separator:adc09ccd116e698969463dd9a6fe65732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0af96205dd7289ac251b0ad0f6ee98"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structklient.html">klient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a5f0af96205dd7289ac251b0ad0f6ee98">klient_szukaj_po_kolejnosci_dostepne_poprzedni</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, unsigned int id)</td></tr>
+<tr class="memdesc:a5f0af96205dd7289ac251b0ad0f6ee98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukiwanie klienta z określonym ID.  <a href="klient_8c.html#a5f0af96205dd7289ac251b0ad0f6ee98">Więcej...</a><br /></td></tr>
+<tr class="separator:a5f0af96205dd7289ac251b0ad0f6ee98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf76f1aa88ed2c92c609f4fb1e6e00d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#adaf76f1aa88ed2c92c609f4fb1e6e00d">klient_wypisz</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:adaf76f1aa88ed2c92c609f4fb1e6e00d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów listy klientów.  <a href="klient_8c.html#adaf76f1aa88ed2c92c609f4fb1e6e00d">Więcej...</a><br /></td></tr>
+<tr class="separator:adaf76f1aa88ed2c92c609f4fb1e6e00d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a926dac66c799f0c08386e944649f38eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a926dac66c799f0c08386e944649f38eb">klient_wypisz_dostepni</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:a926dac66c799f0c08386e944649f38eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich dostępnych elementów listy klientów.  <a href="klient_8c.html#a926dac66c799f0c08386e944649f38eb">Więcej...</a><br /></td></tr>
+<tr class="separator:a926dac66c799f0c08386e944649f38eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1909127069af101495e9adf94db390e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a1909127069af101495e9adf94db390e8">klient_wypisz_numer_telefonu</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, unsigned long long numer_telefonu)</td></tr>
+<tr class="memdesc:a1909127069af101495e9adf94db390e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów o określonym numerze telefonu.  <a href="klient_8c.html#a1909127069af101495e9adf94db390e8">Więcej...</a><br /></td></tr>
+<tr class="separator:a1909127069af101495e9adf94db390e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b8f25f490a62b3da51b8045f611bbd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ac8b8f25f490a62b3da51b8045f611bbd">klient_wypisz_ilosc_posiadanych_filmow</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int ilosc_posiadanych_filmow)</td></tr>
+<tr class="memdesc:ac8b8f25f490a62b3da51b8045f611bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów o określonej ilości wypożyczonych filmów.  <a href="klient_8c.html#ac8b8f25f490a62b3da51b8045f611bbd">Więcej...</a><br /></td></tr>
+<tr class="separator:ac8b8f25f490a62b3da51b8045f611bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb4f19655f898b1baab2370711a14f72"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#acb4f19655f898b1baab2370711a14f72">klient_wypisz_imie</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient, char imie[])</td></tr>
+<tr class="memdesc:acb4f19655f898b1baab2370711a14f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów o określonym imieniu klienta.  <a href="klient_8c.html#acb4f19655f898b1baab2370711a14f72">Więcej...</a><br /></td></tr>
+<tr class="separator:acb4f19655f898b1baab2370711a14f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae587ff50309393e7d0ecf6b12c4abf4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ae587ff50309393e7d0ecf6b12c4abf4f">klient_wypisz_nazwisko</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient, char nazwisko[])</td></tr>
+<tr class="memdesc:ae587ff50309393e7d0ecf6b12c4abf4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów o określonym nazwisku klienta.  <a href="klient_8c.html#ae587ff50309393e7d0ecf6b12c4abf4f">Więcej...</a><br /></td></tr>
+<tr class="separator:ae587ff50309393e7d0ecf6b12c4abf4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfa8491de9a86714c4574755719a120"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a6dfa8491de9a86714c4574755719a120">klient_wypisz_mail</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient, char mail[])</td></tr>
+<tr class="memdesc:a6dfa8491de9a86714c4574755719a120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie wszystkich elementów o określonym adresie mailowym klienta.  <a href="klient_8c.html#a6dfa8491de9a86714c4574755719a120">Więcej...</a><br /></td></tr>
+<tr class="separator:a6dfa8491de9a86714c4574755719a120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02243ba3f21f20f78493687af555db97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a02243ba3f21f20f78493687af555db97">klient_telefon</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:a02243ba3f21f20f78493687af555db97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po numerze telefonu.  <a href="klient_8c.html#a02243ba3f21f20f78493687af555db97">Więcej...</a><br /></td></tr>
+<tr class="separator:a02243ba3f21f20f78493687af555db97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e5cbfe1349ec8a3d9d27c9b08ac710"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a03e5cbfe1349ec8a3d9d27c9b08ac710">klient_pesel</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:a03e5cbfe1349ec8a3d9d27c9b08ac710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po numerze pesel.  <a href="klient_8c.html#a03e5cbfe1349ec8a3d9d27c9b08ac710">Więcej...</a><br /></td></tr>
+<tr class="separator:a03e5cbfe1349ec8a3d9d27c9b08ac710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a090dc545f5d7b8dcdf8de6d68f373bb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a090dc545f5d7b8dcdf8de6d68f373bb2">klient_filmy</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:a090dc545f5d7b8dcdf8de6d68f373bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po ilości wypożyczonych filmów.  <a href="klient_8c.html#a090dc545f5d7b8dcdf8de6d68f373bb2">Więcej...</a><br /></td></tr>
+<tr class="separator:a090dc545f5d7b8dcdf8de6d68f373bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b52a1cc4f3b210f547a9a35943dcff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a53b52a1cc4f3b210f547a9a35943dcff">klient_imie</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:a53b52a1cc4f3b210f547a9a35943dcff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po imieniu.  <a href="klient_8c.html#a53b52a1cc4f3b210f547a9a35943dcff">Więcej...</a><br /></td></tr>
+<tr class="separator:a53b52a1cc4f3b210f547a9a35943dcff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4285586a0e7c763562fcc4729862e9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ac4285586a0e7c763562fcc4729862e9c">klient_nazwisko</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:ac4285586a0e7c763562fcc4729862e9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po nazwisku.  <a href="klient_8c.html#ac4285586a0e7c763562fcc4729862e9c">Więcej...</a><br /></td></tr>
+<tr class="separator:ac4285586a0e7c763562fcc4729862e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e41cf485c062c8b1875d5ea8b8e7bdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a0e41cf485c062c8b1875d5ea8b8e7bdd">klient_mail</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient, int mode)</td></tr>
+<tr class="memdesc:a0e41cf485c062c8b1875d5ea8b8e7bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy klientów po adresie mailowym.  <a href="klient_8c.html#a0e41cf485c062c8b1875d5ea8b8e7bdd">Więcej...</a><br /></td></tr>
+<tr class="separator:a0e41cf485c062c8b1875d5ea8b8e7bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad60df66de347a5c29c498b9d2d5f7d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#aad60df66de347a5c29c498b9d2d5f7d7">klient_czy_pesel_istnieje</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient, unsigned long long numer_klienta)</td></tr>
+<tr class="memdesc:aad60df66de347a5c29c498b9d2d5f7d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdzanie, czy podany pesel już istnieje w liście klientów.  <a href="klient_8c.html#aad60df66de347a5c29c498b9d2d5f7d7">Więcej...</a><br /></td></tr>
+<tr class="separator:aad60df66de347a5c29c498b9d2d5f7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acab4b34eea6ca1710d14310088a389ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#acab4b34eea6ca1710d14310088a389ef">klient_zapisz_do_pliku</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:acab4b34eea6ca1710d14310088a389ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zapisywanie listy klientów do pliku.  <a href="klient_8c.html#acab4b34eea6ca1710d14310088a389ef">Więcej...</a><br /></td></tr>
+<tr class="separator:acab4b34eea6ca1710d14310088a389ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af266ea38783d1dac4c95ae034cf427d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#af266ea38783d1dac4c95ae034cf427d8">klient_zamien_spacje_na_tylde</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:af266ea38783d1dac4c95ae034cf427d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zamiana spacji na tyldę w zmiennych łańcuchowych.  <a href="klient_8c.html#af266ea38783d1dac4c95ae034cf427d8">Więcej...</a><br /></td></tr>
+<tr class="separator:af266ea38783d1dac4c95ae034cf427d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e53afeb76f8d600be4cf482babdcc3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a3e53afeb76f8d600be4cf482babdcc3c">klient_zamien_tylde_na_spacje</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:a3e53afeb76f8d600be4cf482babdcc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zamiana tyldy na spacje w zmiennych łańcuchowych.  <a href="klient_8c.html#a3e53afeb76f8d600be4cf482babdcc3c">Więcej...</a><br /></td></tr>
+<tr class="separator:a3e53afeb76f8d600be4cf482babdcc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e3536e5c3e2c6d5a921e23c9c6807d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#ab0e3536e5c3e2c6d5a921e23c9c6807d">klient_wczytaj_z_pliku</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:ab0e3536e5c3e2c6d5a921e23c9c6807d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odczyt pliku z zapisanymi elementami listy klientów.  <a href="klient_8c.html#ab0e3536e5c3e2c6d5a921e23c9c6807d">Więcej...</a><br /></td></tr>
+<tr class="separator:ab0e3536e5c3e2c6d5a921e23c9c6807d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c8c08189bf919c6a11c30e4f299842d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="klient_8c.html#a5c8c08189bf919c6a11c30e4f299842d">check_email</a> (char mail[])</td></tr>
+<tr class="memdesc:a5c8c08189bf919c6a11c30e4f299842d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Walidacja adresów e-mail.  <a href="klient_8c.html#a5c8c08189bf919c6a11c30e4f299842d">Więcej...</a><br /></td></tr>
+<tr class="separator:a5c8c08189bf919c6a11c30e4f299842d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a id="a5c8c08189bf919c6a11c30e4f299842d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c8c08189bf919c6a11c30e4f299842d">&#9670;&nbsp;</a></span>check_email()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool check_email </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>mail</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Walidacja adresów e-mail. </p>
+<p>Funkcja sprawdza podstawowe zagadnienia walidacji adresów mailowych takie jak minimalna długość adresu, czy pierwszy znak adresu. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mail[]</td><td>adres e-mail podlegający sprawdzeniu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - adres spełnia założenia, false - adres jest nieprawidłowy </dd></dl>
+
+</div>
+</div>
+<a id="aad60df66de347a5c29c498b9d2d5f7d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad60df66de347a5c29c498b9d2d5f7d7">&#9670;&nbsp;</a></span>klient_czy_pesel_istnieje()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool klient_czy_pesel_istnieje </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>numer_klienta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sprawdzanie, czy podany pesel już istnieje w liście klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na listę do przeszukania </td></tr>
+    <tr><td class="paramname">numer_klienta</td><td>poszukiwany numer pesel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - jeśli istnieje, false - jeśli nie znaleziono </dd></dl>
+
+</div>
+</div>
+<a id="adc9e96fb0927e0f8ab106e9cd6f926c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9e96fb0927e0f8ab106e9cd6f926c9">&#9670;&nbsp;</a></span>klient_dodaj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool klient_dodaj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>numer_klienta</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>numer_telefonu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>imie</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>nazwisko</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>email</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodanie elementu do listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę, do której zostanie dodany element </td></tr>
+    <tr><td class="paramname">numer_klienta</td><td>pesel dodawanego klienta </td></tr>
+    <tr><td class="paramname">numer_telefonu</td><td>numer telefonu dodawanego klienta </td></tr>
+    <tr><td class="paramname">imie[]</td><td>imię dodawanego klienta </td></tr>
+    <tr><td class="paramname">nazwisko[]</td><td>nazwisko dodawanego klienta </td></tr>
+    <tr><td class="paramname">email[]</td><td>adres e-mail dodawanego klienta </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>false - dodawanie nieudane, true - dodawanie udane </dd></dl>
+
+</div>
+</div>
+<a id="a8c608a0249457c3375bc97f8fb58333f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c608a0249457c3375bc97f8fb58333f">&#9670;&nbsp;</a></span>klient_edytuj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_edytuj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>klient_edytowany</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>numer_telefonu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>imie</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>nazwisko</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>email</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Edytowanie istniejącego elementu listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**klient_edytowany</td><td>wskaźnik na element podlegający edycji </td></tr>
+    <tr><td class="paramname">numer_telefonu</td><td>nowy numer telefonu </td></tr>
+    <tr><td class="paramname">imie[]</td><td>nowe imię klienta </td></tr>
+    <tr><td class="paramname">nazwisko[]</td><td>nowe nazwisko klienta </td></tr>
+    <tr><td class="paramname">email[]</td><td>nowy adres e-mail klienta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a090dc545f5d7b8dcdf8de6d68f373bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a090dc545f5d7b8dcdf8de6d68f373bb2">&#9670;&nbsp;</a></span>klient_filmy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_filmy </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po ilości wypożyczonych filmów. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53b52a1cc4f3b210f547a9a35943dcff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53b52a1cc4f3b210f547a9a35943dcff">&#9670;&nbsp;</a></span>klient_imie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_imie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po imieniu. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0e41cf485c062c8b1875d5ea8b8e7bdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e41cf485c062c8b1875d5ea8b8e7bdd">&#9670;&nbsp;</a></span>klient_mail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_mail </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po adresie mailowym. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac4285586a0e7c763562fcc4729862e9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4285586a0e7c763562fcc4729862e9c">&#9670;&nbsp;</a></span>klient_nazwisko()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_nazwisko </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po nazwisku. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a03e5cbfe1349ec8a3d9d27c9b08ac710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e5cbfe1349ec8a3d9d27c9b08ac710">&#9670;&nbsp;</a></span>klient_pesel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_pesel </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po numerze pesel. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adc09ccd116e698969463dd9a6fe65732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc09ccd116e698969463dd9a6fe65732">&#9670;&nbsp;</a></span>klient_szukaj_po_kolejnosci()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structklient.html">klient</a>* klient_szukaj_po_kolejnosci </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukiwanie klienta z określonym ID. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą przeszukaniu </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>poszukiwany element lub NULL, jeśli nie został znaleziony </dd></dl>
+
+</div>
+</div>
+<a id="a5f0af96205dd7289ac251b0ad0f6ee98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f0af96205dd7289ac251b0ad0f6ee98">&#9670;&nbsp;</a></span>klient_szukaj_po_kolejnosci_dostepne_poprzedni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structklient.html">klient</a>* klient_szukaj_po_kolejnosci_dostepne_poprzedni </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukiwanie klienta z określonym ID. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą przeszukaniu </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>element poprzedzający lub NULL, jeśli nie został znaleziony </dd></dl>
+
+</div>
+</div>
+<a id="ab5831d4ae3ba7d095de91979603cf987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5831d4ae3ba7d095de91979603cf987">&#9670;&nbsp;</a></span>klient_szukaj_po_numerze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structklient.html">klient</a>* klient_szukaj_po_numerze </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukiwanie klienta z określonym ID. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą przeszukaniu </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>poszukiwany element </dd></dl>
+
+</div>
+</div>
+<a id="a02243ba3f21f20f78493687af555db97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02243ba3f21f20f78493687af555db97">&#9670;&nbsp;</a></span>klient_telefon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_telefon </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy klientów po numerze telefonu. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą sortowaniu </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - sortowanie rosnące, 1 - sortowanie malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab262738bba7aa5e818be8feb0e11b45d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab262738bba7aa5e818be8feb0e11b45d">&#9670;&nbsp;</a></span>klient_usun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_usun </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>klient_przed_usuwanym</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Usuwanie elementu z listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę elementów </td></tr>
+    <tr><td class="paramname">*klient_przed_usuwanym</td><td>wskaźnik na element poprzedzający usuwany </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0e3536e5c3e2c6d5a921e23c9c6807d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e3536e5c3e2c6d5a921e23c9c6807d">&#9670;&nbsp;</a></span>klient_wczytaj_z_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool klient_wczytaj_z_pliku </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Odczyt pliku z zapisanymi elementami listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - odczyt udany, false - odczyt nieudany </dd></dl>
+
+</div>
+</div>
+<a id="adaf76f1aa88ed2c92c609f4fb1e6e00d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaf76f1aa88ed2c92c609f4fb1e6e00d">&#9670;&nbsp;</a></span>klient_wypisz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="a926dac66c799f0c08386e944649f38eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926dac66c799f0c08386e944649f38eb">&#9670;&nbsp;</a></span>klient_wypisz_dostepni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_dostepni </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich dostępnych elementów listy klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania (lub gdy każdy element posiada wypożyczony film) </dd></dl>
+
+</div>
+</div>
+<a id="ac8b8f25f490a62b3da51b8045f611bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8b8f25f490a62b3da51b8045f611bbd">&#9670;&nbsp;</a></span>klient_wypisz_ilosc_posiadanych_filmow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_ilosc_posiadanych_filmow </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ilosc_posiadanych_filmow</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów o określonej ilości wypożyczonych filmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+    <tr><td class="paramname">ilosc_posiadanych_filmów</td><td>poszukiwana ilość wypożyczonych filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="acb4f19655f898b1baab2370711a14f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb4f19655f898b1baab2370711a14f72">&#9670;&nbsp;</a></span>klient_wypisz_imie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_imie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>imie</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów o określonym imieniu klienta. </p>
+<p>Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy, lecz ją posiada, taki element również sotanie wypisany. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+    <tr><td class="paramname">imie[]</td><td>poszukiwane imię </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="a6dfa8491de9a86714c4574755719a120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dfa8491de9a86714c4574755719a120">&#9670;&nbsp;</a></span>klient_wypisz_mail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_mail </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>mail</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów o określonym adresie mailowym klienta. </p>
+<p>Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy, lecz ją posiada, taki element również sotanie wypisany. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+    <tr><td class="paramname">mail[]</td><td>poszukiwany adres e-mail </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="ae587ff50309393e7d0ecf6b12c4abf4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae587ff50309393e7d0ecf6b12c4abf4f">&#9670;&nbsp;</a></span>klient_wypisz_nazwisko()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_nazwisko </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>nazwisko</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów o określonym nazwisku klienta. </p>
+<p>Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy, lecz ją posiada, taki element również sotanie wypisany. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+    <tr><td class="paramname">nazwisko[]</td><td>poszukiwane nazwisko </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="a1909127069af101495e9adf94db390e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1909127069af101495e9adf94db390e8">&#9670;&nbsp;</a></span>klient_wypisz_numer_telefonu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int klient_wypisz_numer_telefonu </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>numer_telefonu</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie wszystkich elementów o określonym numerze telefonu. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę podlegającą wypisaniu </td></tr>
+    <tr><td class="paramname">numer_telefonu</td><td>poszukiwany numer telefonu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania </dd></dl>
+
+</div>
+</div>
+<a id="af266ea38783d1dac4c95ae034cf427d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af266ea38783d1dac4c95ae034cf427d8">&#9670;&nbsp;</a></span>klient_zamien_spacje_na_tylde()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_zamien_spacje_na_tylde </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zamiana spacji na tyldę w zmiennych łańcuchowych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na listę klientów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e53afeb76f8d600be4cf482babdcc3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e53afeb76f8d600be4cf482babdcc3c">&#9670;&nbsp;</a></span>klient_zamien_tylde_na_spacje()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klient_zamien_tylde_na_spacje </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zamiana tyldy na spacje w zmiennych łańcuchowych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na listę klientów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acab4b34eea6ca1710d14310088a389ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab4b34eea6ca1710d14310088a389ef">&#9670;&nbsp;</a></span>klient_zapisz_do_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool klient_zapisz_do_pliku </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zapisywanie listy klientów do pliku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na listę do zapisania </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - zapis udany, false - zapis nieudany </dd></dl>
+
+</div>
+</div>
+<a id="a8a31bc436a1e3da68caeb4a7e24ae82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a31bc436a1e3da68caeb4a7e24ae82e">&#9670;&nbsp;</a></span>push_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void push_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>bufor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kopiowanie klienta podczas sortowania. </p>
+<p>Funkcja tworzy w podanej liście nowy element i kopiuje do niego wszystkie dane z podanego bufora </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę, w której ma być dodany nowy element </td></tr>
+    <tr><td class="paramname">**bufor</td><td>wskaźnik na element, z którego zostaną przekopiowane dane </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="klient_8c.html">klient.c</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

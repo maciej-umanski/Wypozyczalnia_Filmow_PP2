@@ -5,6 +5,17 @@
 #include <stdbool.h>
 #include "film.h"
 
+/**
+ * \brief Struktura przechowująca filmy
+ * @param id_filmu identyfikator filmu
+ * @param sztuki_dostepne ilość sztuk dostępnych do wypożyczenia
+ * @param sztuki_wypozyczone ilość sztuk aktualnie wypożyczonych
+ * @param rok_produkcji Rok produkcji filmu
+ * @param tytul[30] tytuł filmu
+ * @param rezyser[20] reżyser filmu
+ * @param gatunek[10] gatunek filmu
+ * @param *nastepny wskaźnik na następny element
+ */
 
 struct film{
     unsigned int id_filmu;
@@ -16,6 +27,17 @@ struct film{
     char gatunek[10];
     struct film *nastepny;
 };
+
+/**
+ * \brief Dodanie filmu do listy
+ * @param **head_film wskaźnik na listę filmów
+ * @param sztuki_dostepne Ilość dostępnych sztuk filmu
+ * @param rok_produkcji rok produkcji filmu
+ * @param tytul[] tytuł filmu
+ * @param rezyser[] reżyser filmu
+ * @param gatunek[] gatunek filmu
+ * @return true - dodanie udane, false - dodanie nieudane
+ */
 
 bool film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
         if(!dodaj_folder("data")) return false;
@@ -58,6 +80,12 @@ bool film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji,
         return true;
 }
 
+/**
+ * \brief Usuwanie elementu z listy filmów
+ * @param **head_film wskaźnik na listę filmów
+ * @param *film_usuwany_poprzedni wskaźnik na element poprzedzający element usuwany
+ */
+
 void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni){
     struct film *film_bufor = NULL;
     if(film_usuwany_poprzedni == NULL){
@@ -71,6 +99,16 @@ void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni){
     }
 }
 
+/**
+ * \brief Edycja elementu z listy flmów
+ * @param **film_edytowany wskaźnik na edytowany element
+ * @param sztuki_dostepne ilosc dostepnych sztuk filmu
+ * @param rok_produkcji rok produkcji filmu
+ * @param tytul[] tytuł filmu
+ * @param rezyser[] reżyser filmu
+ * @param gatunek[] gatunek filmu
+ */
+
 void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
     (*film_edytowany) -> sztuki_dostepne = sztuki_dostepne;
     (*film_edytowany) -> rok_produkcji = rok_produkcji;
@@ -78,6 +116,12 @@ void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_prod
     strcpy((*film_edytowany) -> rezyser, rezyser);
     strcpy((*film_edytowany) -> gatunek, gatunek);
 }
+
+/**
+ * \brief Funkcja dodająca element podczas sortowania
+ * @param **head_film wskaźnik na listę, do której zostanie dodany nowy element
+ * @param **bufor wskaźnik na element przechowujący dane filmu
+ */
 
 void push_film (struct film **head_film, struct film **bufor){
     struct film *film_nowy = (struct film *)malloc(sizeof(struct film));
@@ -92,6 +136,12 @@ void push_film (struct film **head_film, struct film **bufor){
     *head_film = film_nowy;
 }
 
+/**
+ * \brief Przeszukiwanie listy filmów po identyfikatorze
+ * @param **head_film wskaźnik na listę filmów
+ * @param id_filmu identyfikator poszukiwanego elementu
+ * @return element o szukanym ID
+ */
 
 struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_filmu){
     struct film *film_bufor = *head_film;
@@ -100,6 +150,13 @@ struct film *film_szukaj_po_numerze(struct film **head_film, unsigned int id_fil
     }
     return film_bufor;
 }
+
+/**
+ * \brief Przeszukiwanie listy filmów po identyfikatorze
+ * @param **head_film wskaźnik na listę filmów
+ * @param id poszukiwany identyfikator
+ * @return powodzenie - element listy, niepowodzenie - NULL
+ */
 
 struct film *film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
@@ -115,6 +172,13 @@ struct film *film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id)
     return film_bufor;
 }
 
+/**
+ * \brief Przeszukiwanie listy dostępnych filmów po identyfikatorze
+ * @param **head_film wskaźnik na listę filmów
+ * @param id poszukiwany identyfikator
+ * @return powodzenie - element listy, niepowodzenie - NULL
+ */
+
 struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
     int i=0;
@@ -128,6 +192,13 @@ struct film *film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigne
     if(i==0) return NULL;
     return film_bufor;
 }
+
+/**
+ * \brief Przeszukiwanie listy dostępnych filmów po identyfikatorze
+ * @param **head_film wskaźnik na listę filmów
+ * @param id poszukiwany identyfikator
+ * @return powodzenie - poprzedzający element listy, niepowodzenie - NULL
+ */
 
 struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, unsigned int id){
     struct film *film_bufor = *head_film;
@@ -145,6 +216,12 @@ struct film *film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_fil
     return poprzedni;
 }
 
+/**
+ * \brief Wypisywanie listy filmów
+ * @param *head_film wskaźnik na listę filmów
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
+
 int film_wypisz(struct film *head_film){
 
     if(head_film == NULL){
@@ -161,6 +238,12 @@ int film_wypisz(struct film *head_film){
     }
     return 0;
 }
+
+/**
+ * \brief Wypisywanie listy dostępnych filmów
+ * @param *head_film wskaźnik na listę filmów
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
 
 int film_wypisz_dostepne(struct film *head_film){
 
@@ -193,6 +276,13 @@ int film_wypisz_dostepne(struct film *head_film){
     return 0;
 }
 
+/**
+ * \brief Wypisywanie listy filmów z podaną ilością sztuk dostępnych
+ * @param *head_film wskaźnik na listę filmów
+ * @param sztuki_dostępne poszukiwana liczba sztuk
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
+
 int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
     printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypożyczone | Dostępne |\n\n", "Tytuł", "Reżyser", "Gatunek");
     int i;
@@ -213,6 +303,13 @@ int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne){
 
     return 0;
 }
+
+/**
+ * \brief Wypisywanie listy filmów z podaną ilością sztuk wypożyczonych
+ * @param *head_film wskaźnik na listę filmów
+ * @param sztuki_wypozyczone poszukiwana liczba sztuk
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
 
 int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczone){
     printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypożyczone | Dostępne |\n\n", "Tytuł", "Reżyser", "Gatunek");
@@ -235,6 +332,13 @@ int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczon
     return 0;
 }
 
+/**
+ * \brief Wypisywanie listy filmów z podanym rokiem produkcji
+ * @param *head_film wskaźnik na listę filmów
+ * @param rok_produkcji poszukiwana rok produkcji
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
+
 int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji){
     printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypożyczone | Dostępne |\n\n", "Tytuł", "Reżyser", "Gatunek");
     int i;
@@ -255,6 +359,13 @@ int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji){
 
     return 0;
 }
+
+/**
+ * \brief Wypisywanie listy filmów o podanym tytule
+ * @param *head_film wskaźnik na listę filmów
+ * @param tytul[] poszukiwany tytuł
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
 
 int film_wypisz_tytul(struct film *head_film, char tytul[]){
     tytul = strlwr(tytul);
@@ -283,6 +394,13 @@ int film_wypisz_tytul(struct film *head_film, char tytul[]){
     return 0;
 }
 
+/**
+ * \brief Wypisywanie listy filmów o podanym reżyserze
+ * @param *head_film wskaźnik na listę filmów
+ * @param rezyser[] poszukiwany reżyser
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
+
 int film_wypisz_rezyser(struct film *head_film, char rezyser[]){
     rezyser = strlwr(rezyser);
     printf(">> ID. |%30s |%20s |%10s | Rok produkcji | Wypożyczone | Dostępne |\n\n", "Tytuł", "Reżyser", "Gatunek");
@@ -309,6 +427,13 @@ int film_wypisz_rezyser(struct film *head_film, char rezyser[]){
     }
     return 0;
 }
+
+/**
+ * \brief Wypisywanie listy filmów o podanym gatunku
+ * @param *head_film wskaźnik na listę filmów
+ * @param gatunek[] poszukiwany gatunek
+ * return 0 - powodzenie, -1 - lista jest pusta
+ */
 
 int film_wypisz_gatunek(struct film *head_film, char gatunek[]){
     gatunek = strlwr(gatunek);
@@ -337,6 +462,12 @@ int film_wypisz_gatunek(struct film *head_film, char gatunek[]){
     return 0;
 }
 
+/**
+ * \brief Sortowanie filmów po ilości dostępnych sztuk
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
+
 void film_dostepne(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_film)->nastepny != NULL) {
@@ -362,6 +493,12 @@ void film_dostepne(struct film **head_film, int mode) {
     film_usun(head_film, NULL);
     *head_film = main;
 }
+
+/**
+ * \brief Sortowanie filmów po ilości wypożyczonych sztuk
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
 
 void film_wypozyczone(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -389,6 +526,12 @@ void film_wypozyczone(struct film **head_film, int mode) {
     *head_film = main;
 }
 
+/**
+ * \brief Sortowanie filmów po ilości roku produkcji
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
+
 void film_rok(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_film)->nastepny != NULL) {
@@ -414,6 +557,12 @@ void film_rok(struct film **head_film, int mode) {
     film_usun(head_film, NULL);
     *head_film = main;
 }
+
+/**
+ * \brief Sortowanie filmów po tytule
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
 
 void film_tytul(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -442,6 +591,12 @@ void film_tytul(struct film **head_film, int mode) {
     *head_film = main;
 }
 
+/**
+ * \brief Sortowanie filmów po reżyserze
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
+
 void film_rezyser(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_film)->nastepny != NULL) {
@@ -468,6 +623,12 @@ void film_rezyser(struct film **head_film, int mode) {
     film_usun(head_film, NULL);
     *head_film = main;
 }
+
+/**
+ * \brief Sortowanie filmów po gatunku filmu
+ * @param **head_film wskaźnik na listę filmów
+ * @param mode tryb sortowania, 0 rosnące, 1 malejące
+ */
 
 void film_gatunek(struct film **head_film, int mode) {
     struct film *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -496,6 +657,16 @@ void film_gatunek(struct film **head_film, int mode) {
     *head_film = main;
 }
 
+/**
+ * \brief Sprawdzanie, czy film o podanych danych istnieje
+ * @param *head_film wskaźnik na listę filmów
+ * @param rok_produkcji rok produkcji filmu
+ * @param tytul[] tytuł filmu
+ * @param rezyser[] reżyser filmu
+ * @param gatunek[] gatunek filmu
+ * @return true - film istnieje, false - film nie został znaleziony
+ */
+
 bool film_czy_istnieje(struct film *head_film, int rok_produkcji, char tytul[], char rezyser[], char gatunek[]){
     while(head_film != NULL){
         if((rok_produkcji - head_film->rok_produkcji) == 0 && strcmp(tytul, head_film->tytul) == 0 && strcmp(rezyser, head_film->rezyser) == 0 && strcmp(gatunek, head_film->gatunek) == 0){
@@ -505,6 +676,13 @@ bool film_czy_istnieje(struct film *head_film, int rok_produkcji, char tytul[], 
     }
     return false;
 }
+
+/**
+ * \brief Sprawdzanie, czy film posiada więcej, niż 1 dostępną sztukę
+ * @param **head_film wskaźnik na listę filmów
+ * @param *film_sprawdzany_poprzedni wskaźnik na element poprzedzający w stosunku do sprawdzanego
+ * @return true - więcej niż 1 dostępna sztuka, false - jedna lub brak dostępnych sztuk
+ */
 
 bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_sprawdzany_poprzedni){
     if(film_sprawdzany_poprzedni == NULL){
@@ -517,6 +695,12 @@ bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_
     }
     return true;
 }
+
+/**
+ * \brief Zapis listy filmów do pliku
+ * @param *head_film wskaźnik na listę filmów
+ * @return true - zapis udany, false - zapis się nie powiódł
+ */
 
 bool film_zapisz_do_pliku(struct film *head_film){
     if(!dodaj_folder("data")) return false;
@@ -533,6 +717,11 @@ bool film_zapisz_do_pliku(struct film *head_film){
     fclose(file);
     return true;
 }
+
+/**
+ * \brief Zamiana spacji na tyldęw zmiennych łańcuchowych
+ * @param *head_film wskaźnik na listę filmów
+ */
 
 void film_zamien_spacje_na_tylde(struct film *head_film){
     while(head_film != NULL){
@@ -554,6 +743,11 @@ void film_zamien_spacje_na_tylde(struct film *head_film){
         head_film = head_film->nastepny;
     }
 }
+
+/**
+ * \brief Zamiana tyldy na spacje w zmiennych łańcuchowych
+ * @param *head_film wskaźnik na listę filmów
+ */
 
 void film_zamien_tylde_na_spacje(struct film *head_film){
     if(head_film == NULL){
@@ -578,6 +772,12 @@ void film_zamien_tylde_na_spacje(struct film *head_film){
         head_film = head_film->nastepny;
     }
 }
+
+/**
+ * \brief Wczytywanie listy filmów z pliku
+ * @param **head_film wskaźnik na listę filmów
+ * @return true - wczytanie udane, false - wczytanie nieudane
+ */
 
 bool film_wczytaj_z_pliku(struct film **head_film){
     if(!dodaj_folder("data")) return false;

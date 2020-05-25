@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Plik źródłowy film.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('film_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">film.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="film_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PP2_FILM_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PP2_FILM_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="film_8c.html">film.c</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="film_8h.html#aa1b7dd99f208c38c18ac5b573eb3de47">film_dodaj</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">int</span> sztuki_dostepne, <span class="keywordtype">int</span> rok_produkcji, <span class="keywordtype">char</span> tytul[], <span class="keywordtype">char</span> rezyser[], <span class="keywordtype">char</span> gatunek[]);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#a3dcec33eb3906c1526e2362cb7f4858f">film_usun</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *film_usuwany_poprzedni);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#ac721939a6db8f26640cf1f8c9f638e95">film_edytuj</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **film_edytowany, <span class="keywordtype">int</span> sztuki_dostepne, <span class="keywordtype">int</span> rok_produkcji, <span class="keywordtype">char</span> tytul[], <span class="keywordtype">char</span> rezyser[], <span class="keywordtype">char</span> gatunek[]);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">struct </span><a class="code" href="structfilm.html">film</a> *<a class="code" href="film_8h.html#a2f7989c994e5b5398b360e2587bb1d61">film_szukaj_po_numerze</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structfilm.html#a904628b30b54f5d4e79b0ed9ef8f8cbd">id_filmu</a>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">struct </span><a class="code" href="structfilm.html">film</a> *<a class="code" href="film_8h.html#a7ffa91db041f48bf971f28f1644923ed">film_szukaj_po_kolejnosci</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">struct </span><a class="code" href="structfilm.html">film</a> *<a class="code" href="film_8h.html#a38a2abbfc36869af48829d72a6016b8b">film_szukaj_po_kolejnosci_dostepne</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">struct </span><a class="code" href="structfilm.html">film</a> *<a class="code" href="film_8h.html#a4a492a32c5e189a15be1bb5d1265a9e7">film_szukaj_po_kolejnosci_dostepne_poprzedni</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#a34ced4291ff029327865a135ae89b244">film_wypisz</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#ae964a89b4b274f4d75de74afec634193">film_wypisz_dostepne</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#a56566892099bc1081a832b12ff25ab83">film_wypisz_sztuki_dostepne</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">int</span> <a class="code" href="structfilm.html#ac45323ea124d13326e59f2f55f9769bd">sztuki_dostepne</a>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#adf89e835a316185112d5654be0f7d6d0">film_wypisz_sztuki_wypozyczone</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">int</span> <a class="code" href="structfilm.html#aa6b55d305c3ec88752382262a825742f">sztuki_wypozyczone</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#ad02705a9abda1938a20992d80a3c4244">film_wypisz_rok_produkcji</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">int</span> <a class="code" href="structfilm.html#a123912787ddf6c8595a2e8e2dee4bb40">rok_produkcji</a>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#a88b47b93313826ea1e3004b3df47445c">film_wypisz_tytul</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">char</span> <a class="code" href="structfilm.html#a943f723d7664f3a48a9641a101480320">tytul</a>[]);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#acdd53bc35a9fc00f6fcfd96d814d93f0">film_wypisz_rezyser</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">char</span> <a class="code" href="structfilm.html#aa7ab2be89e179a1258a4a095288950d6">rezyser</a>[]);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> <a class="code" href="film_8h.html#a79add95c7cf38617ef05aff311b2857a">film_wypisz_gatunek</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">char</span> <a class="code" href="structfilm.html#a22d644775ce00e3cf8dba54d57a46083">gatunek</a>[]);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="film_8h.html#afbdad98c6b96e51b8530b2e7aa7f9f1e">film_czy_istnieje</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film, <span class="keywordtype">int</span> <a class="code" href="structfilm.html#a123912787ddf6c8595a2e8e2dee4bb40">rok_produkcji</a>, <span class="keywordtype">char</span> <a class="code" href="structfilm.html#a943f723d7664f3a48a9641a101480320">tytul</a>[], <span class="keywordtype">char</span> <a class="code" href="structfilm.html#aa7ab2be89e179a1258a4a095288950d6">rezyser</a>[], <span class="keywordtype">char</span> <a class="code" href="structfilm.html#a22d644775ce00e3cf8dba54d57a46083">gatunek</a>[]);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="film_8h.html#a6be18eb329817fc012ac02c38be1c4af">film_czy_jedna_sztuka_poprzedni</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *film_sprawdzany_poprzedni);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#ab38d1917ab6707bb686443d639813af1">film_zamien_spacje_na_tylde</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#a6afab9fcc890bb84d577d4109459ea7f">film_zamien_tylde_na_spacje</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="film_8h.html#a14c072088a7c91281fac4ffc6fc75b30">film_zapisz_do_pliku</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> *head_film);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#a73e8a918e29457fbd81848008b65acb9">film_wypozyczone</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#a9fbf4f655d9ab62203042eef754a8dfd">film_rok</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="film_8h.html#af33c7120d2bf8953c2a4464610cc616a">film_tytul</a>(<span class="keyword">struct</span> <a class="code" href="structfilm.html">film</a> **head_film, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="afilm_8h_html_a56566892099bc1081a832b12ff25ab83"><div class="ttname"><a href="film_8h.html#a56566892099bc1081a832b12ff25ab83">film_wypisz_sztuki_dostepne</a></div><div class="ttdeci">int film_wypisz_sztuki_dostepne(struct film *head_film, int sztuki_dostepne)</div><div class="ttdoc">Wypisywanie listy filmów z podaną ilością sztuk dostępnych.</div><div class="ttdef"><b>Definition:</b> film.c:286</div></div>
+<div class="ttc" id="astructfilm_html_aa6b55d305c3ec88752382262a825742f"><div class="ttname"><a href="structfilm.html#aa6b55d305c3ec88752382262a825742f">film::sztuki_wypozyczone</a></div><div class="ttdeci">int sztuki_wypozyczone</div><div class="ttdef"><b>Definition:</b> film.c:23</div></div>
+<div class="ttc" id="afilm_8h_html_a6be18eb329817fc012ac02c38be1c4af"><div class="ttname"><a href="film_8h.html#a6be18eb329817fc012ac02c38be1c4af">film_czy_jedna_sztuka_poprzedni</a></div><div class="ttdeci">bool film_czy_jedna_sztuka_poprzedni(struct film **head_film, struct film *film_sprawdzany_poprzedni)</div><div class="ttdoc">Sprawdzanie, czy film posiada więcej, niż 1 dostępną sztukę</div><div class="ttdef"><b>Definition:</b> film.c:687</div></div>
+<div class="ttc" id="afilm_8h_html_a14c072088a7c91281fac4ffc6fc75b30"><div class="ttname"><a href="film_8h.html#a14c072088a7c91281fac4ffc6fc75b30">film_zapisz_do_pliku</a></div><div class="ttdeci">bool film_zapisz_do_pliku(struct film *head_film)</div><div class="ttdoc">Zapis listy filmów do pliku.</div><div class="ttdef"><b>Definition:</b> film.c:705</div></div>
+<div class="ttc" id="astructfilm_html"><div class="ttname"><a href="structfilm.html">film</a></div><div class="ttdoc">Struktura przechowująca filmy.</div><div class="ttdef"><b>Definition:</b> film.c:20</div></div>
+<div class="ttc" id="afilm_8h_html_ad02705a9abda1938a20992d80a3c4244"><div class="ttname"><a href="film_8h.html#ad02705a9abda1938a20992d80a3c4244">film_wypisz_rok_produkcji</a></div><div class="ttdeci">int film_wypisz_rok_produkcji(struct film *head_film, int rok_produkcji)</div><div class="ttdoc">Wypisywanie listy filmów z podanym rokiem produkcji.</div><div class="ttdef"><b>Definition:</b> film.c:342</div></div>
+<div class="ttc" id="afilm_8h_html_ae964a89b4b274f4d75de74afec634193"><div class="ttname"><a href="film_8h.html#ae964a89b4b274f4d75de74afec634193">film_wypisz_dostepne</a></div><div class="ttdeci">int film_wypisz_dostepne(struct film *head_film)</div><div class="ttdoc">Wypisywanie listy dostępnych filmów.</div><div class="ttdef"><b>Definition:</b> film.c:248</div></div>
+<div class="ttc" id="afilm_8h_html_a9fbf4f655d9ab62203042eef754a8dfd"><div class="ttname"><a href="film_8h.html#a9fbf4f655d9ab62203042eef754a8dfd">film_rok</a></div><div class="ttdeci">void film_rok(struct film **head_film, int mode)</div><div class="ttdoc">Sortowanie filmów po ilości roku produkcji.</div><div class="ttdef"><b>Definition:</b> film.c:535</div></div>
+<div class="ttc" id="afilm_8h_html_a3dcec33eb3906c1526e2362cb7f4858f"><div class="ttname"><a href="film_8h.html#a3dcec33eb3906c1526e2362cb7f4858f">film_usun</a></div><div class="ttdeci">void film_usun(struct film **head_film, struct film *film_usuwany_poprzedni)</div><div class="ttdoc">Usuwanie elementu z listy filmów.</div><div class="ttdef"><b>Definition:</b> film.c:89</div></div>
+<div class="ttc" id="astructfilm_html_a904628b30b54f5d4e79b0ed9ef8f8cbd"><div class="ttname"><a href="structfilm.html#a904628b30b54f5d4e79b0ed9ef8f8cbd">film::id_filmu</a></div><div class="ttdeci">unsigned int id_filmu</div><div class="ttdef"><b>Definition:</b> film.c:21</div></div>
+<div class="ttc" id="afilm_8h_html_adf89e835a316185112d5654be0f7d6d0"><div class="ttname"><a href="film_8h.html#adf89e835a316185112d5654be0f7d6d0">film_wypisz_sztuki_wypozyczone</a></div><div class="ttdeci">int film_wypisz_sztuki_wypozyczone(struct film *head_film, int sztuki_wypozyczone)</div><div class="ttdoc">Wypisywanie listy filmów z podaną ilością sztuk wypożyczonych.</div><div class="ttdef"><b>Definition:</b> film.c:314</div></div>
+<div class="ttc" id="afilm_8h_html_ab38d1917ab6707bb686443d639813af1"><div class="ttname"><a href="film_8h.html#ab38d1917ab6707bb686443d639813af1">film_zamien_spacje_na_tylde</a></div><div class="ttdeci">void film_zamien_spacje_na_tylde(struct film *head_film)</div><div class="ttdoc">Zamiana spacji na tyldęw zmiennych łańcuchowych.</div><div class="ttdef"><b>Definition:</b> film.c:726</div></div>
+<div class="ttc" id="astructfilm_html_aa7ab2be89e179a1258a4a095288950d6"><div class="ttname"><a href="structfilm.html#aa7ab2be89e179a1258a4a095288950d6">film::rezyser</a></div><div class="ttdeci">char rezyser[20]</div><div class="ttdef"><b>Definition:</b> film.c:26</div></div>
+<div class="ttc" id="astructfilm_html_a22d644775ce00e3cf8dba54d57a46083"><div class="ttname"><a href="structfilm.html#a22d644775ce00e3cf8dba54d57a46083">film::gatunek</a></div><div class="ttdeci">char gatunek[10]</div><div class="ttdef"><b>Definition:</b> film.c:27</div></div>
+<div class="ttc" id="afilm_8h_html_afbdad98c6b96e51b8530b2e7aa7f9f1e"><div class="ttname"><a href="film_8h.html#afbdad98c6b96e51b8530b2e7aa7f9f1e">film_czy_istnieje</a></div><div class="ttdeci">bool film_czy_istnieje(struct film *head_film, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</div><div class="ttdoc">Sprawdzanie, czy film o podanych danych istnieje.</div><div class="ttdef"><b>Definition:</b> film.c:670</div></div>
+<div class="ttc" id="afilm_8h_html_a88b47b93313826ea1e3004b3df47445c"><div class="ttname"><a href="film_8h.html#a88b47b93313826ea1e3004b3df47445c">film_wypisz_tytul</a></div><div class="ttdeci">int film_wypisz_tytul(struct film *head_film, char tytul[])</div><div class="ttdoc">Wypisywanie listy filmów o podanym tytule.</div><div class="ttdef"><b>Definition:</b> film.c:370</div></div>
+<div class="ttc" id="afilm_8h_html_af33c7120d2bf8953c2a4464610cc616a"><div class="ttname"><a href="film_8h.html#af33c7120d2bf8953c2a4464610cc616a">film_tytul</a></div><div class="ttdeci">void film_tytul(struct film **head_film, int mode)</div><div class="ttdoc">Sortowanie filmów po tytule.</div><div class="ttdef"><b>Definition:</b> film.c:567</div></div>
+<div class="ttc" id="afilm_8h_html_a73e8a918e29457fbd81848008b65acb9"><div class="ttname"><a href="film_8h.html#a73e8a918e29457fbd81848008b65acb9">film_wypozyczone</a></div><div class="ttdeci">void film_wypozyczone(struct film **head_film, int mode)</div><div class="ttdoc">Sortowanie filmów po ilości wypożyczonych sztuk.</div><div class="ttdef"><b>Definition:</b> film.c:503</div></div>
+<div class="ttc" id="astructfilm_html_a123912787ddf6c8595a2e8e2dee4bb40"><div class="ttname"><a href="structfilm.html#a123912787ddf6c8595a2e8e2dee4bb40">film::rok_produkcji</a></div><div class="ttdeci">int rok_produkcji</div><div class="ttdef"><b>Definition:</b> film.c:24</div></div>
+<div class="ttc" id="afilm_8c_html"><div class="ttname"><a href="film_8c.html">film.c</a></div></div>
+<div class="ttc" id="afilm_8h_html_a38a2abbfc36869af48829d72a6016b8b"><div class="ttname"><a href="film_8h.html#a38a2abbfc36869af48829d72a6016b8b">film_szukaj_po_kolejnosci_dostepne</a></div><div class="ttdeci">struct film * film_szukaj_po_kolejnosci_dostepne(struct film **head_film, unsigned int id)</div><div class="ttdoc">Przeszukiwanie listy dostępnych filmów po identyfikatorze.</div><div class="ttdef"><b>Definition:</b> film.c:182</div></div>
+<div class="ttc" id="afilm_8h_html_acdd53bc35a9fc00f6fcfd96d814d93f0"><div class="ttname"><a href="film_8h.html#acdd53bc35a9fc00f6fcfd96d814d93f0">film_wypisz_rezyser</a></div><div class="ttdeci">int film_wypisz_rezyser(struct film *head_film, char rezyser[])</div><div class="ttdoc">Wypisywanie listy filmów o podanym reżyserze.</div><div class="ttdef"><b>Definition:</b> film.c:404</div></div>
+<div class="ttc" id="afilm_8h_html_a34ced4291ff029327865a135ae89b244"><div class="ttname"><a href="film_8h.html#a34ced4291ff029327865a135ae89b244">film_wypisz</a></div><div class="ttdeci">int film_wypisz(struct film *head_film)</div><div class="ttdoc">Wypisywanie listy filmów.</div><div class="ttdef"><b>Definition:</b> film.c:225</div></div>
+<div class="ttc" id="afilm_8h_html_a79add95c7cf38617ef05aff311b2857a"><div class="ttname"><a href="film_8h.html#a79add95c7cf38617ef05aff311b2857a">film_wypisz_gatunek</a></div><div class="ttdeci">int film_wypisz_gatunek(struct film *head_film, char gatunek[])</div><div class="ttdoc">Wypisywanie listy filmów o podanym gatunku.</div><div class="ttdef"><b>Definition:</b> film.c:438</div></div>
+<div class="ttc" id="afilm_8h_html_a4a492a32c5e189a15be1bb5d1265a9e7"><div class="ttname"><a href="film_8h.html#a4a492a32c5e189a15be1bb5d1265a9e7">film_szukaj_po_kolejnosci_dostepne_poprzedni</a></div><div class="ttdeci">struct film * film_szukaj_po_kolejnosci_dostepne_poprzedni(struct film **head_film, unsigned int id)</div><div class="ttdoc">Przeszukiwanie listy dostępnych filmów po identyfikatorze.</div><div class="ttdef"><b>Definition:</b> film.c:203</div></div>
+<div class="ttc" id="afilm_8h_html_a7ffa91db041f48bf971f28f1644923ed"><div class="ttname"><a href="film_8h.html#a7ffa91db041f48bf971f28f1644923ed">film_szukaj_po_kolejnosci</a></div><div class="ttdeci">struct film * film_szukaj_po_kolejnosci(struct film **head_film, unsigned int id)</div><div class="ttdoc">Przeszukiwanie listy filmów po identyfikatorze.</div><div class="ttdef"><b>Definition:</b> film.c:161</div></div>
+<div class="ttc" id="astructfilm_html_ac45323ea124d13326e59f2f55f9769bd"><div class="ttname"><a href="structfilm.html#ac45323ea124d13326e59f2f55f9769bd">film::sztuki_dostepne</a></div><div class="ttdeci">int sztuki_dostepne</div><div class="ttdef"><b>Definition:</b> film.c:22</div></div>
+<div class="ttc" id="afilm_8h_html_aa1b7dd99f208c38c18ac5b573eb3de47"><div class="ttname"><a href="film_8h.html#aa1b7dd99f208c38c18ac5b573eb3de47">film_dodaj</a></div><div class="ttdeci">bool film_dodaj(struct film **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</div><div class="ttdoc">Dodanie filmu do listy.</div><div class="ttdef"><b>Definition:</b> film.c:42</div></div>
+<div class="ttc" id="afilm_8h_html_a6afab9fcc890bb84d577d4109459ea7f"><div class="ttname"><a href="film_8h.html#a6afab9fcc890bb84d577d4109459ea7f">film_zamien_tylde_na_spacje</a></div><div class="ttdeci">void film_zamien_tylde_na_spacje(struct film *head_film)</div><div class="ttdoc">Zamiana tyldy na spacje w zmiennych łańcuchowych.</div><div class="ttdef"><b>Definition:</b> film.c:752</div></div>
+<div class="ttc" id="astructfilm_html_a943f723d7664f3a48a9641a101480320"><div class="ttname"><a href="structfilm.html#a943f723d7664f3a48a9641a101480320">film::tytul</a></div><div class="ttdeci">char tytul[30]</div><div class="ttdef"><b>Definition:</b> film.c:25</div></div>
+<div class="ttc" id="afilm_8h_html_a2f7989c994e5b5398b360e2587bb1d61"><div class="ttname"><a href="film_8h.html#a2f7989c994e5b5398b360e2587bb1d61">film_szukaj_po_numerze</a></div><div class="ttdeci">struct film * film_szukaj_po_numerze(struct film **head_film, unsigned int id_filmu)</div><div class="ttdoc">Przeszukiwanie listy filmów po identyfikatorze.</div><div class="ttdef"><b>Definition:</b> film.c:146</div></div>
+<div class="ttc" id="afilm_8h_html_ac721939a6db8f26640cf1f8c9f638e95"><div class="ttname"><a href="film_8h.html#ac721939a6db8f26640cf1f8c9f638e95">film_edytuj</a></div><div class="ttdeci">void film_edytuj(struct film **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</div><div class="ttdoc">Edycja elementu z listy flmów.</div><div class="ttdef"><b>Definition:</b> film.c:112</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="film_8h.html">film.h</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

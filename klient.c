@@ -6,6 +6,18 @@
 #include "klient.h"
 #include <ctype.h>
 
+/**
+ * \brief Struktura przechowująca klientów
+ * @param id_klienta unikalny identyfikator
+ * @param numer_klienta numer pesel
+ * @param numer_telefonu numer telefonu klienta
+ * @param imie[15] imię klienta
+ * @param nazwisko[15] nazwisko klienta
+ * @param email[30] adres e-mail klienta
+ * @param ilosc_posiadanych_filmow ilość wypożyczonych filmów
+ * @param *nastepny wskaźnik na następny element listy
+ */
+
 struct klient{
     unsigned int id_klienta;
     unsigned long long numer_klienta;
@@ -16,6 +28,17 @@ struct klient{
     int ilosc_posiadanych_filmow;
     struct klient *nastepny;
 };
+
+/**
+ * \brief Dodanie elementu do listy klientów
+ * @param **head_klient wskaźnik na listę, do której zostanie dodany element
+ * @param numer_klienta pesel dodawanego klienta
+ * @param numer_telefonu numer telefonu dodawanego klienta
+ * @param imie[] imię dodawanego klienta
+ * @param nazwisko[] nazwisko dodawanego klienta
+ * @param email[] adres e-mail dodawanego klienta
+ * @return false - dodawanie nieudane, true - dodawanie udane
+ */
 
 bool klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
         if(!dodaj_folder("data")) return false;
@@ -61,6 +84,12 @@ bool klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta,
     return true;
 }
 
+/**
+ * \brief Usuwanie elementu z listy klientów
+ * @param **head_klient wskaźnik na listę elementów
+ * @param *klient_przed_usuwanym wskaźnik na element poprzedzający usuwany
+ */
+
 void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwanym){
     struct klient *klient_bufor = NULL;
     if (klient_przed_usuwanym == NULL) {
@@ -74,12 +103,29 @@ void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwan
     }
 }
 
+/**
+ * \brief Edytowanie istniejącego elementu listy klientów
+ * @param **klient_edytowany wskaźnik na element podlegający edycji
+ * @param numer_telefonu nowy numer telefonu
+ * @param imie[] nowe imię klienta
+ * @param nazwisko[] nowe nazwisko klienta
+ * @param email[] nowy adres e-mail klienta
+ */
+
 void klient_edytuj(struct klient **klient_edytowany, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[]){
     (*klient_edytowany) -> numer_telefonu = numer_telefonu;
     strcpy((*klient_edytowany) -> imie, imie);
     strcpy((*klient_edytowany) -> nazwisko, nazwisko);
     strcpy((*klient_edytowany) -> email, email);
 }
+
+/**
+ * \brief Kopiowanie klienta podczas sortowania
+ *
+ * Funkcja tworzy w podanej liście nowy element i kopiuje do niego wszystkie dane z podanego bufora
+ * @param **head_klient wskaźnik na listę, w której ma być dodany nowy element
+ * @param **bufor wskaźnik na element, z którego zostaną przekopiowane dane
+ */
 
 void push_klient (struct klient **head_klient, struct klient **bufor){
     struct klient *klient_nowy = (struct klient *) malloc(sizeof(struct klient));
@@ -94,6 +140,13 @@ void push_klient (struct klient **head_klient, struct klient **bufor){
     *head_klient = klient_nowy;
 }
 
+/**
+ * \brief Wyszukiwanie klienta z określonym ID
+ * @param **head_klient wskaźnik na listę podlegającą przeszukaniu
+ * @param id poszukiwany identyfikator
+ * @return poszukiwany element
+ */
+
 struct klient *klient_szukaj_po_numerze(struct klient **head_klient, unsigned int id){
     struct klient *klient_bufor = *head_klient;
     while(klient_bufor -> id_klienta != id){
@@ -101,6 +154,13 @@ struct klient *klient_szukaj_po_numerze(struct klient **head_klient, unsigned in
     }
     return klient_bufor;
 }
+
+/**
+ * \brief Wyszukiwanie klienta z określonym ID
+ * @param **head_klient wskaźnik na listę podlegającą przeszukaniu
+ * @param id poszukiwany identyfikator
+ * @return poszukiwany element lub NULL, jeśli nie został znaleziony
+ */
 
 struct klient *klient_szukaj_po_kolejnosci(struct klient **head_klient, unsigned int id){
     struct klient *klient_bufor = *head_klient;
@@ -115,6 +175,13 @@ struct klient *klient_szukaj_po_kolejnosci(struct klient **head_klient, unsigned
     if(i==0) return NULL;
     return klient_bufor;
 }
+
+/**
+ * \brief Wyszukiwanie klienta z określonym ID
+ * @param **head_klient wskaźnik na listę podlegającą przeszukaniu
+ * @param id poszukiwany identyfikator
+ * @return element poprzedzający lub NULL, jeśli nie został znaleziony
+ */
 
 struct klient *klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **head_klient, unsigned int id){
     struct klient *poprzedni = NULL;
@@ -132,6 +199,12 @@ struct klient *klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **he
     return poprzedni;
 }
 
+/**
+ * \brief Wypisanie wszystkich elementów listy klientów
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
+
 int klient_wypisz(struct klient **head_klient){
     struct klient *klient_bufor = *head_klient;
     if(klient_bufor == NULL){
@@ -147,6 +220,13 @@ int klient_wypisz(struct klient **head_klient){
     }
     return 0;
 }
+
+/**
+ * \brief Wypisanie wszystkich dostępnych elementów listy klientów
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania (lub gdy każdy element posiada wypożyczony film)
+ */
+
 
 int klient_wypisz_dostepni(struct klient **head_klient){
     struct klient *klient_bufor = *head_klient;
@@ -174,6 +254,13 @@ int klient_wypisz_dostepni(struct klient **head_klient){
     return 0;
 }
 
+/**
+ * \brief Wypisanie wszystkich elementów o określonym numerze telefonu
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @param numer_telefonu poszukiwany numer telefonu
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
+
 int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long numer_telefonu){
     struct klient *klient_bufor = *head_klient;
     printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
@@ -195,6 +282,13 @@ int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long
     return 0;
 }
 
+/**
+ * \brief Wypisanie wszystkich elementów o określonej ilości wypożyczonych filmów
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @param ilosc_posiadanych_filmów poszukiwana ilość wypożyczonych filmów
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
+
 int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilosc_posiadanych_filmow){
     struct klient *klient_bufor = *head_klient;
     printf(">> ID. | %11s | %15s | %15s | %9s |%30s | Posiadane filmy \n\n", "Pesel", "Imie", "Nazwisko", "Telefon", "E-Mail");
@@ -213,6 +307,16 @@ int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilos
     }
     return 0;
 }
+
+/**
+ * \brief Wypisanie wszystkich elementów o określonym imieniu klienta
+ *
+ * Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy,
+ * lecz ją posiada, taki element również sotanie wypisany.
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @param imie[] poszukiwane imię
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
 
 int klient_wypisz_imie(struct klient *head_klient, char imie[]){
     struct klient *klient_bufor = head_klient;
@@ -244,6 +348,16 @@ int klient_wypisz_imie(struct klient *head_klient, char imie[]){
     return 0;
 }
 
+/**
+ * \brief Wypisanie wszystkich elementów o określonym nazwisku klienta
+ *
+ * Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy,
+ * lecz ją posiada, taki element również sotanie wypisany.
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @param nazwisko[] poszukiwane nazwisko
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
+
 int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
     struct klient *klient_bufor = head_klient;
     nazwisko = strlwr(nazwisko);
@@ -273,7 +387,17 @@ int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[]){
     }
     return 0;
 }
- 
+
+/**
+ * \brief Wypisanie wszystkich elementów o określonym adresie mailowym klienta
+ *
+ * Funkcja wypisze wszystkie elementy zawierająca podaną frazę. W przypadku, gdy pole jest dłuższe od podanej frazy,
+ * lecz ją posiada, taki element również sotanie wypisany.
+ * @param **head_klient wskaźnik na listę podlegającą wypisaniu
+ * @param mail[] poszukiwany adres e-mail
+ * @return 0 w przypadku powodzenia, -1 w przypadku braku elementów do wypisania
+ */
+
 int klient_wypisz_mail(struct klient *head_klient, char mail[]){
     struct klient *klient_bufor = head_klient;
     mail = strlwr(mail);
@@ -304,6 +428,16 @@ int klient_wypisz_mail(struct klient *head_klient, char mail[]){
     return 0;
 }
 
+/**
+ * \brief Sortowanie listy klientów po numerze telefonu
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
+
 void klient_telefon(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_klient)->nastepny != NULL) {
@@ -328,6 +462,16 @@ void klient_telefon(struct klient **head_klient, int mode) {
     klient_usun(head_klient, NULL);
     *head_klient = main;
 }
+
+/**
+ * \brief Sortowanie listy klientów po numerze pesel
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
 
 void klient_pesel(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -355,6 +499,16 @@ void klient_pesel(struct klient **head_klient, int mode) {
     *head_klient = main;
 }
 
+/**
+ * \brief Sortowanie listy klientów po ilości wypożyczonych filmów
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
+
 void klient_filmy(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_klient)->nastepny != NULL) {
@@ -380,6 +534,16 @@ void klient_filmy(struct klient **head_klient, int mode) {
     klient_usun(head_klient, NULL);
     *head_klient = main;
 }
+
+/**
+ * \brief Sortowanie listy klientów po imieniu
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
 
 void klient_imie(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -409,6 +573,16 @@ void klient_imie(struct klient **head_klient, int mode) {
     *head_klient = main;
 }
 
+/**
+ * \brief Sortowanie listy klientów po nazwisku
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
+
 void klient_nazwisko(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_klient)->nastepny != NULL) {
@@ -436,6 +610,16 @@ void klient_nazwisko(struct klient **head_klient, int mode) {
     klient_usun(head_klient, NULL);
     *head_klient = main;
 }
+
+/**
+ * \brief Sortowanie listy klientów po adresie mailowym
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_klient wskaźnik na listę podlegającą sortowaniu
+ * @param mode 0 - sortowanie rosnące, 1 - sortowanie malejące
+ */
 
 void klient_mail(struct klient **head_klient, int mode) {
     struct klient *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -465,6 +649,13 @@ void klient_mail(struct klient **head_klient, int mode) {
     *head_klient = main;
 }
 
+/**
+ * \brief Sprawdzanie, czy podany pesel już istnieje w liście klientów
+ * @param *head_klient wskaźnik na listę do przeszukania
+ * @param numer_klienta poszukiwany numer pesel
+ * @return true - jeśli istnieje, false - jeśli nie znaleziono
+ */
+
 bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta){
     while(head_klient != NULL){
         if(head_klient -> numer_klienta == numer_klienta){
@@ -474,6 +665,12 @@ bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long nu
     }
     return false;
 }
+
+/**
+ * \brief Zapisywanie listy klientów do pliku
+ * @param *head_klient wskaźnik na listę do zapisania
+ * @return true - zapis udany, false - zapis nieudany
+ */
 
 bool klient_zapisz_do_pliku(struct klient *head_klient){
     if(!dodaj_folder("data")) return false;
@@ -490,6 +687,11 @@ bool klient_zapisz_do_pliku(struct klient *head_klient){
     fclose(file);
     return true;
 }
+
+/**
+ * \brief Zamiana spacji na tyldę w zmiennych łańcuchowych
+ * @param *head_klient wskaźnik na listę klientów
+ */
 
 void klient_zamien_spacje_na_tylde(struct klient *head_klient){
     while(head_klient != NULL){
@@ -512,6 +714,12 @@ void klient_zamien_spacje_na_tylde(struct klient *head_klient){
     }
 }
 
+/**
+ * \brief Zamiana tyldy na spacje w zmiennych łańcuchowych
+ * @param *head_klient wskaźnik na listę klientów
+ */
+
+
 void klient_zamien_tylde_na_spacje(struct klient *head_klient){
     while(head_klient != NULL){
         for(int i = 0; i < strlen(head_klient->imie); i++){
@@ -532,6 +740,12 @@ void klient_zamien_tylde_na_spacje(struct klient *head_klient){
         head_klient = head_klient->nastepny;
     }
 }
+
+/**
+ * \brief Odczyt pliku z zapisanymi elementami listy klientów
+ * @param **head_klient wskaźnik na listę klientów
+ * @return true - odczyt udany, false - odczyt nieudany
+ */
 
 bool klient_wczytaj_z_pliku(struct klient **head_klient){
     if(!dodaj_folder("data")) return false;
@@ -577,6 +791,15 @@ bool klient_wczytaj_z_pliku(struct klient **head_klient){
     }
     return true;
 }
+
+/**
+ * \brief Walidacja adresów e-mail
+ *
+ * Funkcja sprawdza podstawowe zagadnienia walidacji adresów mailowych
+ * takie jak minimalna długość adresu, czy pierwszy znak adresu.
+ * @param mail[] adres e-mail podlegający sprawdzeniu
+ * @return true - adres spełnia założenia, false - adres jest nieprawidłowy
+ */
 
 bool check_email(char mail[]) {
     int exact, exact2;

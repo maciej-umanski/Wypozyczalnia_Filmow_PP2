@@ -1,0 +1,1261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Dokumentacja pliku film.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('film_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Struktury danych</a> &#124;
+<a href="#func-members">Funkcje</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja pliku film.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;conio.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="film_8h_source.html">film.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Struktury danych</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfilm.html">film</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura przechowująca filmy.  <a href="structfilm.html#details">Więcej...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:aa1b7dd99f208c38c18ac5b573eb3de47"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#aa1b7dd99f208c38c18ac5b573eb3de47">film_dodaj</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</td></tr>
+<tr class="memdesc:aa1b7dd99f208c38c18ac5b573eb3de47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodanie filmu do listy.  <a href="film_8c.html#aa1b7dd99f208c38c18ac5b573eb3de47">Więcej...</a><br /></td></tr>
+<tr class="separator:aa1b7dd99f208c38c18ac5b573eb3de47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dcec33eb3906c1526e2362cb7f4858f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a3dcec33eb3906c1526e2362cb7f4858f">film_usun</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, struct <a class="el" href="structfilm.html">film</a> *film_usuwany_poprzedni)</td></tr>
+<tr class="memdesc:a3dcec33eb3906c1526e2362cb7f4858f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwanie elementu z listy filmów.  <a href="film_8c.html#a3dcec33eb3906c1526e2362cb7f4858f">Więcej...</a><br /></td></tr>
+<tr class="separator:a3dcec33eb3906c1526e2362cb7f4858f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac721939a6db8f26640cf1f8c9f638e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#ac721939a6db8f26640cf1f8c9f638e95">film_edytuj</a> (struct <a class="el" href="structfilm.html">film</a> **film_edytowany, int sztuki_dostepne, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</td></tr>
+<tr class="memdesc:ac721939a6db8f26640cf1f8c9f638e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edycja elementu z listy flmów.  <a href="film_8c.html#ac721939a6db8f26640cf1f8c9f638e95">Więcej...</a><br /></td></tr>
+<tr class="separator:ac721939a6db8f26640cf1f8c9f638e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c248de8a154f3ac134d62b8f35a4de6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a7c248de8a154f3ac134d62b8f35a4de6">push_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, struct <a class="el" href="structfilm.html">film</a> **bufor)</td></tr>
+<tr class="memdesc:a7c248de8a154f3ac134d62b8f35a4de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja dodająca element podczas sortowania.  <a href="film_8c.html#a7c248de8a154f3ac134d62b8f35a4de6">Więcej...</a><br /></td></tr>
+<tr class="separator:a7c248de8a154f3ac134d62b8f35a4de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7989c994e5b5398b360e2587bb1d61"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structfilm.html">film</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a2f7989c994e5b5398b360e2587bb1d61">film_szukaj_po_numerze</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, unsigned int id_filmu)</td></tr>
+<tr class="memdesc:a2f7989c994e5b5398b360e2587bb1d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przeszukiwanie listy filmów po identyfikatorze.  <a href="film_8c.html#a2f7989c994e5b5398b360e2587bb1d61">Więcej...</a><br /></td></tr>
+<tr class="separator:a2f7989c994e5b5398b360e2587bb1d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffa91db041f48bf971f28f1644923ed"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structfilm.html">film</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a7ffa91db041f48bf971f28f1644923ed">film_szukaj_po_kolejnosci</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, unsigned int id)</td></tr>
+<tr class="memdesc:a7ffa91db041f48bf971f28f1644923ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przeszukiwanie listy filmów po identyfikatorze.  <a href="film_8c.html#a7ffa91db041f48bf971f28f1644923ed">Więcej...</a><br /></td></tr>
+<tr class="separator:a7ffa91db041f48bf971f28f1644923ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38a2abbfc36869af48829d72a6016b8b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structfilm.html">film</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a38a2abbfc36869af48829d72a6016b8b">film_szukaj_po_kolejnosci_dostepne</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, unsigned int id)</td></tr>
+<tr class="memdesc:a38a2abbfc36869af48829d72a6016b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przeszukiwanie listy dostępnych filmów po identyfikatorze.  <a href="film_8c.html#a38a2abbfc36869af48829d72a6016b8b">Więcej...</a><br /></td></tr>
+<tr class="separator:a38a2abbfc36869af48829d72a6016b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a492a32c5e189a15be1bb5d1265a9e7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structfilm.html">film</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a4a492a32c5e189a15be1bb5d1265a9e7">film_szukaj_po_kolejnosci_dostepne_poprzedni</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, unsigned int id)</td></tr>
+<tr class="memdesc:a4a492a32c5e189a15be1bb5d1265a9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przeszukiwanie listy dostępnych filmów po identyfikatorze.  <a href="film_8c.html#a4a492a32c5e189a15be1bb5d1265a9e7">Więcej...</a><br /></td></tr>
+<tr class="separator:a4a492a32c5e189a15be1bb5d1265a9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ced4291ff029327865a135ae89b244"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a34ced4291ff029327865a135ae89b244">film_wypisz</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:a34ced4291ff029327865a135ae89b244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów.  <a href="film_8c.html#a34ced4291ff029327865a135ae89b244">Więcej...</a><br /></td></tr>
+<tr class="separator:a34ced4291ff029327865a135ae89b244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae964a89b4b274f4d75de74afec634193"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#ae964a89b4b274f4d75de74afec634193">film_wypisz_dostepne</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:ae964a89b4b274f4d75de74afec634193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy dostępnych filmów.  <a href="film_8c.html#ae964a89b4b274f4d75de74afec634193">Więcej...</a><br /></td></tr>
+<tr class="separator:ae964a89b4b274f4d75de74afec634193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56566892099bc1081a832b12ff25ab83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a56566892099bc1081a832b12ff25ab83">film_wypisz_sztuki_dostepne</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, int sztuki_dostepne)</td></tr>
+<tr class="memdesc:a56566892099bc1081a832b12ff25ab83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów z podaną ilością sztuk dostępnych.  <a href="film_8c.html#a56566892099bc1081a832b12ff25ab83">Więcej...</a><br /></td></tr>
+<tr class="separator:a56566892099bc1081a832b12ff25ab83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf89e835a316185112d5654be0f7d6d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#adf89e835a316185112d5654be0f7d6d0">film_wypisz_sztuki_wypozyczone</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, int sztuki_wypozyczone)</td></tr>
+<tr class="memdesc:adf89e835a316185112d5654be0f7d6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów z podaną ilością sztuk wypożyczonych.  <a href="film_8c.html#adf89e835a316185112d5654be0f7d6d0">Więcej...</a><br /></td></tr>
+<tr class="separator:adf89e835a316185112d5654be0f7d6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad02705a9abda1938a20992d80a3c4244"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#ad02705a9abda1938a20992d80a3c4244">film_wypisz_rok_produkcji</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, int rok_produkcji)</td></tr>
+<tr class="memdesc:ad02705a9abda1938a20992d80a3c4244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów z podanym rokiem produkcji.  <a href="film_8c.html#ad02705a9abda1938a20992d80a3c4244">Więcej...</a><br /></td></tr>
+<tr class="separator:ad02705a9abda1938a20992d80a3c4244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b47b93313826ea1e3004b3df47445c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a88b47b93313826ea1e3004b3df47445c">film_wypisz_tytul</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, char tytul[])</td></tr>
+<tr class="memdesc:a88b47b93313826ea1e3004b3df47445c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów o podanym tytule.  <a href="film_8c.html#a88b47b93313826ea1e3004b3df47445c">Więcej...</a><br /></td></tr>
+<tr class="separator:a88b47b93313826ea1e3004b3df47445c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd53bc35a9fc00f6fcfd96d814d93f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#acdd53bc35a9fc00f6fcfd96d814d93f0">film_wypisz_rezyser</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, char rezyser[])</td></tr>
+<tr class="memdesc:acdd53bc35a9fc00f6fcfd96d814d93f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów o podanym reżyserze.  <a href="film_8c.html#acdd53bc35a9fc00f6fcfd96d814d93f0">Więcej...</a><br /></td></tr>
+<tr class="separator:acdd53bc35a9fc00f6fcfd96d814d93f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79add95c7cf38617ef05aff311b2857a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a79add95c7cf38617ef05aff311b2857a">film_wypisz_gatunek</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, char gatunek[])</td></tr>
+<tr class="memdesc:a79add95c7cf38617ef05aff311b2857a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisywanie listy filmów o podanym gatunku.  <a href="film_8c.html#a79add95c7cf38617ef05aff311b2857a">Więcej...</a><br /></td></tr>
+<tr class="separator:a79add95c7cf38617ef05aff311b2857a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2099d16f49715447ed774245d3d55d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#af2099d16f49715447ed774245d3d55d7">film_dostepne</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:af2099d16f49715447ed774245d3d55d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po ilości dostępnych sztuk.  <a href="film_8c.html#af2099d16f49715447ed774245d3d55d7">Więcej...</a><br /></td></tr>
+<tr class="separator:af2099d16f49715447ed774245d3d55d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e8a918e29457fbd81848008b65acb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a73e8a918e29457fbd81848008b65acb9">film_wypozyczone</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:a73e8a918e29457fbd81848008b65acb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po ilości wypożyczonych sztuk.  <a href="film_8c.html#a73e8a918e29457fbd81848008b65acb9">Więcej...</a><br /></td></tr>
+<tr class="separator:a73e8a918e29457fbd81848008b65acb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fbf4f655d9ab62203042eef754a8dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a9fbf4f655d9ab62203042eef754a8dfd">film_rok</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:a9fbf4f655d9ab62203042eef754a8dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po ilości roku produkcji.  <a href="film_8c.html#a9fbf4f655d9ab62203042eef754a8dfd">Więcej...</a><br /></td></tr>
+<tr class="separator:a9fbf4f655d9ab62203042eef754a8dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af33c7120d2bf8953c2a4464610cc616a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#af33c7120d2bf8953c2a4464610cc616a">film_tytul</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:af33c7120d2bf8953c2a4464610cc616a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po tytule.  <a href="film_8c.html#af33c7120d2bf8953c2a4464610cc616a">Więcej...</a><br /></td></tr>
+<tr class="separator:af33c7120d2bf8953c2a4464610cc616a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5cf1be7289245356e5e6e43a038ba37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#ab5cf1be7289245356e5e6e43a038ba37">film_rezyser</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:ab5cf1be7289245356e5e6e43a038ba37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po reżyserze.  <a href="film_8c.html#ab5cf1be7289245356e5e6e43a038ba37">Więcej...</a><br /></td></tr>
+<tr class="separator:ab5cf1be7289245356e5e6e43a038ba37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358396739b4b37aa1dbcceab65c16e37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a358396739b4b37aa1dbcceab65c16e37">film_gatunek</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, int mode)</td></tr>
+<tr class="memdesc:a358396739b4b37aa1dbcceab65c16e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie filmów po gatunku filmu.  <a href="film_8c.html#a358396739b4b37aa1dbcceab65c16e37">Więcej...</a><br /></td></tr>
+<tr class="separator:a358396739b4b37aa1dbcceab65c16e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbdad98c6b96e51b8530b2e7aa7f9f1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#afbdad98c6b96e51b8530b2e7aa7f9f1e">film_czy_istnieje</a> (struct <a class="el" href="structfilm.html">film</a> *head_film, int rok_produkcji, char tytul[], char rezyser[], char gatunek[])</td></tr>
+<tr class="memdesc:afbdad98c6b96e51b8530b2e7aa7f9f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdzanie, czy film o podanych danych istnieje.  <a href="film_8c.html#afbdad98c6b96e51b8530b2e7aa7f9f1e">Więcej...</a><br /></td></tr>
+<tr class="separator:afbdad98c6b96e51b8530b2e7aa7f9f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be18eb329817fc012ac02c38be1c4af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a6be18eb329817fc012ac02c38be1c4af">film_czy_jedna_sztuka_poprzedni</a> (struct <a class="el" href="structfilm.html">film</a> **head_film, struct <a class="el" href="structfilm.html">film</a> *film_sprawdzany_poprzedni)</td></tr>
+<tr class="memdesc:a6be18eb329817fc012ac02c38be1c4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdzanie, czy film posiada więcej, niż 1 dostępną sztukę  <a href="film_8c.html#a6be18eb329817fc012ac02c38be1c4af">Więcej...</a><br /></td></tr>
+<tr class="separator:a6be18eb329817fc012ac02c38be1c4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c072088a7c91281fac4ffc6fc75b30"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a14c072088a7c91281fac4ffc6fc75b30">film_zapisz_do_pliku</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:a14c072088a7c91281fac4ffc6fc75b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zapis listy filmów do pliku.  <a href="film_8c.html#a14c072088a7c91281fac4ffc6fc75b30">Więcej...</a><br /></td></tr>
+<tr class="separator:a14c072088a7c91281fac4ffc6fc75b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38d1917ab6707bb686443d639813af1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#ab38d1917ab6707bb686443d639813af1">film_zamien_spacje_na_tylde</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:ab38d1917ab6707bb686443d639813af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zamiana spacji na tyldęw zmiennych łańcuchowych.  <a href="film_8c.html#ab38d1917ab6707bb686443d639813af1">Więcej...</a><br /></td></tr>
+<tr class="separator:ab38d1917ab6707bb686443d639813af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6afab9fcc890bb84d577d4109459ea7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a6afab9fcc890bb84d577d4109459ea7f">film_zamien_tylde_na_spacje</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:a6afab9fcc890bb84d577d4109459ea7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zamiana tyldy na spacje w zmiennych łańcuchowych.  <a href="film_8c.html#a6afab9fcc890bb84d577d4109459ea7f">Więcej...</a><br /></td></tr>
+<tr class="separator:a6afab9fcc890bb84d577d4109459ea7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061ff10e07e9b051eb1d9c5e3d29403f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="film_8c.html#a061ff10e07e9b051eb1d9c5e3d29403f">film_wczytaj_z_pliku</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a061ff10e07e9b051eb1d9c5e3d29403f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytywanie listy filmów z pliku.  <a href="film_8c.html#a061ff10e07e9b051eb1d9c5e3d29403f">Więcej...</a><br /></td></tr>
+<tr class="separator:a061ff10e07e9b051eb1d9c5e3d29403f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a id="afbdad98c6b96e51b8530b2e7aa7f9f1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbdad98c6b96e51b8530b2e7aa7f9f1e">&#9670;&nbsp;</a></span>film_czy_istnieje()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool film_czy_istnieje </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rok_produkcji</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>tytul</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>rezyser</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>gatunek</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sprawdzanie, czy film o podanych danych istnieje. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">rok_produkcji</td><td>rok produkcji filmu </td></tr>
+    <tr><td class="paramname">tytul[]</td><td>tytuł filmu </td></tr>
+    <tr><td class="paramname">rezyser[]</td><td>reżyser filmu </td></tr>
+    <tr><td class="paramname">gatunek[]</td><td>gatunek filmu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - film istnieje, false - film nie został znaleziony </dd></dl>
+
+</div>
+</div>
+<a id="a6be18eb329817fc012ac02c38be1c4af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be18eb329817fc012ac02c38be1c4af">&#9670;&nbsp;</a></span>film_czy_jedna_sztuka_poprzedni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool film_czy_jedna_sztuka_poprzedni </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>film_sprawdzany_poprzedni</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sprawdzanie, czy film posiada więcej, niż 1 dostępną sztukę </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">*film_sprawdzany_poprzedni</td><td>wskaźnik na element poprzedzający w stosunku do sprawdzanego </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - więcej niż 1 dostępna sztuka, false - jedna lub brak dostępnych sztuk </dd></dl>
+
+</div>
+</div>
+<a id="aa1b7dd99f208c38c18ac5b573eb3de47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b7dd99f208c38c18ac5b573eb3de47">&#9670;&nbsp;</a></span>film_dodaj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool film_dodaj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sztuki_dostepne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rok_produkcji</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>tytul</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>rezyser</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>gatunek</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodanie filmu do listy. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">sztuki_dostepne</td><td>Ilość dostępnych sztuk filmu </td></tr>
+    <tr><td class="paramname">rok_produkcji</td><td>rok produkcji filmu </td></tr>
+    <tr><td class="paramname">tytul[]</td><td>tytuł filmu </td></tr>
+    <tr><td class="paramname">rezyser[]</td><td>reżyser filmu </td></tr>
+    <tr><td class="paramname">gatunek[]</td><td>gatunek filmu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - dodanie udane, false - dodanie nieudane </dd></dl>
+
+</div>
+</div>
+<a id="af2099d16f49715447ed774245d3d55d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2099d16f49715447ed774245d3d55d7">&#9670;&nbsp;</a></span>film_dostepne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_dostepne </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po ilości dostępnych sztuk. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac721939a6db8f26640cf1f8c9f638e95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac721939a6db8f26640cf1f8c9f638e95">&#9670;&nbsp;</a></span>film_edytuj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_edytuj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>film_edytowany</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sztuki_dostepne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rok_produkcji</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>tytul</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>rezyser</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>gatunek</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Edycja elementu z listy flmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**film_edytowany</td><td>wskaźnik na edytowany element </td></tr>
+    <tr><td class="paramname">sztuki_dostepne</td><td>ilosc dostepnych sztuk filmu </td></tr>
+    <tr><td class="paramname">rok_produkcji</td><td>rok produkcji filmu </td></tr>
+    <tr><td class="paramname">tytul[]</td><td>tytuł filmu </td></tr>
+    <tr><td class="paramname">rezyser[]</td><td>reżyser filmu </td></tr>
+    <tr><td class="paramname">gatunek[]</td><td>gatunek filmu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a358396739b4b37aa1dbcceab65c16e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358396739b4b37aa1dbcceab65c16e37">&#9670;&nbsp;</a></span>film_gatunek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_gatunek </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po gatunku filmu. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab5cf1be7289245356e5e6e43a038ba37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5cf1be7289245356e5e6e43a038ba37">&#9670;&nbsp;</a></span>film_rezyser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_rezyser </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po reżyserze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9fbf4f655d9ab62203042eef754a8dfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fbf4f655d9ab62203042eef754a8dfd">&#9670;&nbsp;</a></span>film_rok()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_rok </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po ilości roku produkcji. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7ffa91db041f48bf971f28f1644923ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ffa91db041f48bf971f28f1644923ed">&#9670;&nbsp;</a></span>film_szukaj_po_kolejnosci()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structfilm.html">film</a>* film_szukaj_po_kolejnosci </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przeszukiwanie listy filmów po identyfikatorze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>powodzenie - element listy, niepowodzenie - NULL </dd></dl>
+
+</div>
+</div>
+<a id="a38a2abbfc36869af48829d72a6016b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38a2abbfc36869af48829d72a6016b8b">&#9670;&nbsp;</a></span>film_szukaj_po_kolejnosci_dostepne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structfilm.html">film</a>* film_szukaj_po_kolejnosci_dostepne </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przeszukiwanie listy dostępnych filmów po identyfikatorze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>powodzenie - element listy, niepowodzenie - NULL </dd></dl>
+
+</div>
+</div>
+<a id="a4a492a32c5e189a15be1bb5d1265a9e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a492a32c5e189a15be1bb5d1265a9e7">&#9670;&nbsp;</a></span>film_szukaj_po_kolejnosci_dostepne_poprzedni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structfilm.html">film</a>* film_szukaj_po_kolejnosci_dostepne_poprzedni </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przeszukiwanie listy dostępnych filmów po identyfikatorze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>powodzenie - poprzedzający element listy, niepowodzenie - NULL </dd></dl>
+
+</div>
+</div>
+<a id="a2f7989c994e5b5398b360e2587bb1d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7989c994e5b5398b360e2587bb1d61">&#9670;&nbsp;</a></span>film_szukaj_po_numerze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structfilm.html">film</a>* film_szukaj_po_numerze </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id_filmu</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przeszukiwanie listy filmów po identyfikatorze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">id_filmu</td><td>identyfikator poszukiwanego elementu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>element o szukanym ID </dd></dl>
+
+</div>
+</div>
+<a id="af33c7120d2bf8953c2a4464610cc616a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af33c7120d2bf8953c2a4464610cc616a">&#9670;&nbsp;</a></span>film_tytul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_tytul </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po tytule. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3dcec33eb3906c1526e2362cb7f4858f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dcec33eb3906c1526e2362cb7f4858f">&#9670;&nbsp;</a></span>film_usun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_usun </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>film_usuwany_poprzedni</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Usuwanie elementu z listy filmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">*film_usuwany_poprzedni</td><td>wskaźnik na element poprzedzający element usuwany </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a061ff10e07e9b051eb1d9c5e3d29403f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061ff10e07e9b051eb1d9c5e3d29403f">&#9670;&nbsp;</a></span>film_wczytaj_z_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool film_wczytaj_z_pliku </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wczytywanie listy filmów z pliku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - wczytanie udane, false - wczytanie nieudane </dd></dl>
+
+</div>
+</div>
+<a id="a34ced4291ff029327865a135ae89b244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34ced4291ff029327865a135ae89b244">&#9670;&nbsp;</a></span>film_wypisz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae964a89b4b274f4d75de74afec634193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae964a89b4b274f4d75de74afec634193">&#9670;&nbsp;</a></span>film_wypisz_dostepne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_dostepne </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy dostępnych filmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a79add95c7cf38617ef05aff311b2857a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79add95c7cf38617ef05aff311b2857a">&#9670;&nbsp;</a></span>film_wypisz_gatunek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_gatunek </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>gatunek</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów o podanym gatunku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">gatunek[]</td><td>poszukiwany gatunek return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acdd53bc35a9fc00f6fcfd96d814d93f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd53bc35a9fc00f6fcfd96d814d93f0">&#9670;&nbsp;</a></span>film_wypisz_rezyser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_rezyser </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>rezyser</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów o podanym reżyserze. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">rezyser[]</td><td>poszukiwany reżyser return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad02705a9abda1938a20992d80a3c4244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad02705a9abda1938a20992d80a3c4244">&#9670;&nbsp;</a></span>film_wypisz_rok_produkcji()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_rok_produkcji </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rok_produkcji</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów z podanym rokiem produkcji. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">rok_produkcji</td><td>poszukiwana rok produkcji return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56566892099bc1081a832b12ff25ab83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56566892099bc1081a832b12ff25ab83">&#9670;&nbsp;</a></span>film_wypisz_sztuki_dostepne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_sztuki_dostepne </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sztuki_dostepne</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów z podaną ilością sztuk dostępnych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">sztuki_dostępne</td><td>poszukiwana liczba sztuk return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf89e835a316185112d5654be0f7d6d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf89e835a316185112d5654be0f7d6d0">&#9670;&nbsp;</a></span>film_wypisz_sztuki_wypozyczone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_sztuki_wypozyczone </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sztuki_wypozyczone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów z podaną ilością sztuk wypożyczonych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">sztuki_wypozyczone</td><td>poszukiwana liczba sztuk return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a88b47b93313826ea1e3004b3df47445c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88b47b93313826ea1e3004b3df47445c">&#9670;&nbsp;</a></span>film_wypisz_tytul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int film_wypisz_tytul </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>tytul</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisywanie listy filmów o podanym tytule. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">tytul[]</td><td>poszukiwany tytuł return 0 - powodzenie, -1 - lista jest pusta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73e8a918e29457fbd81848008b65acb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e8a918e29457fbd81848008b65acb9">&#9670;&nbsp;</a></span>film_wypozyczone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_wypozyczone </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie filmów po ilości wypożyczonych sztuk. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">mode</td><td>tryb sortowania, 0 rosnące, 1 malejące </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab38d1917ab6707bb686443d639813af1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab38d1917ab6707bb686443d639813af1">&#9670;&nbsp;</a></span>film_zamien_spacje_na_tylde()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_zamien_spacje_na_tylde </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zamiana spacji na tyldęw zmiennych łańcuchowych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6afab9fcc890bb84d577d4109459ea7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6afab9fcc890bb84d577d4109459ea7f">&#9670;&nbsp;</a></span>film_zamien_tylde_na_spacje()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void film_zamien_tylde_na_spacje </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zamiana tyldy na spacje w zmiennych łańcuchowych. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14c072088a7c91281fac4ffc6fc75b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14c072088a7c91281fac4ffc6fc75b30">&#9670;&nbsp;</a></span>film_zapisz_do_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool film_zapisz_do_pliku </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zapis listy filmów do pliku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - zapis udany, false - zapis się nie powiódł </dd></dl>
+
+</div>
+</div>
+<a id="a7c248de8a154f3ac134d62b8f35a4de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c248de8a154f3ac134d62b8f35a4de6">&#9670;&nbsp;</a></span>push_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void push_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>bufor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja dodająca element podczas sortowania. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę, do której zostanie dodany nowy element </td></tr>
+    <tr><td class="paramname">**bufor</td><td>wskaźnik na element przechowujący dane filmu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="film_8c.html">film.c</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

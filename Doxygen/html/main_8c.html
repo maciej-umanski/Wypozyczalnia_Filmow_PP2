@@ -1,0 +1,984 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Dokumentacja pliku main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkcje</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja pliku main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;conio.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;locale.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="inne_8h_source.html">inne.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="film_8h_source.html">film.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="klient_8h_source.html">klient.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="wypozyczenie_8h_source.html">wypozyczenie.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:a708fe531799083583370c04723461335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a708fe531799083583370c04723461335">dodawanie_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:a708fe531799083583370c04723461335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja dodająca klienta.  <a href="main_8c.html#a708fe531799083583370c04723461335">Więcej...</a><br /></td></tr>
+<tr class="separator:a708fe531799083583370c04723461335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982677171e3d4e215e20b8f33c32c59e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a982677171e3d4e215e20b8f33c32c59e">usuwanie_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:a982677171e3d4e215e20b8f33c32c59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja usuwająca klienta.  <a href="main_8c.html#a982677171e3d4e215e20b8f33c32c59e">Więcej...</a><br /></td></tr>
+<tr class="separator:a982677171e3d4e215e20b8f33c32c59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7472689e3bfee06846ae3ba371cf1de6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7472689e3bfee06846ae3ba371cf1de6">edytowanie_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:a7472689e3bfee06846ae3ba371cf1de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja edytująca klienta.  <a href="main_8c.html#a7472689e3bfee06846ae3ba371cf1de6">Więcej...</a><br /></td></tr>
+<tr class="separator:a7472689e3bfee06846ae3ba371cf1de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6051800285ea0faf2e7d318f279e8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afb6051800285ea0faf2e7d318f279e8f">szukaj_klient</a> (struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:afb6051800285ea0faf2e7d318f279e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja szukająca klienta.  <a href="main_8c.html#afb6051800285ea0faf2e7d318f279e8f">Więcej...</a><br /></td></tr>
+<tr class="separator:afb6051800285ea0faf2e7d318f279e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4434f975d8ea6103b04df1e8d3211887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4434f975d8ea6103b04df1e8d3211887">dodawanie_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a4434f975d8ea6103b04df1e8d3211887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja dodająca film.  <a href="main_8c.html#a4434f975d8ea6103b04df1e8d3211887">Więcej...</a><br /></td></tr>
+<tr class="separator:a4434f975d8ea6103b04df1e8d3211887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa83a1861247c1ef4ca1a3e4e1e363802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aa83a1861247c1ef4ca1a3e4e1e363802">usuwanie_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:aa83a1861247c1ef4ca1a3e4e1e363802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja usuwająca film.  <a href="main_8c.html#aa83a1861247c1ef4ca1a3e4e1e363802">Więcej...</a><br /></td></tr>
+<tr class="separator:aa83a1861247c1ef4ca1a3e4e1e363802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bad79e4b21a3cbae66f02aea4b6bf2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5bad79e4b21a3cbae66f02aea4b6bf2d">edytowanie_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a5bad79e4b21a3cbae66f02aea4b6bf2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja edytująca film.  <a href="main_8c.html#a5bad79e4b21a3cbae66f02aea4b6bf2d">Więcej...</a><br /></td></tr>
+<tr class="separator:a5bad79e4b21a3cbae66f02aea4b6bf2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6964f0ef94de5153da2d866c281b717"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae6964f0ef94de5153da2d866c281b717">szukaj_film</a> (struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:ae6964f0ef94de5153da2d866c281b717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja szukająca filmu.  <a href="main_8c.html#ae6964f0ef94de5153da2d866c281b717">Więcej...</a><br /></td></tr>
+<tr class="separator:ae6964f0ef94de5153da2d866c281b717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c7dab3a5fe6980a07b6188aebe866cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2c7dab3a5fe6980a07b6188aebe866cc">dodawanie_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> *head_klient, struct <a class="el" href="structfilm.html">film</a> *head_film)</td></tr>
+<tr class="memdesc:a2c7dab3a5fe6980a07b6188aebe866cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja dodająca wypożyczenie.  <a href="main_8c.html#a2c7dab3a5fe6980a07b6188aebe866cc">Więcej...</a><br /></td></tr>
+<tr class="separator:a2c7dab3a5fe6980a07b6188aebe866cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37dae44028075ebcdb32e0246abdf14d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a37dae44028075ebcdb32e0246abdf14d">usuwanie_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie)</td></tr>
+<tr class="memdesc:a37dae44028075ebcdb32e0246abdf14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja usuwająca wypożyczenie.  <a href="main_8c.html#a37dae44028075ebcdb32e0246abdf14d">Więcej...</a><br /></td></tr>
+<tr class="separator:a37dae44028075ebcdb32e0246abdf14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55fa57cd61c470a40446682a8d8037f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af55fa57cd61c470a40446682a8d8037f">edytowanie_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie)</td></tr>
+<tr class="memdesc:af55fa57cd61c470a40446682a8d8037f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja edytująca wypożyczenie.  <a href="main_8c.html#af55fa57cd61c470a40446682a8d8037f">Więcej...</a><br /></td></tr>
+<tr class="separator:af55fa57cd61c470a40446682a8d8037f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c63ec01192f7da9736f6b7c627c8f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a49c63ec01192f7da9736f6b7c627c8f8">szukaj_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, struct <a class="el" href="structfilm.html">film</a> *head_film, struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:a49c63ec01192f7da9736f6b7c627c8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja wyszukująca wypożyczenie.  <a href="main_8c.html#a49c63ec01192f7da9736f6b7c627c8f8">Więcej...</a><br /></td></tr>
+<tr class="separator:a49c63ec01192f7da9736f6b7c627c8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe03145ae1c4a43d2bbaf89e94d80e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6fe03145ae1c4a43d2bbaf89e94d80e9">zalegle_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie)</td></tr>
+<tr class="memdesc:a6fe03145ae1c4a43d2bbaf89e94d80e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja zarządzająca zaległymi wypożyczeniami.  <a href="main_8c.html#a6fe03145ae1c4a43d2bbaf89e94d80e9">Więcej...</a><br /></td></tr>
+<tr class="separator:a6fe03145ae1c4a43d2bbaf89e94d80e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0de068cc6478a5560d0fd2130740f53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0de068cc6478a5560d0fd2130740f53f">wczytywanie_baz_danych</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a0de068cc6478a5560d0fd2130740f53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wczytująca pliki z danymi.  <a href="main_8c.html#a0de068cc6478a5560d0fd2130740f53f">Więcej...</a><br /></td></tr>
+<tr class="separator:a0de068cc6478a5560d0fd2130740f53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bdef2de99127945b75f3a39f88dfacf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1bdef2de99127945b75f3a39f88dfacf">zapisywanie_baz_danych</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a1bdef2de99127945b75f3a39f88dfacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja zapisująca bazy danych.  <a href="main_8c.html#a1bdef2de99127945b75f3a39f88dfacf">Więcej...</a><br /></td></tr>
+<tr class="separator:a1bdef2de99127945b75f3a39f88dfacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af166b53c94906695365617d9f3b123ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af166b53c94906695365617d9f3b123ae">zarzadznie_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:af166b53c94906695365617d9f3b123ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu zarządzania listą klientów.  <a href="main_8c.html#af166b53c94906695365617d9f3b123ae">Więcej...</a><br /></td></tr>
+<tr class="separator:af166b53c94906695365617d9f3b123ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c81bb56860a2504f3fef97d58181c4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c81bb56860a2504f3fef97d58181c4f">zarzadzanie_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a1c81bb56860a2504f3fef97d58181c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu zarządzania listą filmów.  <a href="main_8c.html#a1c81bb56860a2504f3fef97d58181c4f">Więcej...</a><br /></td></tr>
+<tr class="separator:a1c81bb56860a2504f3fef97d58181c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46636704e01b10891331996fbcc010ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a46636704e01b10891331996fbcc010ea">zarzadzanie_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a46636704e01b10891331996fbcc010ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu zarządzania listą wypożyczeń  <a href="main_8c.html#a46636704e01b10891331996fbcc010ea">Więcej...</a><br /></td></tr>
+<tr class="separator:a46636704e01b10891331996fbcc010ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1072b0c8fca1930cf2fa5ed9ae668309"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1072b0c8fca1930cf2fa5ed9ae668309">wyszukiwarka</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a1072b0c8fca1930cf2fa5ed9ae668309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja wyszukująca.  <a href="main_8c.html#a1072b0c8fca1930cf2fa5ed9ae668309">Więcej...</a><br /></td></tr>
+<tr class="separator:a1072b0c8fca1930cf2fa5ed9ae668309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb74d6ef230c44998fe43747f6e04e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aabb74d6ef230c44998fe43747f6e04e2">sortowanie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:aabb74d6ef230c44998fe43747f6e04e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja sortująca.  <a href="main_8c.html#aabb74d6ef230c44998fe43747f6e04e2">Więcej...</a><br /></td></tr>
+<tr class="separator:aabb74d6ef230c44998fe43747f6e04e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afec55cbf2db347ff3dbeecd4193db744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afec55cbf2db347ff3dbeecd4193db744">DEBUG_MENU</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structklient.html">klient</a> **head_klient, struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:afec55cbf2db347ff3dbeecd4193db744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja pomocnicza.  <a href="main_8c.html#afec55cbf2db347ff3dbeecd4193db744">Więcej...</a><br /></td></tr>
+<tr class="separator:afec55cbf2db347ff3dbeecd4193db744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główne menu programu.  <a href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">Więcej...</a><br /></td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8d1b295715476f8f2054de88da62f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aab8d1b295715476f8f2054de88da62f2">sortuj_klient</a> (struct <a class="el" href="structklient.html">klient</a> **head_klient)</td></tr>
+<tr class="memdesc:aab8d1b295715476f8f2054de88da62f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja sortująca klientów.  <a href="main_8c.html#aab8d1b295715476f8f2054de88da62f2">Więcej...</a><br /></td></tr>
+<tr class="separator:aab8d1b295715476f8f2054de88da62f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70ddc19897bed55c5fcbecb8b2bacd66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a70ddc19897bed55c5fcbecb8b2bacd66">sortuj_film</a> (struct <a class="el" href="structfilm.html">film</a> **head_film)</td></tr>
+<tr class="memdesc:a70ddc19897bed55c5fcbecb8b2bacd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja sortujaca filmy.  <a href="main_8c.html#a70ddc19897bed55c5fcbecb8b2bacd66">Więcej...</a><br /></td></tr>
+<tr class="separator:a70ddc19897bed55c5fcbecb8b2bacd66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d687df465cc7a416c22aa0f235d0139"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a3d687df465cc7a416c22aa0f235d0139">sortuj_wypozyczenie</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie)</td></tr>
+<tr class="memdesc:a3d687df465cc7a416c22aa0f235d0139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja sortująca wypożyczenia.  <a href="main_8c.html#a3d687df465cc7a416c22aa0f235d0139">Więcej...</a><br /></td></tr>
+<tr class="separator:a3d687df465cc7a416c22aa0f235d0139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a id="afec55cbf2db347ff3dbeecd4193db744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec55cbf2db347ff3dbeecd4193db744">&#9670;&nbsp;</a></span>DEBUG_MENU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DEBUG_MENU </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja pomocnicza. </p>
+<p>Funkcja pomocnicza stworzona do szybszego wykonywana pewnych funkcjonalności programu. Stworzona w celu testowania poprawnego działania. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4434f975d8ea6103b04df1e8d3211887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4434f975d8ea6103b04df1e8d3211887">&#9670;&nbsp;</a></span>dodawanie_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dodawanie_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja dodająca film. </p>
+<p>Funkcja pobiera dane z klawiatury, po czym wywołuje funkcję dodającą film o podanych danych do listy przechowującej filmy. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a708fe531799083583370c04723461335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708fe531799083583370c04723461335">&#9670;&nbsp;</a></span>dodawanie_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dodawanie_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja dodająca klienta. </p>
+<p>Funkcja pobiera dane od użytkownika i w zależności od powodzenia funkcji wewnętrzej wypisuje odpowiedni komunikat. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c7dab3a5fe6980a07b6188aebe866cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c7dab3a5fe6980a07b6188aebe866cc">&#9670;&nbsp;</a></span>dodawanie_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dodawanie_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja dodająca wypożyczenie. </p>
+<p>Funkcja wyszukuje konkretnego klienta i film. Jeśli jest to możliwe, dodaje nowe wypożyczenie do listy. W przeciwnym wypadku zwraca stosowny komunikat. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na główną listę z wypożyczeniami </td></tr>
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5bad79e4b21a3cbae66f02aea4b6bf2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bad79e4b21a3cbae66f02aea4b6bf2d">&#9670;&nbsp;</a></span>edytowanie_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void edytowanie_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja edytująca film. </p>
+<p>Funkcja pobiera dane z klawiatury, po czym wywołuje funkcję zmieniającą dane w odpowiednim filmie. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7472689e3bfee06846ae3ba371cf1de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7472689e3bfee06846ae3ba371cf1de6">&#9670;&nbsp;</a></span>edytowanie_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void edytowanie_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja edytująca klienta. </p>
+<p>Funkcja wyszukuje klienta o podanym ID. W zależności od powodzenia wyświetla stosowny komunikat. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af55fa57cd61c470a40446682a8d8037f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af55fa57cd61c470a40446682a8d8037f">&#9670;&nbsp;</a></span>edytowanie_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void edytowanie_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja edytująca wypożyczenie. </p>
+<p>Funkcja wyszukuje konkretny wpis i pobiera od użytkownika dane, które mają zostać zaktualizowane. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na główną listę z wypożyczeniami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główne menu programu. </p>
+<p>Funkcja zarzadzająca całym programem. </p>
+<p>init funkcji zmieniającej język terminala na polski</p>
+<p>Wskaźnik na liste zawierającą klientów</p>
+<p>Wskaźnik na liste zawierającą filmy</p>
+<p>Wskaźnik na liste zawierającą wypożyczenia</p>
+
+</div>
+</div>
+<a id="aabb74d6ef230c44998fe43747f6e04e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb74d6ef230c44998fe43747f6e04e2">&#9670;&nbsp;</a></span>sortowanie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sortowanie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja sortująca. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a70ddc19897bed55c5fcbecb8b2bacd66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70ddc19897bed55c5fcbecb8b2bacd66">&#9670;&nbsp;</a></span>sortuj_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sortuj_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja sortujaca filmy. </p>
+<p>Funkcja sortuje listę z filmami w wybranej kolejności po odpowiednim polu. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aab8d1b295715476f8f2054de88da62f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8d1b295715476f8f2054de88da62f2">&#9670;&nbsp;</a></span>sortuj_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sortuj_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja sortująca klientów. </p>
+<p>Funkcja wywołuje odpowiednie funkcje sortujące, w zależności od wybranego pola. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3d687df465cc7a416c22aa0f235d0139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d687df465cc7a416c22aa0f235d0139">&#9670;&nbsp;</a></span>sortuj_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sortuj_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja sortująca wypożyczenia. </p>
+<p>Funkcja sortuje w odpowiedniej kolejności listę wypożyczeń w zależności od wybranej opcji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae6964f0ef94de5153da2d866c281b717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6964f0ef94de5153da2d866c281b717">&#9670;&nbsp;</a></span>szukaj_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void szukaj_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja szukająca filmu. </p>
+<p>Funkcja wyszukuje konkretnych wpisów w liście zawierającej filmy. Wypisuje wszystkie wpisy zawierające podaną frazę. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afb6051800285ea0faf2e7d318f279e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb6051800285ea0faf2e7d318f279e8f">&#9670;&nbsp;</a></span>szukaj_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void szukaj_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja szukająca klienta. </p>
+<p>Funkcja wyszukuje klienta po wybranym polu. Wyświetla wszystkich klientów, którzy zawierają daną frazę. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a49c63ec01192f7da9736f6b7c627c8f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49c63ec01192f7da9736f6b7c627c8f8">&#9670;&nbsp;</a></span>szukaj_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void szukaj_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja wyszukująca wypożyczenie. </p>
+<p>Funkcja wyszukuje wszystkie wpisy w liście wypożyczeń zawierające podane dane. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na główną listę z wypożyczeniami </td></tr>
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa83a1861247c1ef4ca1a3e4e1e363802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83a1861247c1ef4ca1a3e4e1e363802">&#9670;&nbsp;</a></span>usuwanie_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void usuwanie_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja usuwająca film. </p>
+<p>Funkcja wyszukuje film o danym ID i jeśli jest to możliwe, usuwa go z listy. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na główną listę z filmami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a982677171e3d4e215e20b8f33c32c59e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a982677171e3d4e215e20b8f33c32c59e">&#9670;&nbsp;</a></span>usuwanie_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void usuwanie_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja usuwająca klienta. </p>
+<p>Funkcja wyszukuje klienta o podanym ID. W zależności od powodzenia wyświetla stosowny komunikat. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na główną listę z klientami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a37dae44028075ebcdb32e0246abdf14d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37dae44028075ebcdb32e0246abdf14d">&#9670;&nbsp;</a></span>usuwanie_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void usuwanie_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja usuwająca wypożyczenie. </p>
+<p>Funkcja usuwa istniejący wpis w liście wypożyczeń oraz nalicza stosowną karę. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na główną listę z wypożyczeniami </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0de068cc6478a5560d0fd2130740f53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0de068cc6478a5560d0fd2130740f53f">&#9670;&nbsp;</a></span>wczytywanie_baz_danych()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wczytywanie_baz_danych </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja wczytująca pliki z danymi. </p>
+<p>Jeśli istnieją pliki baz danych, to funkcja wczyta je do programu i zapisze do odpowiednich list. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1072b0c8fca1930cf2fa5ed9ae668309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1072b0c8fca1930cf2fa5ed9ae668309">&#9670;&nbsp;</a></span>wyszukiwarka()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wyszukiwarka </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Główna funkcja wyszukująca. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6fe03145ae1c4a43d2bbaf89e94d80e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe03145ae1c4a43d2bbaf89e94d80e9">&#9670;&nbsp;</a></span>zalegle_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zalegle_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja zarządzająca zaległymi wypożyczeniami. </p>
+<p>Funkcja pozawala na wyświetlenie zaległych wypożyczeń oraz ustalenie kary naliczanej za jeden dzień zwłoki. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1bdef2de99127945b75f3a39f88dfacf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bdef2de99127945b75f3a39f88dfacf">&#9670;&nbsp;</a></span>zapisywanie_baz_danych()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zapisywanie_baz_danych </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funkcja zapisująca bazy danych. </p>
+<p>Funkcja po potwierdzeniu zapisze aktualny stan list do plików w celu ich zachowania. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1c81bb56860a2504f3fef97d58181c4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c81bb56860a2504f3fef97d58181c4f">&#9670;&nbsp;</a></span>zarzadzanie_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zarzadzanie_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Menu zarządzania listą filmów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a46636704e01b10891331996fbcc010ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46636704e01b10891331996fbcc010ea">&#9670;&nbsp;</a></span>zarzadzanie_wypozyczenie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zarzadzanie_wypozyczenie </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> **&#160;</td>
+          <td class="paramname"><em>head_film</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Menu zarządzania listą wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+    <tr><td class="paramname">**head_film</td><td>wskaźnik na listę filmów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af166b53c94906695365617d9f3b123ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af166b53c94906695365617d9f3b123ae">&#9670;&nbsp;</a></span>zarzadznie_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zarzadznie_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> **&#160;</td>
+          <td class="paramname"><em>head_klient</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Menu zarządzania listą klientów. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_klient</td><td>wskaźnik na listę klientów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

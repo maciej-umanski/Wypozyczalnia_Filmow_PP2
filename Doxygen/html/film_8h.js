@@ -1,0 +1,26 @@
+var film_8h =
+[
+    [ "film_czy_istnieje", "film_8h.html#afbdad98c6b96e51b8530b2e7aa7f9f1e", null ],
+    [ "film_czy_jedna_sztuka_poprzedni", "film_8h.html#a6be18eb329817fc012ac02c38be1c4af", null ],
+    [ "film_dodaj", "film_8h.html#aa1b7dd99f208c38c18ac5b573eb3de47", null ],
+    [ "film_edytuj", "film_8h.html#ac721939a6db8f26640cf1f8c9f638e95", null ],
+    [ "film_rok", "film_8h.html#a9fbf4f655d9ab62203042eef754a8dfd", null ],
+    [ "film_szukaj_po_kolejnosci", "film_8h.html#a7ffa91db041f48bf971f28f1644923ed", null ],
+    [ "film_szukaj_po_kolejnosci_dostepne", "film_8h.html#a38a2abbfc36869af48829d72a6016b8b", null ],
+    [ "film_szukaj_po_kolejnosci_dostepne_poprzedni", "film_8h.html#a4a492a32c5e189a15be1bb5d1265a9e7", null ],
+    [ "film_szukaj_po_numerze", "film_8h.html#a2f7989c994e5b5398b360e2587bb1d61", null ],
+    [ "film_tytul", "film_8h.html#af33c7120d2bf8953c2a4464610cc616a", null ],
+    [ "film_usun", "film_8h.html#a3dcec33eb3906c1526e2362cb7f4858f", null ],
+    [ "film_wypisz", "film_8h.html#a34ced4291ff029327865a135ae89b244", null ],
+    [ "film_wypisz_dostepne", "film_8h.html#ae964a89b4b274f4d75de74afec634193", null ],
+    [ "film_wypisz_gatunek", "film_8h.html#a79add95c7cf38617ef05aff311b2857a", null ],
+    [ "film_wypisz_rezyser", "film_8h.html#acdd53bc35a9fc00f6fcfd96d814d93f0", null ],
+    [ "film_wypisz_rok_produkcji", "film_8h.html#ad02705a9abda1938a20992d80a3c4244", null ],
+    [ "film_wypisz_sztuki_dostepne", "film_8h.html#a56566892099bc1081a832b12ff25ab83", null ],
+    [ "film_wypisz_sztuki_wypozyczone", "film_8h.html#adf89e835a316185112d5654be0f7d6d0", null ],
+    [ "film_wypisz_tytul", "film_8h.html#a88b47b93313826ea1e3004b3df47445c", null ],
+    [ "film_wypozyczone", "film_8h.html#a73e8a918e29457fbd81848008b65acb9", null ],
+    [ "film_zamien_spacje_na_tylde", "film_8h.html#ab38d1917ab6707bb686443d639813af1", null ],
+    [ "film_zamien_tylde_na_spacje", "film_8h.html#a6afab9fcc890bb84d577d4109459ea7f", null ],
+    [ "film_zapisz_do_pliku", "film_8h.html#a14c072088a7c91281fac4ffc6fc75b30", null ]
+];

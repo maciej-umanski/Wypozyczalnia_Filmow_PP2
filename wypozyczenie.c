@@ -5,6 +5,20 @@
 #include <conio.h>
 #include "wypozyczenie.h"
 
+/**
+ * \brief Struktura przechowująca wypożyczenia filmów
+ * @param id_wypozyczenia unikalny identyfikator elementu
+ * @param numer_klienta id klienta wypożyczającego
+ * @param numer_filmu id wypożyczonego filmu
+ * @param data_wypozyczenia[11] data wypożyczenia filmu
+ * @param data_wypozyczenia_sekundy ilość sekund, która upłynęła od 1.01.1970 do momentu wypożyczenia
+ * @param data_zwrotu[11] data planowanego zwrotu filmu
+ * @param data_zwrotu_sekundy ilość sekund, która upłynęła od 1.01.1970 do planowego zwrotu filmu
+ * @param *znacznik_klienta wskaźnik na element z listy klientów
+ * @param *znacznik_filmu wskaźnik na element z listy filmów
+ * @param *nastepny wskaźnik na następny element listy
+ */
+
 struct wypozyczenie{
     unsigned int id_wypozyczenia;
     unsigned int numer_klienta;
@@ -17,6 +31,15 @@ struct wypozyczenie{
     struct film *znacznik_filmu;
     struct wypozyczenie *nastepny;
 };
+
+/**
+ * \brief Dodanie wypożyczenia do listy
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param *film_wypozyczany wskaźnik na wypożyczany film
+ * @param *klient_wypozyczajacy wskaźnik na klienta wypożyczającego
+ * @param ile_tygodni czas wypożyczenia liczony w tygodniach
+ * @return true - dodanie udane, false - dodanie nieudane
+ */
 
 bool wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *film_wypozyczany, struct klient *klient_wypozyczajacy,  int ile_tygodni){
             if(!dodaj_folder("data")) return false;
@@ -75,6 +98,12 @@ bool wypozyczenie_dodaj(struct wypozyczenie **head_wypozyczenie, struct film *fi
     return true;
 }
 
+/**
+ * \brief Usunięcie wypożyczenia z listy
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param *wypozyczenie_przed_usuwanym wskaźnik na element poprzedzający element usuwany
+ */
+
 void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozyczenie *wypozyczenie_przed_usuwanym){
     struct wypozyczenie *wypozyczenie_bufor = NULL;
     if(wypozyczenie_przed_usuwanym == NULL){
@@ -99,6 +128,12 @@ void wypozyczenie_usun(struct wypozyczenie **head_wypozyczenie, struct wypozycze
     }
 }
 
+/**
+ * \brief Edytowanie istniejącego elementu listy wypożyczeń
+ * @param **wypozyczenie_edytowane wskaźnik na edytowany element
+ * @param czas_do_zwrotu nowy czas zwrotu wypożyczenia
+ */
+
 void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_do_zwrotu){
     time_t czas1 = time(NULL) + (czas_do_zwrotu * 604800);
     struct tm *czas2;
@@ -106,6 +141,14 @@ void wypozyczenie_edytuj(struct wypozyczenie **wypozyczenie_edytowane, int czas_
     strftime((*wypozyczenie_edytowane)->data_zwrotu, 11, "%Y/%m/%d", czas2);
     (*wypozyczenie_edytowane) -> data_zwrotu_sekundy = czas1;
 }
+
+/**
+ * \brief Kopiowanie wypożyczenia podczas sortowania
+ *
+ * Funkcja tworzy w podanej liście nowy element i kopiuje do niego wszystkie dane z podanego bufora
+ * @param **head_wypozyczenie wskaźnik na listę do której zostanie dodany nowy element
+ * @param **bufor wskaźnik na element przechowujący dane do skopiowania
+ */
 
 void push_wypozyczenie (struct wypozyczenie **head_wypozyczenie, struct wypozyczenie **bufor){
     struct wypozyczenie *nowe_wypozyczenie = (struct wypozyczenie *) malloc(sizeof(struct wypozyczenie));
@@ -122,6 +165,12 @@ void push_wypozyczenie (struct wypozyczenie **head_wypozyczenie, struct wypozycz
     *head_wypozyczenie = nowe_wypozyczenie;
 }
 
+/**
+ * \brief Wyszukiwanie wypożyczenia po ID
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param id szukany identyfikator
+ * @return poszukiwany element lub NULL, jeśli nie znaleziony
+ */
 
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **head_wypozyczenie, unsigned int id){
     struct wypozyczenie *bufor = *head_wypozyczenie;
@@ -136,6 +185,13 @@ struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci(struct wypozyczenie **hea
     if(i==0) return NULL;
     return bufor;
 }
+
+/**
+ * \brief Wyszukiwanie wypożyczenia po ID
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param id szukany identyfikator
+ * @return element poprzedzający poszukiwany element lub NULL, jeśli nie znaleziony
+ */
 
 struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozyczenie **head_wypozyczenie, unsigned int id){
     struct wypozyczenie *poprzedni = NULL;
@@ -153,6 +209,12 @@ struct wypozyczenie *wypozyczenie_szukaj_po_kolejnosci_poprzedni(struct wypozycz
     return poprzedni;
 }
 
+/**
+ * \brief Wypisanie listy wypożyczeń
+ * @param **head_wypozyczenie wskaźnik na listę do wypisania
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
+
 int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
     system("cls");
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
@@ -168,6 +230,13 @@ int wypozyczenie_wypisz(struct wypozyczenie **head_wypozyczenie){
     }
     return 0;
 }
+
+/**
+ * \brief Wypisanie listy wypożyczeń o określonej dacie wypożyczenia
+ * @param *head_wypozyczenie wskaźnik na listę do wypisania
+ * @param data[] poszukiwana data
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
 
 int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
@@ -194,6 +263,13 @@ int wypozeczenie_wypisz_data (struct wypozyczenie *head_wypozyczenie, char data[
     return 0;
 }
 
+/**
+ * \brief Wypisanie listy wypożyczeń o określonej dacie zwrotu
+ * @param *head_wypozyczenie wskaźnik na listę do wypisania
+ * @param data[] poszukiwana data
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
+
 int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char data[]) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
     printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
@@ -219,6 +295,13 @@ int wypozeczenie_wypisz_data_zwrot (struct wypozyczenie *head_wypozyczenie, char
     return 0;
 }
 
+/**
+ * \brief Wypisanie listy wypożyczeń o określonym ID klienta
+ * @param *head_wypozyczenie wskaźnik na listę do wypisania
+ * @param id poszukiwany identyfikator
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
+
 int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
     printf(">> ID. |%15s |%15s |%30s |%18s |%12s |\n", "Imie", "Nazwisko", "Tytuł Filmu", "Data wypożyczenia", "Data Zwrotu");
@@ -237,6 +320,13 @@ int wypozeczenie_wypisz_klient(struct wypozyczenie *head_wypozyczenie, unsigned 
         }
     return 0;
 }
+
+/**
+ * \brief Wypisanie listy wypożyczeń o określonym ID filmu
+ * @param *head_wypozyczenie wskaźnik na listę do wypisania
+ * @param id poszukiwany identyfikator
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
 
 int wypozeczenie_wypisz_film(struct wypozyczenie *head_wypozyczenie, unsigned int id) {
     struct wypozyczenie *wypozyczenie_bufor = head_wypozyczenie;
@@ -257,6 +347,13 @@ int wypozeczenie_wypisz_film(struct wypozyczenie *head_wypozyczenie, unsigned in
     return 0;
 }
 
+/**
+ * \brief Wypisanie listy zaległych wypożyczeń
+ * @param **head_wypozyczenie wskaźnik na listę do wypisania
+ * @param kara wysokość kary naliczana za dzień zwłoki
+ * @return 0 w przypadku powodzenia, -1 gdy lista jest pusta
+ */
+
 int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const double kara){
     struct wypozyczenie *wypozyczenie_bufor = *head_wypozyczenie;
     time_t aktualna_data = time(NULL);
@@ -268,7 +365,7 @@ int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const d
         if(aktualna_data > wypozyczenie_bufor->data_zwrotu_sekundy){
             printf("\n>> %2d. |%15s |%15s |%30s |%18s |%12s | ", wypozyczenie_bufor->id_wypozyczenia, wypozyczenie_bufor->znacznik_klienta->imie, wypozyczenie_bufor->znacznik_klienta->nazwisko , wypozyczenie_bufor->znacznik_filmu->tytul, wypozyczenie_bufor->data_wypozyczenia, wypozyczenie_bufor->data_zwrotu);
             int dni_opoznienia = ((aktualna_data - wypozyczenie_bufor->data_zwrotu_sekundy) / 86400);
-            printf("\n>> Dni opónienia: %d, Naliczona kara: %.2fzł\n", (int)dni_opoznienia, dni_opoznienia*kara);
+            printf("\n>> Dni opóźnienia: %d, Naliczona kara: %.2fzł\n", (int)dni_opoznienia, dni_opoznienia*kara);
             i++;
         }
         wypozyczenie_bufor = wypozyczenie_bufor -> nastepny;
@@ -280,6 +377,16 @@ int wypozyczenie_wypisz_zalegle(struct wypozyczenie **head_wypozyczenie, const d
     }
     return 0;
 }
+
+/**
+ * \brief Sortowanie listy wypożyczeń po dacie wypożyczenia
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_wypozyczenie wskaźnik na listę do posortowania
+ * @param mode 0 - rosnąco, 1 - malejąco
+ */
 
 void wypozyczenie_data_wypozyczenia(struct wypozyczenie **head_wypozyczenie, int mode) {
     struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -306,6 +413,16 @@ void wypozyczenie_data_wypozyczenia(struct wypozyczenie **head_wypozyczenie, int
     *head_wypozyczenie = main;
 }
 
+/**
+ * \brief Sortowanie listy wypożyczeń po dacie zwrotu
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_wypozyczenie wskaźnik na listę do posortowania
+ * @param mode 0 - rosnąco, 1 - malejąco
+ */
+
 void wypozyczenie_data_zwrotu(struct wypozyczenie **head_wypozyczenie, int mode) {
     struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_wypozyczenie)->nastepny != NULL) {
@@ -330,6 +447,16 @@ void wypozyczenie_data_zwrotu(struct wypozyczenie **head_wypozyczenie, int mode)
     wypozyczenie_usun(head_wypozyczenie, NULL);
     *head_wypozyczenie = main;
 }
+
+/**
+ * \brief Sortowanie listy wypożyczeń po imieniu klienta
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_wypozyczenie wskaźnik na listę do posortowania
+ * @param mode 0 - rosnąco, 1 - malejąco
+ */
 
 void wypozyczenie_imie(struct wypozyczenie **head_wypozyczenie, int mode) {
     struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -359,6 +486,16 @@ void wypozyczenie_imie(struct wypozyczenie **head_wypozyczenie, int mode) {
     *head_wypozyczenie = main;
 }
 
+/**
+ * \brief Sortowanie listy wypożyczeń po nazwisku klienta
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_wypozyczenie wskaźnik na listę do posortowania
+ * @param mode 0 - rosnąco, 1 - malejąco
+ */
+
 void wypozyczenie_nazwisko(struct wypozyczenie **head_wypozyczenie, int mode) {
     struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
     while ((*head_wypozyczenie)->nastepny != NULL) {
@@ -386,6 +523,16 @@ void wypozyczenie_nazwisko(struct wypozyczenie **head_wypozyczenie, int mode) {
     wypozyczenie_usun(head_wypozyczenie, NULL);
     *head_wypozyczenie = main;
 }
+
+/**
+ * \brief Sortowanie listy wypożyczeń po tytule filmu
+ *
+ * Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu
+ * dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych
+ * iteracji.
+ * @param **head_wypozyczenie wskaźnik na listę do posortowania
+ * @param mode 0 - rosnąco, 1 - malejąco
+ */
 
 void wypozyczenie_tytul(struct wypozyczenie **head_wypozyczenie, int mode) {
     struct wypozyczenie *main = NULL, *bufor = NULL, *temp = NULL, *prev = NULL;
@@ -415,6 +562,11 @@ void wypozyczenie_tytul(struct wypozyczenie **head_wypozyczenie, int mode) {
     *head_wypozyczenie = main;
 }
 
+/**
+ * \brief Zliczanie ilości zaległych wypożyczeń
+ * @param *head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @return liczba zaległych wypożyczeń
+ */
 
 int licz_zalegle(struct wypozyczenie *head_wypozyczenie){
     time_t aktualna_data = time(NULL);
@@ -427,6 +579,12 @@ int licz_zalegle(struct wypozyczenie *head_wypozyczenie){
     }
     return count;
 }
+
+/**
+ * \brief Zapis listy wypożyczeń do pliku
+ * @param *head_wypozyczenie wskaźnik na listę do zapisu
+ * @return true - zapis udany, false - zapis nieudany
+ */
 
 bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
     if(!dodaj_folder("data")) return false;
@@ -443,6 +601,12 @@ bool wypozyczenie_zapisz_do_pliku(struct wypozyczenie *head_wypozyczenie){
     fclose(file);
     return true;
 }
+
+/**
+ * \brief Odczyt listy wypożyczeń z pliku
+ * @param *head_wypozyczenie wskaźnik na listę do zapisu
+ * @return true - odczyt udany, false - odczyt nieudany
+ */
 
 bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie){
     if(!dodaj_folder("data")) return false;
@@ -488,6 +652,16 @@ bool wypozyczenie_wczytaj_z_pliku(struct wypozyczenie **head_wypozyczenie){
     return true;
 }
 
+/**
+ * \brief Poprawa znaczników w wypożyczeniach
+ *
+ * Funkcja niezbędna do poprawnego funkcjonowania programu, używana chociażby w przypadku sortowania, aby
+ * po posortowaniu nie okazało się, że dane wypożyczenie zmieniło klienta lub film.
+ * @param *head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param *head_film wskaźnik na listę filmów
+ * @param *head_klient wskaźnik na listę klientów
+ */
+
 void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, struct film *head_film, struct klient *head_klient){
     while(head_wypozyczenie != NULL){
         head_wypozyczenie->znacznik_klienta = klient_szukaj_po_numerze(&head_klient, head_wypozyczenie->numer_klienta);
@@ -496,11 +670,16 @@ void wypozyczenie_przebuduj_znaczniki(struct wypozyczenie *head_wypozyczenie, st
     }
 }
 
+/**
+ * \brief Wczytanie wartości kary z pliku
+ * @return wartość kary (pobrana z pliku, lub 2.0 w przypadku braku pliku)
+ */
+
 double wczytaj_kare_z_pliku(){
         double bufor;
         if(!dodaj_folder("data")){
             system("cls");
-            printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
+            printf(">> Plik z wartością kary nie został wczytany, ustawiona została domyślna wartość (2zł)");
             czekaj_na_input_ESCAPE();
             system("cls");
             return 2.0;
@@ -508,7 +687,7 @@ double wczytaj_kare_z_pliku(){
         FILE *file = fopen("data/kara.db", "r");
         if (file == NULL)  {
             system("cls");
-            printf(">> Plik z wartością kary nie został wczytany, ustawiona zostałła domyślna wartość (2zł)");
+            printf(">> Plik z wartością kary nie został wczytany, ustawiona została domyślna wartość (2zł)");
             czekaj_na_input_ESCAPE();
             system("cls");
             return 2.0;
@@ -520,6 +699,11 @@ double wczytaj_kare_z_pliku(){
         }
 }
 
+/**
+ * \brief Zapis wartości kary do pliku
+ * @param kara wartość kary naliczanej za każdy dzień zwłoki
+ * @return 0 w przypadku powodzenia, -1 w przypadku niepowodzenia
+ */
 
 int zapisz_kare_do_pliku(double kara){
     if(!dodaj_folder("data")) return -1;
@@ -533,6 +717,11 @@ int zapisz_kare_do_pliku(double kara){
         return -1;
     }
 }
+
+/**
+ * \brief Powiadamianie o ilości zaległych wypożyczeń
+ * @param *head_wypozyyczenie wskaźnik na listę wypożyczeń
+ */
 
 void powiadom_zalegle(struct wypozyczenie *head_wypozyczenie){
     if(licz_zalegle(head_wypozyczenie) > 0){

@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Dokumentacja pliku wypozyczenie.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('wypozyczenie_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkcje</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja pliku wypozyczenie.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="wypozyczenie_8c.html">wypozyczenie.c</a>&quot;</code><br />
+</div>
+<p><a href="wypozyczenie_8h_source.html">Idź do kodu źródłowego tego pliku.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:a169f1141e42f53b144e08471ee4954a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a169f1141e42f53b144e08471ee4954a6">wypozyczenie_dodaj</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structfilm.html">film</a> *film_wypozyczany, struct <a class="el" href="structklient.html">klient</a> *klient_wypozyczajacy, int ile_tygodni)</td></tr>
+<tr class="memdesc:a169f1141e42f53b144e08471ee4954a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodanie wypożyczenia do listy.  <a href="wypozyczenie_8h.html#a169f1141e42f53b144e08471ee4954a6">Więcej...</a><br /></td></tr>
+<tr class="separator:a169f1141e42f53b144e08471ee4954a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f79c26a313555f49274039eb8f2648"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#ae6f79c26a313555f49274039eb8f2648">wypozyczenie_usun</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *wypozyczenie_przed_usuwanym)</td></tr>
+<tr class="memdesc:ae6f79c26a313555f49274039eb8f2648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usunięcie wypożyczenia z listy.  <a href="wypozyczenie_8h.html#ae6f79c26a313555f49274039eb8f2648">Więcej...</a><br /></td></tr>
+<tr class="separator:ae6f79c26a313555f49274039eb8f2648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada931f26c66895e515dba7e96ec76012"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#ada931f26c66895e515dba7e96ec76012">wypozyczenie_edytuj</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **wypozyczenie_edytowane, int czas_do_zwrotu)</td></tr>
+<tr class="memdesc:ada931f26c66895e515dba7e96ec76012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edytowanie istniejącego elementu listy wypożyczeń  <a href="wypozyczenie_8h.html#ada931f26c66895e515dba7e96ec76012">Więcej...</a><br /></td></tr>
+<tr class="separator:ada931f26c66895e515dba7e96ec76012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e55b11b6f4b327134ddeb8adae723e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#ab0e55b11b6f4b327134ddeb8adae723e">wypozyczenie_szukaj_po_kolejnosci</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, unsigned int id)</td></tr>
+<tr class="memdesc:ab0e55b11b6f4b327134ddeb8adae723e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukiwanie wypożyczenia po ID.  <a href="wypozyczenie_8h.html#ab0e55b11b6f4b327134ddeb8adae723e">Więcej...</a><br /></td></tr>
+<tr class="separator:ab0e55b11b6f4b327134ddeb8adae723e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac48e33865b548b56f95ff53076ea6936"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#ac48e33865b548b56f95ff53076ea6936">wypozyczenie_szukaj_po_kolejnosci_poprzedni</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, unsigned int id)</td></tr>
+<tr class="memdesc:ac48e33865b548b56f95ff53076ea6936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukiwanie wypożyczenia po ID.  <a href="wypozyczenie_8h.html#ac48e33865b548b56f95ff53076ea6936">Więcej...</a><br /></td></tr>
+<tr class="separator:ac48e33865b548b56f95ff53076ea6936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523737092b14ca43048bc546ea2626bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a523737092b14ca43048bc546ea2626bf">wypozyczenie_wypisz</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie)</td></tr>
+<tr class="memdesc:a523737092b14ca43048bc546ea2626bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy wypożyczeń  <a href="wypozyczenie_8h.html#a523737092b14ca43048bc546ea2626bf">Więcej...</a><br /></td></tr>
+<tr class="separator:a523737092b14ca43048bc546ea2626bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87cf4cd1846d0c81f6562cab190dedf5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a87cf4cd1846d0c81f6562cab190dedf5">wypozyczenie_wypisz_zalegle</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, const double kara)</td></tr>
+<tr class="memdesc:a87cf4cd1846d0c81f6562cab190dedf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy zaległych wypożyczeń  <a href="wypozyczenie_8h.html#a87cf4cd1846d0c81f6562cab190dedf5">Więcej...</a><br /></td></tr>
+<tr class="separator:a87cf4cd1846d0c81f6562cab190dedf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34aea7156fef55a7dea16112fd0cf014"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a34aea7156fef55a7dea16112fd0cf014">licz_zalegle</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie)</td></tr>
+<tr class="memdesc:a34aea7156fef55a7dea16112fd0cf014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zliczanie ilości zaległych wypożyczeń  <a href="wypozyczenie_8h.html#a34aea7156fef55a7dea16112fd0cf014">Więcej...</a><br /></td></tr>
+<tr class="separator:a34aea7156fef55a7dea16112fd0cf014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee938eff7cf349405ca367b920a3bb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a8ee938eff7cf349405ca367b920a3bb4">wypozyczenie_wczytaj_z_pliku</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie)</td></tr>
+<tr class="memdesc:a8ee938eff7cf349405ca367b920a3bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odczyt listy wypożyczeń z pliku.  <a href="wypozyczenie_8h.html#a8ee938eff7cf349405ca367b920a3bb4">Więcej...</a><br /></td></tr>
+<tr class="separator:a8ee938eff7cf349405ca367b920a3bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bbce149c8c0950d271d7b317151569"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a82bbce149c8c0950d271d7b317151569">wypozyczenie_przebuduj_znaczniki</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, struct <a class="el" href="structfilm.html">film</a> *head_film, struct <a class="el" href="structklient.html">klient</a> *head_klient)</td></tr>
+<tr class="memdesc:a82bbce149c8c0950d271d7b317151569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poprawa znaczników w wypożyczeniach.  <a href="wypozyczenie_8h.html#a82bbce149c8c0950d271d7b317151569">Więcej...</a><br /></td></tr>
+<tr class="separator:a82bbce149c8c0950d271d7b317151569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed76c08f93b1243a836ff4b55d110f0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a1ed76c08f93b1243a836ff4b55d110f0">wczytaj_kare_z_pliku</a> ()</td></tr>
+<tr class="memdesc:a1ed76c08f93b1243a836ff4b55d110f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytanie wartości kary z pliku.  <a href="wypozyczenie_8h.html#a1ed76c08f93b1243a836ff4b55d110f0">Więcej...</a><br /></td></tr>
+<tr class="separator:a1ed76c08f93b1243a836ff4b55d110f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a63a57c9cbe77fe690ef5dc620a2182"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a7a63a57c9cbe77fe690ef5dc620a2182">zapisz_kare_do_pliku</a> (double kara)</td></tr>
+<tr class="memdesc:a7a63a57c9cbe77fe690ef5dc620a2182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zapis wartości kary do pliku.  <a href="wypozyczenie_8h.html#a7a63a57c9cbe77fe690ef5dc620a2182">Więcej...</a><br /></td></tr>
+<tr class="separator:a7a63a57c9cbe77fe690ef5dc620a2182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6ed5177d6d0a09cb6366b505c3ba1dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#aa6ed5177d6d0a09cb6366b505c3ba1dc">powiadom_zalegle</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie)</td></tr>
+<tr class="memdesc:aa6ed5177d6d0a09cb6366b505c3ba1dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Powiadamianie o ilości zaległych wypożyczeń  <a href="wypozyczenie_8h.html#aa6ed5177d6d0a09cb6366b505c3ba1dc">Więcej...</a><br /></td></tr>
+<tr class="separator:aa6ed5177d6d0a09cb6366b505c3ba1dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4284c56fa90d2a8e95f0df24cd6fd387"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a4284c56fa90d2a8e95f0df24cd6fd387">wypozeczenie_wypisz_data</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, char data[])</td></tr>
+<tr class="memdesc:a4284c56fa90d2a8e95f0df24cd6fd387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy wypożyczeń o określonej dacie wypożyczenia.  <a href="wypozyczenie_8h.html#a4284c56fa90d2a8e95f0df24cd6fd387">Więcej...</a><br /></td></tr>
+<tr class="separator:a4284c56fa90d2a8e95f0df24cd6fd387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544e3213c9da0614fcafd01b5dfa5136"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a544e3213c9da0614fcafd01b5dfa5136">wypozeczenie_wypisz_data_zwrot</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, char data[])</td></tr>
+<tr class="memdesc:a544e3213c9da0614fcafd01b5dfa5136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy wypożyczeń o określonej dacie zwrotu.  <a href="wypozyczenie_8h.html#a544e3213c9da0614fcafd01b5dfa5136">Więcej...</a><br /></td></tr>
+<tr class="separator:a544e3213c9da0614fcafd01b5dfa5136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ef1dfd11a58653071f619e6eb0718f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a7ef1dfd11a58653071f619e6eb0718f2">wypozeczenie_wypisz_klient</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, unsigned int id)</td></tr>
+<tr class="memdesc:a7ef1dfd11a58653071f619e6eb0718f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy wypożyczeń o określonym ID klienta.  <a href="wypozyczenie_8h.html#a7ef1dfd11a58653071f619e6eb0718f2">Więcej...</a><br /></td></tr>
+<tr class="separator:a7ef1dfd11a58653071f619e6eb0718f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e21d106adf4bd3b4e7564dca7634ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a94e21d106adf4bd3b4e7564dca7634ed">wypozeczenie_wypisz_film</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *head_wypozyczenie, unsigned int id)</td></tr>
+<tr class="memdesc:a94e21d106adf4bd3b4e7564dca7634ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wypisanie listy wypożyczeń o określonym ID filmu.  <a href="wypozyczenie_8h.html#a94e21d106adf4bd3b4e7564dca7634ed">Więcej...</a><br /></td></tr>
+<tr class="separator:a94e21d106adf4bd3b4e7564dca7634ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15fe720c73aae25a5d82703935cc350d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wypozyczenie_8h.html#a15fe720c73aae25a5d82703935cc350d">wypozyczenie_nazwisko</a> (struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **head_wypozyczenie, int mode)</td></tr>
+<tr class="memdesc:a15fe720c73aae25a5d82703935cc350d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sortowanie listy wypożyczeń po nazwisku klienta.  <a href="wypozyczenie_8h.html#a15fe720c73aae25a5d82703935cc350d">Więcej...</a><br /></td></tr>
+<tr class="separator:a15fe720c73aae25a5d82703935cc350d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a id="a34aea7156fef55a7dea16112fd0cf014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34aea7156fef55a7dea16112fd0cf014">&#9670;&nbsp;</a></span>licz_zalegle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int licz_zalegle </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zliczanie ilości zaległych wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>liczba zaległych wypożyczeń </dd></dl>
+
+</div>
+</div>
+<a id="aa6ed5177d6d0a09cb6366b505c3ba1dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ed5177d6d0a09cb6366b505c3ba1dc">&#9670;&nbsp;</a></span>powiadom_zalegle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void powiadom_zalegle </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Powiadamianie o ilości zaległych wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1ed76c08f93b1243a836ff4b55d110f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed76c08f93b1243a836ff4b55d110f0">&#9670;&nbsp;</a></span>wczytaj_kare_z_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double wczytaj_kare_z_pliku </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wczytanie wartości kary z pliku. </p>
+<dl class="section return"><dt>Zwraca</dt><dd>wartość kary (pobrana z pliku, lub 2.0 w przypadku braku pliku) </dd></dl>
+
+</div>
+</div>
+<a id="a4284c56fa90d2a8e95f0df24cd6fd387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4284c56fa90d2a8e95f0df24cd6fd387">&#9670;&nbsp;</a></span>wypozeczenie_wypisz_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozeczenie_wypisz_data </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>data</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy wypożyczeń o określonej dacie wypożyczenia. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+    <tr><td class="paramname">data[]</td><td>poszukiwana data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a544e3213c9da0614fcafd01b5dfa5136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a544e3213c9da0614fcafd01b5dfa5136">&#9670;&nbsp;</a></span>wypozeczenie_wypisz_data_zwrot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozeczenie_wypisz_data_zwrot </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>data</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy wypożyczeń o określonej dacie zwrotu. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+    <tr><td class="paramname">data[]</td><td>poszukiwana data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a94e21d106adf4bd3b4e7564dca7634ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94e21d106adf4bd3b4e7564dca7634ed">&#9670;&nbsp;</a></span>wypozeczenie_wypisz_film()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozeczenie_wypisz_film </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy wypożyczeń o określonym ID filmu. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a7ef1dfd11a58653071f619e6eb0718f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ef1dfd11a58653071f619e6eb0718f2">&#9670;&nbsp;</a></span>wypozeczenie_wypisz_klient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozeczenie_wypisz_klient </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy wypożyczeń o określonym ID klienta. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+    <tr><td class="paramname">id</td><td>poszukiwany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a169f1141e42f53b144e08471ee4954a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a169f1141e42f53b144e08471ee4954a6">&#9670;&nbsp;</a></span>wypozyczenie_dodaj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wypozyczenie_dodaj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>film_wypozyczany</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>klient_wypozyczajacy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ile_tygodni</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodanie wypożyczenia do listy. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">*film_wypozyczany</td><td>wskaźnik na wypożyczany film </td></tr>
+    <tr><td class="paramname">*klient_wypozyczajacy</td><td>wskaźnik na klienta wypożyczającego </td></tr>
+    <tr><td class="paramname">ile_tygodni</td><td>czas wypożyczenia liczony w tygodniach </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - dodanie udane, false - dodanie nieudane </dd></dl>
+
+</div>
+</div>
+<a id="ada931f26c66895e515dba7e96ec76012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada931f26c66895e515dba7e96ec76012">&#9670;&nbsp;</a></span>wypozyczenie_edytuj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wypozyczenie_edytuj </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>wypozyczenie_edytowane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>czas_do_zwrotu</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Edytowanie istniejącego elementu listy wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**wypozyczenie_edytowane</td><td>wskaźnik na edytowany element </td></tr>
+    <tr><td class="paramname">czas_do_zwrotu</td><td>nowy czas zwrotu wypożyczenia </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a15fe720c73aae25a5d82703935cc350d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15fe720c73aae25a5d82703935cc350d">&#9670;&nbsp;</a></span>wypozyczenie_nazwisko()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wypozyczenie_nazwisko </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sortowanie listy wypożyczeń po nazwisku klienta. </p>
+<p>Funkcja działa w oparciu o metodę usuwania. To znaczy, że po znalezieniu odpowiedniego elementu dodaje go do tymczasowej listy oraz usuwa go z listy głównej, aby nie był już sprawdzany podczas kolejnych iteracji. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę do posortowania </td></tr>
+    <tr><td class="paramname">mode</td><td>0 - rosnąco, 1 - malejąco </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a82bbce149c8c0950d271d7b317151569"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82bbce149c8c0950d271d7b317151569">&#9670;&nbsp;</a></span>wypozyczenie_przebuduj_znaczniki()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wypozyczenie_przebuduj_znaczniki </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structfilm.html">film</a> *&#160;</td>
+          <td class="paramname"><em>head_film</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structklient.html">klient</a> *&#160;</td>
+          <td class="paramname"><em>head_klient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Poprawa znaczników w wypożyczeniach. </p>
+<p>Funkcja niezbędna do poprawnego funkcjonowania programu, używana chociażby w przypadku sortowania, aby po posortowaniu nie okazało się, że dane wypożyczenie zmieniło klienta lub film. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">*head_film</td><td>wskaźnik na listę filmów </td></tr>
+    <tr><td class="paramname">*head_klient</td><td>wskaźnik na listę klientów </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0e55b11b6f4b327134ddeb8adae723e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e55b11b6f4b327134ddeb8adae723e">&#9670;&nbsp;</a></span>wypozyczenie_szukaj_po_kolejnosci()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a>* wypozyczenie_szukaj_po_kolejnosci </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukiwanie wypożyczenia po ID. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">id</td><td>szukany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>poszukiwany element lub NULL, jeśli nie znaleziony </dd></dl>
+
+</div>
+</div>
+<a id="ac48e33865b548b56f95ff53076ea6936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac48e33865b548b56f95ff53076ea6936">&#9670;&nbsp;</a></span>wypozyczenie_szukaj_po_kolejnosci_poprzedni()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a>* wypozyczenie_szukaj_po_kolejnosci_poprzedni </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukiwanie wypożyczenia po ID. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">id</td><td>szukany identyfikator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>element poprzedzający poszukiwany element lub NULL, jeśli nie znaleziony </dd></dl>
+
+</div>
+</div>
+<a id="ae6f79c26a313555f49274039eb8f2648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f79c26a313555f49274039eb8f2648">&#9670;&nbsp;</a></span>wypozyczenie_usun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wypozyczenie_usun </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> *&#160;</td>
+          <td class="paramname"><em>wypozyczenie_przed_usuwanym</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Usunięcie wypożyczenia z listy. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę wypożyczeń </td></tr>
+    <tr><td class="paramname">*wypozyczenie_przed_usuwanym</td><td>wskaźnik na element poprzedzający element usuwany </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8ee938eff7cf349405ca367b920a3bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee938eff7cf349405ca367b920a3bb4">&#9670;&nbsp;</a></span>wypozyczenie_wczytaj_z_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wypozyczenie_wczytaj_z_pliku </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Odczyt listy wypożyczeń z pliku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*head_wypozyczenie</td><td>wskaźnik na listę do zapisu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>true - odczyt udany, false - odczyt nieudany </dd></dl>
+
+</div>
+</div>
+<a id="a523737092b14ca43048bc546ea2626bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a523737092b14ca43048bc546ea2626bf">&#9670;&nbsp;</a></span>wypozyczenie_wypisz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozyczenie_wypisz </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a87cf4cd1846d0c81f6562cab190dedf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87cf4cd1846d0c81f6562cab190dedf5">&#9670;&nbsp;</a></span>wypozyczenie_wypisz_zalegle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int wypozyczenie_wypisz_zalegle </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structwypozyczenie.html">wypozyczenie</a> **&#160;</td>
+          <td class="paramname"><em>head_wypozyczenie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>kara</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wypisanie listy zaległych wypożyczeń </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**head_wypozyczenie</td><td>wskaźnik na listę do wypisania </td></tr>
+    <tr><td class="paramname">kara</td><td>wysokość kary naliczana za dzień zwłoki </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 gdy lista jest pusta </dd></dl>
+
+</div>
+</div>
+<a id="a7a63a57c9cbe77fe690ef5dc620a2182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a63a57c9cbe77fe690ef5dc620a2182">&#9670;&nbsp;</a></span>zapisz_kare_do_pliku()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int zapisz_kare_do_pliku </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>kara</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zapis wartości kary do pliku. </p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kara</td><td>wartość kary naliczanej za każdy dzień zwłoki </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>0 w przypadku powodzenia, -1 w przypadku niepowodzenia </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="wypozyczenie_8h.html">wypozyczenie.h</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

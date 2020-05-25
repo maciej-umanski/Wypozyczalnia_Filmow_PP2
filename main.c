@@ -36,11 +36,17 @@ void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+* \brief Główne menu programu
+*
+* Funkcja zarzadzająca całym programem.
+*/
+
 int main() {
-    setlocale(LC_ALL, "Polish");
-    struct klient *head_klient = NULL;
-    struct film *head_film = NULL;
-    struct wypozyczenie *head_wypozyczenie = NULL;
+    setlocale(LC_ALL, "Polish"); /// init funkcji zmieniającej język terminala na polski
+    struct klient *head_klient = NULL; /// Wskaźnik na liste zawierającą klientów
+    struct film *head_film = NULL; /// Wskaźnik na liste zawierającą filmy
+    struct wypozyczenie *head_wypozyczenie = NULL; /// Wskaźnik na liste zawierającą wypożyczenia
     wczytywanie_baz_danych(&head_wypozyczenie, &head_klient, &head_film);
     powiadom_zalegle(head_wypozyczenie);
     while(1){
@@ -105,6 +111,14 @@ int main() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * \brief Główna funkcja dodająca klienta
+ *
+ * Funkcja pobiera dane od użytkownika i w zależności od powodzenia funkcji wewnętrzej
+ * wypisuje odpowiedni komunikat.
+ * @param **head_klient wskaźnik na główną listę z klientami
+ */
+
 void dodawanie_klient(struct klient **head_klient){
 
     unsigned long long numer_klienta;
@@ -168,6 +182,13 @@ void dodawanie_klient(struct klient **head_klient){
     wyczysc_ekran();
 }
 
+/**
+ * \brief Główna funkcja usuwająca klienta
+ *
+ * Funkcja wyszukuje klienta o podanym ID. W zależności od powodzenia wyświetla stosowny komunikat.
+ * @param **head_klient wskaźnik na główną listę z klientami
+ */
+
 void usuwanie_klient(struct klient **head_klient) {
     wyczysc_ekran();
     FILE *file = fopen("data/id/last_id_klient.db", "r");
@@ -210,6 +231,13 @@ void usuwanie_klient(struct klient **head_klient) {
     puts(">> Usunięcie klienta przebiegło pomyślnie!");
     czekaj_na_input_ESCAPE();
 }
+
+/**
+ * \brief Główna funkcja edytująca klienta
+ *
+ * Funkcja wyszukuje klienta o podanym ID. W zależności od powodzenia wyświetla stosowny komunikat.
+ * @param **head_klient wskaźnik na główną listę z klientami
+ */
 
 void edytowanie_klient(struct klient **head_klient){
 
@@ -330,6 +358,13 @@ void edytowanie_klient(struct klient **head_klient){
     }
 }
 
+/**
+ * \brief Główna funkcja szukająca klienta
+ *
+ * Funkcja wyszukuje klienta po wybranym polu. Wyświetla wszystkich klientów, którzy zawierają daną frazę.
+ * @param **head_klient wskaźnik na główną listę z klientami
+ */
+
 void szukaj_klient(struct klient *head_klient){ //TODO: wyszukiwarki używają oryginałów (po wyszukaniu wszystko jest z małych liter)
   while(1){
     wyczysc_ekran();
@@ -399,6 +434,13 @@ void szukaj_klient(struct klient *head_klient){ //TODO: wyszukiwarki używają o
     }
   }
 }
+
+/**
+ * \brief Główna funkcja sortująca klientów
+ *
+ * Funkcja wywołuje odpowiednie funkcje sortujące, w zależności od wybranego pola.
+ * @param **head_klient wskaźnik na główną listę z klientami
+ */
 
 void sortuj_klient(struct klient **head_klient){
     while(1){
@@ -584,6 +626,14 @@ void sortuj_klient(struct klient **head_klient){
     }
 }
 
+/**
+ * \brief Główna funkcja dodająca film
+ *
+ * Funkcja pobiera dane z klawiatury, po czym wywołuje funkcję dodającą film o podanych
+ * danych do listy przechowującej filmy.
+ * @param **head_film wskaźnik na główną listę z filmami
+ */
+
 void dodawanie_film(struct film **head_film){
 
     int sztuki_dostepne;
@@ -638,6 +688,13 @@ void dodawanie_film(struct film **head_film){
         }
     }while(1);
 }
+
+/**
+ * \brief Główna funkcja usuwająca film
+ *
+ * Funkcja wyszukuje film o danym ID i jeśli jest to możliwe, usuwa go z listy.
+ * @param **head_film wskaźnik na główną listę z filmami
+ */
 
 void usuwanie_film(struct film **head_film){
     wyczysc_ekran();
@@ -705,6 +762,13 @@ void usuwanie_film(struct film **head_film){
     puts(">> Usunięcie filmu przebiegło pomyślnie!");
     czekaj_na_input_ESCAPE();
 }
+
+/**
+ * \brief Główna funkcja edytująca film
+ *
+ * Funkcja pobiera dane z klawiatury, po czym wywołuje funkcję zmieniającą dane w odpowiednim filmie.
+ * @param **head_film wskaźnik na główną listę z filmami
+ */
 
 void edytowanie_film(struct film **head_film){
 
@@ -833,6 +897,14 @@ void edytowanie_film(struct film **head_film){
     }
 }
 
+/**
+ * \brief Główna funkcja szukająca filmu
+ *
+ * Funkcja wyszukuje konkretnych wpisów w liście zawierającej filmy.
+ * Wypisuje wszystkie wpisy zawierające podaną frazę.
+ * @param *head_film wskaźnik na główną listę z filmami
+ */
+
 void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają oryginałów (po wyszukaniu wszystko jest z małych liter)
     while(1){
         wyczysc_ekran();
@@ -912,6 +984,13 @@ void szukaj_film(struct film *head_film){ //TODO: wyszukiwarki używają orygina
         }
     }
 }
+
+/**
+ * \brief Główna funkcja sortujaca filmy
+ *
+ * Funkcja sortuje listę z filmami w wybranej kolejności po odpowiednim polu.
+ * @param **head_film wskaźnik na główną listę z filmami
+ */
 
 void sortuj_film(struct film **head_film){
     while(1){
@@ -1092,6 +1171,16 @@ void sortuj_film(struct film **head_film){
     }
 }
 
+/**
+ * \brief Główna funkcja dodająca wypożyczenie
+ *
+ * Funkcja wyszukuje konkretnego klienta i film. Jeśli jest to możliwe, dodaje nowe wypożyczenie
+ * do listy. W przeciwnym wypadku zwraca stosowny komunikat.
+ * @param **head_wypozyczenie wskaźnik na główną listę z wypożyczeniami
+ * @param *head_klient wskaźnik na główną listę z klientami
+ * @param *head_film wskaźnik na główną listę z filmami
+ */
+
 void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient *head_klient, struct film *head_film){
 
     wyczysc_ekran();
@@ -1142,6 +1231,13 @@ void dodawanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klie
     czekaj_na_input_ESCAPE();
 }
 
+/**
+ * \brief Główna funkcja usuwająca wypożyczenie
+ *
+ * Funkcja usuwa istniejący wpis w liście wypożyczeń oraz nalicza stosowną karę.
+ * @param **head_wypozyczenie wskaźnik na główną listę z wypożyczeniami
+ */
+
 void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     double kara = wczytaj_kare_z_pliku();
     if(wypozyczenie_wypisz(head_wypozyczenie) != 0){
@@ -1176,6 +1272,14 @@ void usuwanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     czekaj_na_input_ESCAPE();
 }
 
+/**
+ * \brief Główna funkcja edytująca wypożyczenie
+ *
+ * Funkcja wyszukuje konkretny wpis i pobiera od użytkownika dane,
+ * które mają zostać zaktualizowane.
+ * @param **head_wypozyczenie wskaźnik na główną listę z wypożyczeniami
+ */
+
 void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
 
     if(wypozyczenie_wypisz(head_wypozyczenie) != 0){
@@ -1204,6 +1308,15 @@ void edytowanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     printf(">> Nowa data zwrotu wypożyczenia: %s", wypozyczenie_bufor->data_zwrotu);
     czekaj_na_input_ESCAPE();
 }
+
+/**
+ * \brief Główna funkcja wyszukująca wypożyczenie
+ *
+ * Funkcja wyszukuje wszystkie wpisy w liście wypożyczeń zawierające podane dane.
+ * @param *head_wypozyczenie wskaźnik na główną listę z wypożyczeniami
+ * @param *head_film wskaźnik na główną listę z filmami
+ * @param *head_klient wskaźnik na główną listę z klientami
+ */
 
 void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *head_film, struct klient *head_klient){
     while(1){
@@ -1268,6 +1381,14 @@ void szukaj_wypozyczenie(struct wypozyczenie *head_wypozyczenie, struct film *he
     }
 }
 
+/**
+ * \brief Funkcja zarządzająca zaległymi wypożyczeniami
+ *
+ * Funkcja pozawala na wyświetlenie zaległych wypożyczeń oraz ustalenie kary naliczanej
+ * za jeden dzień zwłoki.
+ * @param *head_wypozyczenie wskaźnik na listę wypożyczeń
+ */
+
 void zalegle_wypozyczenie(struct wypozyczenie *head_wypozyczenie){
     while(1){
         wyczysc_ekran();
@@ -1307,6 +1428,14 @@ void zalegle_wypozyczenie(struct wypozyczenie *head_wypozyczenie){
         }
     }
 }
+
+/**
+ * \brief Funkcja sortująca wypożyczenia
+ *
+ * Funkcja sortuje w odpowiedniej kolejności listę wypożyczeń w zależności
+ * od wybranej opcji.
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ */
 
 void sortuj_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     while(1){
@@ -1463,6 +1592,14 @@ void sortuj_wypozyczenie(struct wypozyczenie **head_wypozyczenie){
     }
 }
 
+/**
+ * \brief Funkcja wczytująca pliki z danymi
+ *
+ * Jeśli istnieją pliki baz danych, to funkcja wczyta je do programu i zapisze do odpowiednich list.
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
 
 void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     FILE *file_wypozyczenie = fopen("data/databases/wypozyczenie.db", "r");
@@ -1501,6 +1638,15 @@ void wczytywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klie
     }
 }
 
+/**
+ * \brief Funkcja zapisująca bazy danych
+ *
+ * Funkcja po potwierdzeniu zapisze aktualny stan list do plików w celu ich zachowania.
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
+
 void zapisywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     while(1){
         wyczysc_ekran();
@@ -1529,6 +1675,11 @@ void zapisywanie_baz_danych(struct wypozyczenie **head_wypozyczenie, struct klie
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * \brief Menu zarządzania listą klientów
+ *@param **head_klient wskaźnik na listę klientów
+ */
 
 void zarzadznie_klient(struct klient **head_klient){
     do {
@@ -1568,6 +1719,11 @@ void zarzadznie_klient(struct klient **head_klient){
     }while(1);
 }
 
+/**
+ * \brief Menu zarządzania listą filmów
+ *@param **head_film wskaźnik na listę filmów
+ */
+
 void zarzadzanie_film(struct film **head_film){
     do {
         wyczysc_ekran();
@@ -1605,6 +1761,13 @@ void zarzadzanie_film(struct film **head_film){
         }
     }while(1);
 }
+
+/**
+ * \brief Menu zarządzania listą wypożyczeń
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
 
 void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     do {
@@ -1646,6 +1809,13 @@ void zarzadzanie_wypozyczenie(struct wypozyczenie **head_wypozyczenie, struct kl
         }
     }while(1);
 }
+
+/**
+ * \brief Główna funkcja wyszukująca
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
 
 void wyszukiwarka(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
   while(1){
@@ -1699,6 +1869,13 @@ void wyszukiwarka(struct wypozyczenie **head_wypozyczenie, struct klient **head_
   }
 }
 
+/**
+ * \brief Główna funkcja sortująca
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
+
 void sortowanie(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     while(1){
         wyczysc_ekran();
@@ -1751,6 +1928,16 @@ void sortowanie(struct wypozyczenie **head_wypozyczenie, struct klient **head_kl
         wypozyczenie_przebuduj_znaczniki(*head_wypozyczenie, *head_film, *head_klient);
     }
 }
+
+/**
+ * \brief Funkcja pomocnicza
+ *
+ * Funkcja pomocnicza stworzona do szybszego wykonywana pewnych funkcjonalności programu.
+ * Stworzona w celu testowania poprawnego działania.
+ * @param **head_wypozyczenie wskaźnik na listę wypożyczeń
+ * @param **head_klient wskaźnik na listę klientów
+ * @param **head_film wskaźnik na listę filmów
+ */
 
 void DEBUG_MENU(struct wypozyczenie **head_wypozyczenie, struct klient **head_klient, struct film **head_film){
     do {

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B: Plik źródłowy klient.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wypożyczalnia filmów - Jakub Witas, Maciej Umański 15B
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('klient_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">klient.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="klient_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PP2_KLIENT_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PP2_KLIENT_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="klient_8c.html">klient.c</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="klient_8h.html#adc9e96fb0927e0f8ab106e9cd6f926c9">klient_dodaj</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> numer_klienta, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> numer_telefonu, <span class="keywordtype">char</span> imie[], <span class="keywordtype">char</span> nazwisko[], <span class="keywordtype">char</span> email[]);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#ab262738bba7aa5e818be8feb0e11b45d">klient_usun</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *klient_przed_usuwanym);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a8c608a0249457c3375bc97f8fb58333f">klient_edytuj</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **klient_edytowany, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> numer_telefonu, <span class="keywordtype">char</span> imie[], <span class="keywordtype">char</span> nazwisko[], <span class="keywordtype">char</span> email[]);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">struct </span><a class="code" href="structklient.html">klient</a> *<a class="code" href="klient_8h.html#a8d1fcb4821627e928c86c3162148fe15">klient_szukaj_po_numerze</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structklient.html#a5fc57005784ec089016d3d45275757e4">numer_klienta</a>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">struct </span><a class="code" href="structklient.html">klient</a> *<a class="code" href="klient_8h.html#adc09ccd116e698969463dd9a6fe65732">klient_szukaj_po_kolejnosci</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">struct </span><a class="code" href="structklient.html">klient</a> *<a class="code" href="klient_8h.html#a5f0af96205dd7289ac251b0ad0f6ee98">klient_szukaj_po_kolejnosci_dostepne_poprzedni</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#adaf76f1aa88ed2c92c609f4fb1e6e00d">klient_wypisz</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#a926dac66c799f0c08386e944649f38eb">klient_wypisz_dostepni</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#a1909127069af101495e9adf94db390e8">klient_wypisz_numer_telefonu</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="structklient.html#a19ba00e8c459dbc3ab1ae795c386f218">numer_telefonu</a>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#ac8b8f25f490a62b3da51b8045f611bbd">klient_wypisz_ilosc_posiadanych_filmow</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> <a class="code" href="structklient.html#a835d8562d2935279e0e7156638651d7f">ilosc_posiadanych_filmow</a>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#acb4f19655f898b1baab2370711a14f72">klient_wypisz_imie</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient, <span class="keywordtype">char</span> <a class="code" href="structklient.html#aa86b0fafe60a023ef754e9955654e830">imie</a>[]);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#ae587ff50309393e7d0ecf6b12c4abf4f">klient_wypisz_nazwisko</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient, <span class="keywordtype">char</span> <a class="code" href="structklient.html#a68f4d6442ff813d934fbeded64716a55">nazwisko</a>[]);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> <a class="code" href="klient_8h.html#a2a371a146bffc65adc11a042decc3245">klient_wypisz_mail</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient, <span class="keywordtype">char</span> <a class="code" href="structklient.html#a68f4d6442ff813d934fbeded64716a55">nazwisko</a>[]);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="klient_8h.html#aad60df66de347a5c29c498b9d2d5f7d7">klient_czy_pesel_istnieje</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="structklient.html#a5fc57005784ec089016d3d45275757e4">numer_klienta</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="klient_8h.html#acab4b34eea6ca1710d14310088a389ef">klient_zapisz_do_pliku</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#af266ea38783d1dac4c95ae034cf427d8">klient_zamien_spacje_na_tylde</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a3e53afeb76f8d600be4cf482babdcc3c">klient_zamien_tylde_na_spacje</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> *head_klient);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="klient_8h.html#ab0e3536e5c3e2c6d5a921e23c9c6807d">klient_wczytaj_z_pliku</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="klient_8h.html#a5c8c08189bf919c6a11c30e4f299842d">check_email</a>(<span class="keywordtype">char</span> mail[]);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a8a31bc436a1e3da68caeb4a7e24ae82e">push_klient</a> (<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **bufor);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a02243ba3f21f20f78493687af555db97">klient_telefon</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a03e5cbfe1349ec8a3d9d27c9b08ac710">klient_pesel</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a090dc545f5d7b8dcdf8de6d68f373bb2">klient_filmy</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a53b52a1cc4f3b210f547a9a35943dcff">klient_imie</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#ac4285586a0e7c763562fcc4729862e9c">klient_nazwisko</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> <a class="code" href="klient_8h.html#a0e41cf485c062c8b1875d5ea8b8e7bdd">klient_mail</a>(<span class="keyword">struct</span> <a class="code" href="structklient.html">klient</a> **head_klient, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif //PP2_KLIENT_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="astructklient_html_a19ba00e8c459dbc3ab1ae795c386f218"><div class="ttname"><a href="structklient.html#a19ba00e8c459dbc3ab1ae795c386f218">klient::numer_telefonu</a></div><div class="ttdeci">unsigned long long numer_telefonu</div><div class="ttdef"><b>Definition:</b> klient.c:24</div></div>
+<div class="ttc" id="aklient_8h_html_a2a371a146bffc65adc11a042decc3245"><div class="ttname"><a href="klient_8h.html#a2a371a146bffc65adc11a042decc3245">klient_wypisz_mail</a></div><div class="ttdeci">int klient_wypisz_mail(struct klient *head_klient, char nazwisko[])</div><div class="ttdoc">Wypisanie wszystkich elementów o określonym adresie mailowym klienta.</div><div class="ttdef"><b>Definition:</b> klient.c:401</div></div>
+<div class="ttc" id="aklient_8h_html_acb4f19655f898b1baab2370711a14f72"><div class="ttname"><a href="klient_8h.html#acb4f19655f898b1baab2370711a14f72">klient_wypisz_imie</a></div><div class="ttdeci">int klient_wypisz_imie(struct klient *head_klient, char imie[])</div><div class="ttdoc">Wypisanie wszystkich elementów o określonym imieniu klienta.</div><div class="ttdef"><b>Definition:</b> klient.c:321</div></div>
+<div class="ttc" id="aklient_8h_html_adaf76f1aa88ed2c92c609f4fb1e6e00d"><div class="ttname"><a href="klient_8h.html#adaf76f1aa88ed2c92c609f4fb1e6e00d">klient_wypisz</a></div><div class="ttdeci">int klient_wypisz(struct klient **head_klient)</div><div class="ttdoc">Wypisanie wszystkich elementów listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:208</div></div>
+<div class="ttc" id="aklient_8h_html_a8c608a0249457c3375bc97f8fb58333f"><div class="ttname"><a href="klient_8h.html#a8c608a0249457c3375bc97f8fb58333f">klient_edytuj</a></div><div class="ttdeci">void klient_edytuj(struct klient **klient_edytowany, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[])</div><div class="ttdoc">Edytowanie istniejącego elementu listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:115</div></div>
+<div class="ttc" id="aklient_8h_html_ae587ff50309393e7d0ecf6b12c4abf4f"><div class="ttname"><a href="klient_8h.html#ae587ff50309393e7d0ecf6b12c4abf4f">klient_wypisz_nazwisko</a></div><div class="ttdeci">int klient_wypisz_nazwisko(struct klient *head_klient, char nazwisko[])</div><div class="ttdoc">Wypisanie wszystkich elementów o określonym nazwisku klienta.</div><div class="ttdef"><b>Definition:</b> klient.c:361</div></div>
+<div class="ttc" id="aklient_8h_html_ac4285586a0e7c763562fcc4729862e9c"><div class="ttname"><a href="klient_8h.html#ac4285586a0e7c763562fcc4729862e9c">klient_nazwisko</a></div><div class="ttdeci">void klient_nazwisko(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po nazwisku.</div><div class="ttdef"><b>Definition:</b> klient.c:586</div></div>
+<div class="ttc" id="astructklient_html"><div class="ttname"><a href="structklient.html">klient</a></div><div class="ttdoc">Struktura przechowująca klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:21</div></div>
+<div class="ttc" id="aklient_8h_html_a02243ba3f21f20f78493687af555db97"><div class="ttname"><a href="klient_8h.html#a02243ba3f21f20f78493687af555db97">klient_telefon</a></div><div class="ttdeci">void klient_telefon(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po numerze telefonu.</div><div class="ttdef"><b>Definition:</b> klient.c:441</div></div>
+<div class="ttc" id="aklient_8h_html_a5c8c08189bf919c6a11c30e4f299842d"><div class="ttname"><a href="klient_8h.html#a5c8c08189bf919c6a11c30e4f299842d">check_email</a></div><div class="ttdeci">bool check_email(char mail[])</div><div class="ttdoc">Walidacja adresów e-mail.</div><div class="ttdef"><b>Definition:</b> klient.c:804</div></div>
+<div class="ttc" id="aklient_8h_html_a03e5cbfe1349ec8a3d9d27c9b08ac710"><div class="ttname"><a href="klient_8h.html#a03e5cbfe1349ec8a3d9d27c9b08ac710">klient_pesel</a></div><div class="ttdeci">void klient_pesel(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po numerze pesel.</div><div class="ttdef"><b>Definition:</b> klient.c:476</div></div>
+<div class="ttc" id="aklient_8h_html_a926dac66c799f0c08386e944649f38eb"><div class="ttname"><a href="klient_8h.html#a926dac66c799f0c08386e944649f38eb">klient_wypisz_dostepni</a></div><div class="ttdeci">int klient_wypisz_dostepni(struct klient **head_klient)</div><div class="ttdoc">Wypisanie wszystkich dostępnych elementów listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:231</div></div>
+<div class="ttc" id="aklient_8h_html_ab0e3536e5c3e2c6d5a921e23c9c6807d"><div class="ttname"><a href="klient_8h.html#ab0e3536e5c3e2c6d5a921e23c9c6807d">klient_wczytaj_z_pliku</a></div><div class="ttdeci">bool klient_wczytaj_z_pliku(struct klient **head_klient)</div><div class="ttdoc">Odczyt pliku z zapisanymi elementami listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:750</div></div>
+<div class="ttc" id="aklient_8h_html_af266ea38783d1dac4c95ae034cf427d8"><div class="ttname"><a href="klient_8h.html#af266ea38783d1dac4c95ae034cf427d8">klient_zamien_spacje_na_tylde</a></div><div class="ttdeci">void klient_zamien_spacje_na_tylde(struct klient *head_klient)</div><div class="ttdoc">Zamiana spacji na tyldę w zmiennych łańcuchowych.</div><div class="ttdef"><b>Definition:</b> klient.c:696</div></div>
+<div class="ttc" id="aklient_8h_html_a1909127069af101495e9adf94db390e8"><div class="ttname"><a href="klient_8h.html#a1909127069af101495e9adf94db390e8">klient_wypisz_numer_telefonu</a></div><div class="ttdeci">int klient_wypisz_numer_telefonu(struct klient **head_klient, unsigned long long numer_telefonu)</div><div class="ttdoc">Wypisanie wszystkich elementów o określonym numerze telefonu.</div><div class="ttdef"><b>Definition:</b> klient.c:264</div></div>
+<div class="ttc" id="aklient_8h_html_ab262738bba7aa5e818be8feb0e11b45d"><div class="ttname"><a href="klient_8h.html#ab262738bba7aa5e818be8feb0e11b45d">klient_usun</a></div><div class="ttdeci">void klient_usun(struct klient **head_klient, struct klient *klient_przed_usuwanym)</div><div class="ttdoc">Usuwanie elementu z listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:93</div></div>
+<div class="ttc" id="aklient_8h_html_adc09ccd116e698969463dd9a6fe65732"><div class="ttname"><a href="klient_8h.html#adc09ccd116e698969463dd9a6fe65732">klient_szukaj_po_kolejnosci</a></div><div class="ttdeci">struct klient * klient_szukaj_po_kolejnosci(struct klient **head_klient, unsigned int id)</div><div class="ttdoc">Wyszukiwanie klienta z określonym ID.</div><div class="ttdef"><b>Definition:</b> klient.c:165</div></div>
+<div class="ttc" id="aklient_8h_html_a5f0af96205dd7289ac251b0ad0f6ee98"><div class="ttname"><a href="klient_8h.html#a5f0af96205dd7289ac251b0ad0f6ee98">klient_szukaj_po_kolejnosci_dostepne_poprzedni</a></div><div class="ttdeci">struct klient * klient_szukaj_po_kolejnosci_dostepne_poprzedni(struct klient **head_klient, unsigned int id)</div><div class="ttdoc">Wyszukiwanie klienta z określonym ID.</div><div class="ttdef"><b>Definition:</b> klient.c:186</div></div>
+<div class="ttc" id="astructklient_html_aa86b0fafe60a023ef754e9955654e830"><div class="ttname"><a href="structklient.html#aa86b0fafe60a023ef754e9955654e830">klient::imie</a></div><div class="ttdeci">char imie[15]</div><div class="ttdef"><b>Definition:</b> klient.c:25</div></div>
+<div class="ttc" id="aklient_8h_html_ac8b8f25f490a62b3da51b8045f611bbd"><div class="ttname"><a href="klient_8h.html#ac8b8f25f490a62b3da51b8045f611bbd">klient_wypisz_ilosc_posiadanych_filmow</a></div><div class="ttdeci">int klient_wypisz_ilosc_posiadanych_filmow(struct klient **head_klient, int ilosc_posiadanych_filmow)</div><div class="ttdoc">Wypisanie wszystkich elementów o określonej ilości wypożyczonych filmów.</div><div class="ttdef"><b>Definition:</b> klient.c:292</div></div>
+<div class="ttc" id="aklient_8h_html_aad60df66de347a5c29c498b9d2d5f7d7"><div class="ttname"><a href="klient_8h.html#aad60df66de347a5c29c498b9d2d5f7d7">klient_czy_pesel_istnieje</a></div><div class="ttdeci">bool klient_czy_pesel_istnieje(struct klient *head_klient, unsigned long long numer_klienta)</div><div class="ttdoc">Sprawdzanie, czy podany pesel już istnieje w liście klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:659</div></div>
+<div class="ttc" id="aklient_8h_html_a090dc545f5d7b8dcdf8de6d68f373bb2"><div class="ttname"><a href="klient_8h.html#a090dc545f5d7b8dcdf8de6d68f373bb2">klient_filmy</a></div><div class="ttdeci">void klient_filmy(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po ilości wypożyczonych filmów.</div><div class="ttdef"><b>Definition:</b> klient.c:512</div></div>
+<div class="ttc" id="aklient_8h_html_a8d1fcb4821627e928c86c3162148fe15"><div class="ttname"><a href="klient_8h.html#a8d1fcb4821627e928c86c3162148fe15">klient_szukaj_po_numerze</a></div><div class="ttdeci">struct klient * klient_szukaj_po_numerze(struct klient **head_klient, unsigned int numer_klienta)</div><div class="ttdoc">Wyszukiwanie klienta z określonym ID.</div><div class="ttdef"><b>Definition:</b> klient.c:150</div></div>
+<div class="ttc" id="astructklient_html_a5fc57005784ec089016d3d45275757e4"><div class="ttname"><a href="structklient.html#a5fc57005784ec089016d3d45275757e4">klient::numer_klienta</a></div><div class="ttdeci">unsigned long long numer_klienta</div><div class="ttdef"><b>Definition:</b> klient.c:23</div></div>
+<div class="ttc" id="astructklient_html_a835d8562d2935279e0e7156638651d7f"><div class="ttname"><a href="structklient.html#a835d8562d2935279e0e7156638651d7f">klient::ilosc_posiadanych_filmow</a></div><div class="ttdeci">int ilosc_posiadanych_filmow</div><div class="ttdef"><b>Definition:</b> klient.c:28</div></div>
+<div class="ttc" id="aklient_8h_html_a0e41cf485c062c8b1875d5ea8b8e7bdd"><div class="ttname"><a href="klient_8h.html#a0e41cf485c062c8b1875d5ea8b8e7bdd">klient_mail</a></div><div class="ttdeci">void klient_mail(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po adresie mailowym.</div><div class="ttdef"><b>Definition:</b> klient.c:624</div></div>
+<div class="ttc" id="aklient_8h_html_a3e53afeb76f8d600be4cf482babdcc3c"><div class="ttname"><a href="klient_8h.html#a3e53afeb76f8d600be4cf482babdcc3c">klient_zamien_tylde_na_spacje</a></div><div class="ttdeci">void klient_zamien_tylde_na_spacje(struct klient *head_klient)</div><div class="ttdoc">Zamiana tyldy na spacje w zmiennych łańcuchowych.</div><div class="ttdef"><b>Definition:</b> klient.c:723</div></div>
+<div class="ttc" id="aklient_8h_html_a53b52a1cc4f3b210f547a9a35943dcff"><div class="ttname"><a href="klient_8h.html#a53b52a1cc4f3b210f547a9a35943dcff">klient_imie</a></div><div class="ttdeci">void klient_imie(struct klient **head_klient, int mode)</div><div class="ttdoc">Sortowanie listy klientów po imieniu.</div><div class="ttdef"><b>Definition:</b> klient.c:548</div></div>
+<div class="ttc" id="aklient_8h_html_a8a31bc436a1e3da68caeb4a7e24ae82e"><div class="ttname"><a href="klient_8h.html#a8a31bc436a1e3da68caeb4a7e24ae82e">push_klient</a></div><div class="ttdeci">void push_klient(struct klient **head_klient, struct klient **bufor)</div><div class="ttdoc">Kopiowanie klienta podczas sortowania.</div><div class="ttdef"><b>Definition:</b> klient.c:130</div></div>
+<div class="ttc" id="astructklient_html_a68f4d6442ff813d934fbeded64716a55"><div class="ttname"><a href="structklient.html#a68f4d6442ff813d934fbeded64716a55">klient::nazwisko</a></div><div class="ttdeci">char nazwisko[15]</div><div class="ttdef"><b>Definition:</b> klient.c:26</div></div>
+<div class="ttc" id="aklient_8h_html_acab4b34eea6ca1710d14310088a389ef"><div class="ttname"><a href="klient_8h.html#acab4b34eea6ca1710d14310088a389ef">klient_zapisz_do_pliku</a></div><div class="ttdeci">bool klient_zapisz_do_pliku(struct klient *head_klient)</div><div class="ttdoc">Zapisywanie listy klientów do pliku.</div><div class="ttdef"><b>Definition:</b> klient.c:675</div></div>
+<div class="ttc" id="aklient_8c_html"><div class="ttname"><a href="klient_8c.html">klient.c</a></div></div>
+<div class="ttc" id="aklient_8h_html_adc9e96fb0927e0f8ab106e9cd6f926c9"><div class="ttname"><a href="klient_8h.html#adc9e96fb0927e0f8ab106e9cd6f926c9">klient_dodaj</a></div><div class="ttdeci">bool klient_dodaj(struct klient **head_klient, unsigned long long numer_klienta, unsigned long long numer_telefonu, char imie[], char nazwisko[], char email[])</div><div class="ttdoc">Dodanie elementu do listy klientów.</div><div class="ttdef"><b>Definition:</b> klient.c:43</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="klient_8h.html">klient.h</a></li>
+    <li class="footer">Wygenerowano przez
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>
